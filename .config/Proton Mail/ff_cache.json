@@ -1,0 +1,11 @@
+{
+	"featureFlags": {
+		"flags": {
+			"InboxDesktopAppVersionExtensionDisabled": false,
+			"InboxDesktopElectronAndOsVersionUpdateConstraintsDisabled": false,
+			"inda-test-flag-1": false,
+			"inda-test-flag-2": false
+		},
+		"lastUpdated": 1769231959071
+	}
+}

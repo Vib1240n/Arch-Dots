@@ -1,0 +1,7 @@
+2026/01/23-20:50:55.882 1fc4e Reusing MANIFEST /home/vib1240n/.config/Proton Mail/Partitions/app/IndexedDB/https_account.proton.me_0.indexeddb.leveldb/MANIFEST-000001
+2026/01/23-20:50:55.882 1fc4e Recovering log #3
+2026/01/23-20:50:55.883 1fc4e Reusing old log /home/vib1240n/.config/Proton Mail/Partitions/app/IndexedDB/https_account.proton.me_0.indexeddb.leveldb/000003.log 
+2026/01/23-20:50:57.927 1fc4f Level-0 table #5: started
+2026/01/23-20:50:57.932 1fc4f Level-0 table #5: 6033 bytes OK
+2026/01/23-20:50:57.937 1fc4f Delete type=0 #3
+2026/01/23-20:50:57.937 1fc4f Manual compaction at level-0 from (begin) .. (end); will stop at (end)

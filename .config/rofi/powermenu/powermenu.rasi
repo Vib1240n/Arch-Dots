@@ -1,0 +1,92 @@
+/*
+* Nord Power Menu for Hyprland
+* Style: Horizontal Dashboard
+*/
+/* Define color variables */
+* {
+    bg:            #2E344010;    /* Background with 6% opacity for Blur */
+    bga:           #3B4252FF;    /* Selection Background */
+    fg:            #ECEFF4FF;    /* White Text */
+    ac:            #88C0D0FF;    /* Accent (Blue) */
+}
+configuration {
+    font:                "JetBrainsMono Nerd Font 12";
+    show-icons:          true;
+    cursor:              "pointer";
+}
+/* Main Window */
+window {
+    transparency:        "real";
+    background-color:    @bg;
+    text-color:          @fg;
+    border:              1px;
+    border-color:        @bga;
+    border-radius:       20px;
+
+    width:               600px;
+    location:            center;
+    anchor:              center;
+    x-offset:            0;
+    y-offset:            0;
+}
+mainbox {
+    background-color:    transparent;
+    children:            [ inputbar, listview ];
+    spacing:             15px;
+    padding:             15px;
+}
+/* We hide the search bar because we don't need to type here */
+inputbar {
+    children:            [ prompt ];
+    background-color:    transparent;
+    text-color:          @fg;
+    expand:              false;
+    margin:              0px;
+}
+prompt {
+    enabled:             true;
+    padding:             10px;
+    background-color:    transparent;
+    text-color:          @fg;
+    font:                "JetBrainsMono Nerd Font Bold 14";
+    horizontal-align:    0.5;
+}
+/* The List of Buttons */
+listview {
+    background-color:    transparent;
+    columns:             5;       /* 5 items in one row */
+    lines:               1;       /* Only 1 row */
+    cycle:               true;
+    dynamic:             true;
+    layout:              vertical;
+    spacing:             10px;
+}
+/* The Buttons */
+element {
+    background-color:    transparent;
+    text-color:          @fg;
+    orientation:         vertical; /* Icon Top, Text Bottom */
+    border-radius:       15px;
+    padding:             20px 10px;
+}
+element selected {
+    background-color:    @bga;     /* Darker grey/blue when selected */
+    text-color:          @ac;      /* Blue text when selected */
+    border:              1px;
+    border-color:        @ac;
+}
+element-icon {
+    size:                3em;      /* Big Icons */
+    horizontal-align:    0.5;
+    background-color:    transparent;
+    text-color:          inherit;
+    cursor:              inherit;
+    margin:              0 0 10px 0; /* Space between icon and text */
+}
+element-text {
+    horizontal-align:    0.5;
+    vertical-align:      0.5;
+    background-color:    transparent;
+    text-color:          inherit;
+    cursor:              inherit;
+}

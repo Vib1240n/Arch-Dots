@@ -1,0 +1,5 @@
+2026/01/23-19:55:18.856 1fc6a Creating DB /home/vib1240n/.config/Proton Mail/Partitions/app/Local Storage/leveldb since it was missing.
+2026/01/23-19:55:18.870 1fc6a Reusing MANIFEST /home/vib1240n/.config/Proton Mail/Partitions/app/Local Storage/leveldb/MANIFEST-000001
+2026/01/23-19:56:18.873 1fc4f Level-0 table #5: started
+2026/01/23-19:56:18.877 1fc4f Level-0 table #5: 14552 bytes OK
+2026/01/23-19:56:18.881 1fc4f Delete type=0 #3

@@ -1,0 +1,4 @@
+2026/01/23-19:57:37.924 1fc4e Reusing MANIFEST /home/vib1240n/.config/Proton Mail/Partitions/app/IndexedDB/https_mail.proton.me_0.indexeddb.leveldb/MANIFEST-000001
+2026/01/23-19:57:37.925 1fc4e Recovering log #11
+2026/01/23-19:57:37.925 1fc4e Reusing old log /home/vib1240n/.config/Proton Mail/Partitions/app/IndexedDB/https_mail.proton.me_0.indexeddb.leveldb/000011.log 
+2026/01/23-19:57:37.925 1fc4e Delete type=2 #10

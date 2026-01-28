@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(wpctl status:*)",
+      "Bash(chmod:*)",
+      "Bash(~/.config/rofi/scripts/audio-output.sh)"
+    ]
+  }
+}

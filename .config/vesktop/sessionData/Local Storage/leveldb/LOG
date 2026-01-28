@@ -1,0 +1,20 @@
+2026/01/28-11:25:32.618 1b6284 Reusing MANIFEST /home/vib1240n/.config/vesktop/sessionData/Local Storage/leveldb/MANIFEST-000001
+2026/01/28-11:25:32.642 1b6284 Recovering log #901
+2026/01/28-11:25:32.649 1b6284 Level-0 table #904: started
+2026/01/28-11:25:32.654 1b6284 Level-0 table #904: 41267 bytes OK
+2026/01/28-11:25:32.658 1b6284 Delete type=0 #901
+2026/01/28-12:30:04.593 1b6376 Level-0 table #907: started
+2026/01/28-12:30:04.605 1b6376 Level-0 table #907: 50409 bytes OK
+2026/01/28-12:30:04.609 1b6376 Delete type=0 #905
+2026/01/28-12:30:04.609 1b6376 Compacting 4@0 + 1@1 files
+2026/01/28-12:30:04.616 1b6376 Generated table #908@0: 109 keys, 101944 bytes
+2026/01/28-12:30:04.616 1b6376 Compacted 4@0 + 1@1 files => 101944 bytes
+2026/01/28-12:30:04.620 1b6376 compacted to: files[ 0 1 0 0 0 0 0 ]
+2026/01/28-12:30:04.620 1b6376 Delete type=2 #907
+2026/01/28-12:30:04.621 1b6376 Delete type=2 #900
+2026/01/28-12:30:04.621 1b6376 Delete type=2 #898
+2026/01/28-12:30:04.621 1b6376 Delete type=2 #904
+2026/01/28-12:30:04.621 1b6376 Delete type=2 #902
+2026/01/28-13:10:53.538 1b6376 Level-0 table #910: started
+2026/01/28-13:10:53.552 1b6376 Level-0 table #910: 41569 bytes OK
+2026/01/28-13:10:53.562 1b6376 Delete type=0 #906

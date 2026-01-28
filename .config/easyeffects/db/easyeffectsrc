@@ -1,0 +1,25 @@
+[Audio]
+levelMetersFpsCap=120
+
+[Presets]
+lastLoadedOutputPreset=Music Bass enhanced
+
+[Spectrum]
+spectrumShape=lines
+
+[StreamInputs]
+inputDevice=alsa_input.pci-0000_00_1f.3.analog-stereo
+
+[StreamOutputs]
+mostUsedPresets=Music Bass enhanced
+outputDevice=alsa_output.usb-bestechnic_EDIFIER_M60_20160406.1-00.analog-stereo
+plugins=equalizer#0,autogain#0,bass_enhancer#0,loudness#0,stereo_tools#0
+usedPresets=Music Bass enhanced:1
+visiblePage=pluginsPage
+visiblePlugin=bass_enhancer#0
+
+[Window]
+autostartOnLogin=true
+height=1374
+noWindowAfterStarting=true
+width=3424
