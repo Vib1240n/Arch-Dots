@@ -1,0 +1,17 @@
+[Unit]
+Description=RClone VFS mount for Nextcloud
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+ExecStartPre=/bin/mkdir -p %h/Nextcloud-VFS
+ExecStart=/usr/bin/rclone mount Nextcloud: %h/Nextcloud-VFS \
+    --vfs-cache-mode full \
+    --log-level INFO
+ExecStop=/bin/fusermount -u %h/Nextcloud-VFS
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

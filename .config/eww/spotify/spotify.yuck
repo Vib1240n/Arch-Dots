@@ -1,0 +1,80 @@
+;; Spotify variables
+(defpoll spotify-title :interval "1s"
+  "playerctl -p spotify metadata title 2>/dev/null || echo 'Not Playing'")
+
+(defpoll spotify-artist :interval "1s"
+  "playerctl -p spotify metadata artist 2>/dev/null || echo ''")
+
+(defpoll spotify-art :interval "2s"
+  "~/.config/eww/scripts/get-spotify-art-simple.sh")
+
+(defpoll spotify-position :interval "1s"
+  "~/.config/eww/scripts/spotify-position.sh")
+
+(defpoll spotify-duration :interval "2s"
+  "~/.config/eww/scripts/spotify-duration.sh")
+
+(defpoll spotify-progress :interval "1s"
+  :initial "0"
+  "~/.config/eww/scripts/spotify-progress.sh")
+
+(defpoll spotify-icon :interval "1s"
+  "~/.config/eww/scripts/spotify-icon.sh")
+
+;; Spotify player widget
+(defwidget spotify-player []
+  (box :class "spotify-player"
+       :orientation "v"
+       :space-evenly false
+    (box :class "album-art-section"
+         :style "background-image: url('${spotify-art}'); background-size: cover; background-position: center;"
+    (box :class "track-info"
+          :orientation "v"
+          :valign "end"
+          :space-evenly false
+      (label :class "track-title" 
+              :text "${spotify-title}")
+      (label :class "track-artist" 
+              :text "${spotify-artist}")))
+    (box :class "controls-container"
+         :orientation "v"
+         :space-evenly false
+      (box :class "progress-bar"
+           :orientation "h"
+           :halign "center"
+        (label :class "time-current" :text "${spotify-position}")
+        (scale :class "progress"
+               :value {spotify-progress}
+               :min 0
+               :max 100)
+        (label :class "time-total" :text "${spotify-duration}"))
+      (box :class "control-buttons"
+           :orientation "h"
+           :halign "center"
+           :spacing 20
+        (button :class "btn-prev" 
+                :onclick "playerctl -p spotify previous"
+                "⏮")
+        (button :class "btn-play" 
+                :onclick "playerctl -p spotify play-pause"
+                "${spotify-icon}")
+        (button :class "btn-next" 
+                :onclick "playerctl -p spotify next"
+                "⏭"))
+      (button :class "btn-goto"
+              :onclick "~/.config/eww/scripts/goto-spotify.sh"
+              "Go to Spotify"))))
+
+;; Spotify popup window
+(defwindow spotify-popup
+  :monitor 0
+  :geometry (geometry :x "20px"
+                      :y "20px"
+                      :width "300px"
+                      :height "500px"
+                      :anchor "top right")
+  :stacking "overlay"
+  :focusable false
+  :namespace "eww-spotify"
+  :exclusive false
+  (spotify-player))

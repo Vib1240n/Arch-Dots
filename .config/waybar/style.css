@@ -1,0 +1,241 @@
+@import "colors.css";
+
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 14px;
+  min-height: 0;
+  border: 0;
+}
+
+window#waybar {
+  background-color: alpha(@color0, 0.85);
+  margin: 4px 8px;
+  border-radius: 16px;
+  border: 1px solid alpha(@color7, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+#window {
+  padding: 0 12px;
+  margin: 6px 0 6px 6px;
+  background-color: transparent;
+  color: @color15;
+  font-weight: 500;
+}
+
+#workspaces {
+  background-color: alpha(@color7, 0.15);
+  padding: 3px;
+  margin: 4px 6px;
+  border-radius: 12px;
+  border: 1px solid alpha(@color7, 0.2);
+}
+
+#workspaces button {
+  padding: 3px 12px;
+  color: alpha(@color15, 0.7);
+  background-color: transparent;
+  border-radius: 8px;
+  margin: 0 2px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#workspaces button:hover {
+  background-color: alpha(@color7, 0.25);
+  color: @color15;
+}
+
+#workspaces button.active {
+  color: @color0;
+  background-color: @color7;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+#workspaces button.active:first-child {
+  border-radius: 10px 8px 8px 10px;
+}
+
+#workspaces button.active:last-child {
+  border-radius: 8px 10px 10px 8px;
+}
+
+#custom-mode {
+  background-color: alpha(@color2, 0.8);
+  color: @color15;
+  padding: 4px 12px;
+  margin: 4px 6px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+#clock {
+  background-color: @color7;
+  color: @color0;
+  padding: 4px 14px;
+  margin: 4px 0;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#details {
+  background-color: alpha(@color14, 0.2);
+  border: 1px solid alpha(@color14, 0.3);
+  border-radius: 12px;
+  padding: 4px 10px;
+  margin: 4px 6px 4px 0;
+  color: @color15;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+#details:hover {
+  opacity: 1;
+}
+
+#details > * {
+  opacity: inherit;
+}
+
+#battery,
+#network,
+#pulseaudio,
+#tray,
+#cpu,
+#memory,
+#disk {
+  background-color: alpha(@color12, 0.15);
+  border: 1px solid alpha(@color12, 0.25);
+  border-radius: 10px;
+  color: @color15;
+  padding: 3px 10px;
+  margin: 4px 3px;
+  min-width: 40px;
+  transition: all 0.2s;
+}
+
+#tray {
+  padding: 3px 8px;
+  margin: 4px 3px;
+}
+
+#network {
+  min-width: 70px;
+}
+
+#battery.warning {
+  color: @color11;
+  background-color: alpha(@color11, 0.15);
+}
+
+#battery.critical {
+  color: @color3;
+  background-color: alpha(@color3, 0.2);
+}
+
+#battery.charging {
+  color: @color7;
+  background-color: alpha(@color7, 0.2);
+}
+
+#info {
+  background-color: alpha(@color7, 0.15);
+  border: 1px solid alpha(@color7, 0.25);
+  border-radius: 12px;
+  padding: 4px 12px;
+  margin: 4px 6px;
+  color: @color15;
+}
+
+#custom-spotify {
+  background-color: alpha(@color10, 0.2);
+  border: 1px solid alpha(@color10, 0.3);
+  border-radius: 12px;
+  padding: 4px 14px;
+  margin: 4px 6px;
+  color: @color15;
+  font-weight: 500;
+}
+
+#custom-spotify.Playing {
+  background-color: @color7;
+  color: @color0;
+  border-color: transparent;
+}
+
+#custom-spotify.Paused {
+  opacity: 0.7;
+}
+
+#custom-bluetooth-battery {
+  background-color: alpha(@color7, 0.15);
+  border: 1px solid alpha(@color7, 0.25);
+  border-radius: 12px;
+  padding: 4px 10px;
+  margin: 4px 3px;
+  color: @color15;
+}
+
+#custom-bluetooth-battery.connected {
+  color: @color7;
+  background-color: alpha(@color7, 0.25);
+}
+
+#custom-bluetooth-battery.disconnected {
+  opacity: 0;
+}
+
+#custom-caffeinate {
+  color: @color11;
+  padding: 0 10px;
+}
+
+#custom-fan {
+  min-width: 55px;
+}
+
+#custom-fan.warning {
+  color: @color11;
+}
+
+#custom-fan.critical {
+  color: @color3;
+  font-weight: 600;
+}
+
+#custom-bluetooth {
+  padding: 0 10px;
+  color: @color7;
+}
+
+#custom-notifications {
+  background-color: alpha(@color12, 0.2);
+  border: 1px solid alpha(@color12, 0.3);
+  color: @color15;
+  padding: 3px 12px;
+  margin: 4px 0 4px 6px;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+#custom-notifications.active {
+  background-color: @color12;
+  color: @color0;
+  border-color: transparent;
+}
+
+#custom-notifications:hover {
+  background-color: alpha(@color12, 0.4);
+}
+
+#cpu,
+#memory,
+#disk {
+  min-width: 55px;
+}
+
+#network.speed {
+  min-width: 180px;
+}

@@ -1,0 +1,5 @@
+[soe][Loudness#0]
+bypass=true
+iirApproximation=3
+mode=1
+volume=2

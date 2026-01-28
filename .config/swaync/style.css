@@ -1,0 +1,161 @@
+/* 1. Root Setup: Transparency fixes the "giant blur box" issue */
+* {
+  all: unset;
+  transition: 0.2s;
+}
+
+.control-center, .notification-window, window {
+  background: transparent;
+}
+
+.notification-row {
+  margin: 2px;
+}
+
+/* 2. Main Notification Bubble */
+.notification-row .notification-background {
+  background: rgba(18, 18, 18, 0.6); /* Slightly darker for readability */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 20px;        /* Increased padding for a cleaner look */
+  min-width: 480px;     /* Adjusted width so it doesn't span too wide */
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Visible shadow for depth */ */
+}
+
+/* 3. Text Styling (Centered + Bigger) */
+.summary {
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-weight: bold;
+  font-size: 20px;      /* Requested Size */
+  text-align: center;   /* Requested Alignment */
+  color: #e8e8e8;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.body {
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 14px;
+  text-align: center;   /* Requested Alignment */
+  color: #c0c0c0;
+}
+
+/* 4. Icon Styling (Fixes placement) */
+.image {
+  margin: 0 15px 0 0;   /* Adds space between the icon and the text */
+  border-radius: 12px;
+}
+
+/* 5. Progress Bar Container */
+progressbar {
+  padding: 0;
+  margin: 15px 0 5px 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* 6. The Track (Dark Background) */
+trough {
+  min-height: 14px;
+  border-radius: 8px;
+  background: rgba(40, 40, 50, 0.8);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 7. The Fill (Neon Gradient) */
+progress {
+  min-height: 14px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #00f2fe, #4facfe);
+  
+  /* Fixed Syntax Error here */
+  box-shadow: 
+    0 0 15px rgba(0, 242, 254, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    
+  margin: 0;
+}
+
+/* 8. Close Button */
+.close-button {
+  background: rgba(255, 80, 80, 0.2);
+  border-radius: 100%; /* Circular button looks better */
+  padding: 8px;
+  color: #ff8080;
+  margin: 4px;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.close-button:hover {
+  background: rgba(255, 80, 80, 0.5);
+  color: #ffffff;
+}
+
+/* 9. Control Center Panel */
+.control-center {
+  /* Semi-transparent background */
+  background: rgba(25, 25, 25, 0.45); 
+  
+  /* The core glassmorphic effect */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  
+  /* Styling details */
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  
+  /* Spacing */
+  margin: 10px;
+  padding: 15px;
+}
+.control-center .notification-row {
+  background: rgba(40, 40, 50, 0.4);
+  border-radius: 12px;
+  margin: 8px 0;
+  padding: 12px;
+}
+/* Widget Container Styles */
+.widget-volume, .widget-backlight {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px;
+  margin: 8px;
+  border-radius: 16px;
+}
+
+/* The Slider Bars */
+.widget-volume trough, .widget-backlight trough {
+  min-height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+}
+
+/* The Blue Fill (Neon Ocean) */
+.widget-volume highlight, .widget-backlight highlight {
+  background: linear-gradient(90deg, #00f2fe, #4facfe);
+  border-radius: 20px;
+}
+
+/* Button Grid (The Circle/Square Toggles) */
+.widget-buttons-grid {
+  background: rgba(255, 255, 255, 0.05);
+  margin: 8px;
+  border-radius: 16px;
+  padding: 8px;
+}
+
+.widget-buttons-grid button {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  min-height: 50px;
+  margin: 4px;
+}
+.widget-title, .widget-mpris, .widget-buttons-grid {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  margin: 8px;
+  padding: 12px;
+}

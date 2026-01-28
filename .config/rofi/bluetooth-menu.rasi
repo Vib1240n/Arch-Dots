@@ -1,0 +1,30 @@
+/* Import base theme */
+@import "~/.config/rofi/style.rasi"
+
+/* Override positioning and spacing */
+window {
+    location: northeast;
+    anchor: northeast;
+    y-offset: 40px;
+    x-offset: -10px;
+}
+
+/* Hide search bar and mode switcher */
+mainbox {
+    children: [ listview ];
+}
+
+/* Minimal padding */
+element {
+    padding: 10px 2px 10px 2px;
+    spacing: 0px;
+}
+
+/* Style for active (connected) Bluetooth device */
+element.active {
+    background-color: #88C0D030;
+}
+
+element selected.active {
+    background-color: #88C0D050;
+}

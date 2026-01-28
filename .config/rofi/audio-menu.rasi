@@ -1,0 +1,31 @@
+/* Import base theme */
+@import "~/.config/rofi/style.rasi"
+
+/* Override positioning and spacing */
+window {
+    location: northeast;
+    anchor: northeast;
+    y-offset: 0px;
+    x-offset: -30px;
+    width: 300px;
+}
+
+/* Hide search bar and mode switcher */
+mainbox {
+    children: [ listview ];
+}
+
+/* Reduce left padding */
+element {
+    padding: 10px 2px 10px 2px;  /* Less left padding */
+    spacing: 0px;  /* Reduce space between icon and text */
+}
+
+/* Style for active (current) audio device */
+element.active {
+    background-color: #88C0D030;  /* Subtle highlight for active device */
+}
+
+element selected.active {
+    background-color: #88C0D050;  /* Brighter when hovering active device */
+}

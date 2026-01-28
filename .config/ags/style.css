@@ -1,0 +1,153 @@
+/* Media Player Container */
+.media-player {
+  background: #18181b; /* zinc-900 */
+  border: 1px solid #27272a; /* zinc-800 */
+  border-radius: 8px;
+  min-width: 320px;
+  padding: 0;
+}
+
+/* Album Art */
+.album-art {
+  min-width: 320px;
+  min-height: 320px;
+  background: #27272a; /* Placeholder for album art */
+  border-radius: 8px 8px 0 0;
+}
+
+/* Controls Container */
+.controls {
+  padding: 16px;
+}
+
+/* Track Info */
+.track-info {
+  margin-bottom: 12px;
+}
+
+.track-title {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.track-title label {
+  max-width: 280px;
+}
+
+.track-artist {
+  color: #a1a1aa; /* zinc-400 */
+  font-size: 12px;
+}
+
+.track-artist label {
+  max-width: 280px;
+}
+
+/* Progress Section */
+.progress-section {
+  margin-bottom: 12px;
+}
+
+.progress-slider {
+  margin-bottom: 4px;
+}
+
+.progress-slider trough {
+  min-height: 4px;
+  background: #27272a; /* zinc-800 */
+  border-radius: 2px;
+}
+
+.progress-slider slider {
+  min-width: 12px;
+  min-height: 12px;
+  background: #ffffff;
+  border-radius: 6px;
+  margin: -4px 0;
+}
+
+.progress-slider highlight {
+  background: #ffffff;
+  border-radius: 2px;
+}
+
+.time-labels {
+  margin-top: 4px;
+}
+
+.time-current,
+.time-total {
+  color: #a1a1aa; /* zinc-400 */
+  font-size: 11px;
+}
+
+/* Control Buttons */
+.control-buttons {
+  margin: 12px 0;
+}
+
+.control-buttons button {
+  min-width: 36px;
+  min-height: 36px;
+  background: transparent;
+  border: none;
+  margin: 0 4px;
+  padding: 0;
+}
+
+.control-buttons button:hover {
+  background: #27272a; /* zinc-800 */
+  border-radius: 18px;
+}
+
+.control-buttons button label {
+  color: #ffffff;
+  font-size: 12px;
+}
+
+.btn-play {
+  min-width: 40px;
+  min-height: 40px;
+}
+
+/* Volume Control */
+.volume-control {
+  margin-top: 12px;
+}
+
+.volume-icon {
+  color: #a1a1aa; /* zinc-400 */
+  font-size: 12px;
+  margin-right: 8px;
+}
+
+.volume-slider {
+  margin: 0 8px;
+}
+
+.volume-slider trough {
+  min-height: 4px;
+  background: #27272a; /* zinc-800 */
+  border-radius: 2px;
+}
+
+.volume-slider slider {
+  min-width: 10px;
+  min-height: 10px;
+  background: #ffffff;
+  border-radius: 5px;
+  margin: -3px 0;
+}
+
+.volume-slider highlight {
+  background: #ffffff;
+  border-radius: 2px;
+}
+
+.volume-percent {
+  color: #a1a1aa; /* zinc-400 */
+  font-size: 11px;
+  min-width: 32px;
+}

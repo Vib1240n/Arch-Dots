@@ -1,0 +1,19 @@
+context.modules = [
+    {
+        name = libpipewire-module-protocol-pulse
+        args = {
+            pulse.min.req = 8192/48000
+            pulse.min.quantum = 8192/48000
+            pulse.default.req = 8192/48000
+            pulse.default.quantum = 8192/48000
+        }
+    }
+]
+
+# Force high quantum for Bluetooth
+context.properties = {
+    default.clock.rate = 48000
+    default.clock.quantum = 8192
+    default.clock.min-quantum = 4096
+    default.clock.max-quantum = 16384
+}

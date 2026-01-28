@@ -1,0 +1,2 @@
+;; Simple workspace preview - shows current workspace windows
+(include "/home/vib1240n/.config/eww/spotify/spotify.yuck")

@@ -1,0 +1,12 @@
+configuration {
+    font:                       "JetBrainsMono Nerd Font 12";
+    show-icons:                 true;
+    icon-theme:                 "Papirus";
+    kb-row-up:                  "Up";
+    kb-row-down:                "Down";
+    kb-accept-entry:            "Return,KP_Enter";
+    kb-cancel:                  "Escape";
+
+}
+
+@theme "style"

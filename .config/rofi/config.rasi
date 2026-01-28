@@ -1,0 +1,62 @@
+// configuration {
+//     font: "JetBrainsMono Nerd Font 12";
+//     show-icons: true;
+//     icon-theme: "Kora"; /* Or your preferred icon theme */
+//     display-drun: "";
+//     drun-display-format: "{name}";
+// }
+// @theme "style"
+/* ================================================
+ * Spotlight-Inspired Rofi Configuration
+ * Multi-mode launcher with animations
+ * Based on JaKooLit's approach
+ * ================================================ */
+
+/* ================================================
+ * Spotlight-Inspired Rofi Configuration
+ * Multi-mode launcher with animations
+ * Based on JaKooLit's approach
+ * ================================================ */
+
+configuration {
+    /* General Settings */
+    font:                       "JetBrainsMono Nerd Font 12";
+    show-icons:                 true;
+    icon-theme:                 "Papirus";
+    
+    /* Display Format */
+    display-drun:               "  Apps";
+    display-run:                "  Run";
+    display-filebrowser:        "  Files";
+    display-window:             "  Windows";
+    display-audio:              "  Audio";
+    
+    drun-display-format:        "{name}";
+    window-format:              "{w} · {c} · {t}";
+    
+    /* Behavior */
+    disable-history:            false;
+    fullscreen:                 false;
+    hide-scrollbar:             true;
+    sidebar-mode:               true;
+    hover-select:               true;
+    me-select-entry:            "";
+    me-accept-entry:            "MousePrimary";
+    
+    /* IMPORTANT: Show results only when typing */
+    show-match:                 true;
+    
+    /* Multi-mode Settings */
+    modes:                      "drun,run,filebrowser,window,audio:~/.config/rofi/scripts/audio-output-mode.sh";
+    
+    /* Keybindings */
+    kb-mode-next:               "Alt+Tab";
+    kb-mode-previous:           "Alt+ISO_Left_Tab";
+    kb-row-up:                  "Up,Control+k";
+    kb-row-down:                "Down,Control+j";
+    kb-accept-entry:            "Return,KP_Enter";
+    kb-remove-to-eol:           "Control+Shift+e";
+    kb-cancel:                  "Escape";
+}
+
+@theme "style"

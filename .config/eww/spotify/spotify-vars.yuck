@@ -1,0 +1,21 @@
+(defpoll spotify-title :interval "1s"
+  "playerctl -p spotify metadata title 2>/dev/null || echo 'Not Playing'")
+
+(defpoll spotify-artist :interval "1s"
+  "playerctl -p spotify metadata artist 2>/dev/null || echo ''")
+
+(defpoll spotify-art :interval "2s"
+  "~/.config/eww/scripts/get-spotify-art.sh")
+
+(defpoll spotify-position :interval "1s"
+  "~/.config/eww/scripts/spotify-position.sh")
+
+(defpoll spotify-duration :interval "2s"
+  "~/.config/eww/scripts/spotify-duration.sh")
+
+(defpoll spotify-progress :interval "1s"
+  :initial "0"
+  "~/.config/eww/scripts/spotify-progress.sh")
+
+(defpoll spotify-icon :interval "1s"
+  "~/.config/eww/scripts/spotify-icon.sh")

@@ -1,0 +1,109 @@
+* {
+    bg:           #00000099;
+    bg-light:     #ffffff15;
+    fg:           #ffffff;
+    fg-dim:       #ffffff99;
+    accent:       #ffffff;
+    selected:     #ffffff25;
+    border:       #ffffff30;
+    transparent:  #00000000;
+    
+    background-color: @transparent;
+    text-color: @fg;
+}
+
+window {
+    transparency:        "real";
+    background-color:    @transparent;
+    border:              0px;
+    location:            north;
+    anchor:              north;
+    y-offset:            150px;
+    width:               700px;
+}
+
+mainbox {
+    background-color:    @transparent;
+    children:            [ inputbar, mode-switcher, listview ];
+    spacing:             12px;
+    padding:             0px;
+}
+
+/* Search bar */
+inputbar {
+    background-color:    @bg;
+    border:              1px solid;
+    border-color:        @border;
+    border-radius:       24px;
+    padding:             16px 20px;
+    spacing:             12px;
+    children:            [ prompt, entry ];
+}
+
+prompt {
+    background-color:    @transparent;
+    text-color:          @fg-dim;
+}
+
+entry {
+    background-color:    @transparent;
+    text-color:          @fg;
+    placeholder-color:   @fg-dim;
+    placeholder:         "Search...";
+}
+
+/* Mode tabs - separate floating element */
+mode-switcher {
+    background-color:    @bg;
+    border:              1px solid;
+    border-color:        @border;
+    border-radius:       24px;
+    spacing:             4px;
+    padding:             6px;
+    margin:              0px 0px 0px 0px;
+}
+
+button {
+    background-color:    @transparent;
+    text-color:          @fg-dim;
+    padding:             10px 20px;
+    border-radius:       20px;
+}
+
+button selected {
+    background-color:    @bg-light;
+    text-color:          @accent;
+}
+
+/* Results list */
+listview {
+    background-color:    @bg;
+    border:              1px solid;
+    border-color:        @border;
+    border-radius:       24px;
+    lines:               6;
+    spacing:             4px;
+    padding:             12px;
+    cycle:               false;
+    scrollbar:           false;
+}
+
+element {
+    background-color:    @transparent;
+    text-color:          @fg;
+    padding:             10px 12px;
+    spacing:             12px;
+    border-radius:       12px;
+}
+
+element selected {
+    background-color:    @selected;
+}
+
+element-icon {
+    size:                28px;
+}
+
+element-text {
+    vertical-align:      0.5;
+}

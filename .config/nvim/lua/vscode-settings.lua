@@ -1,0 +1,2 @@
+-- DISABLED - Not used anymore
+-- All configuration moved to VS Code settings.json

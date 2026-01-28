@@ -1,0 +1,58 @@
+return {
+  "nvim-neo-tree/neo-tree.nvim",
+  opts = {
+    filesystem = {
+      filtered_items = {
+        hide_dotfiles = false,
+        hide_gitignored = false,
+      },
+    },
+    default_component_configs = {
+      indent = {
+        indent_size = 2,
+        padding = 0,
+        with_markers = true,
+        indent_marker = "│",
+        last_indent_marker = "└",
+        highlight = "NeoTreeIndentMarker",
+        with_expanders = false, -- disable expander symbols
+      },
+      icon = {
+        folder_closed = "", -- or a simple folder icon like
+        folder_open = "", -- or
+        folder_empty = "",
+        default = "", -- simple file icon
+        highlight = "NeoTreeFileIcon",
+      },
+      modified = {
+        symbol = "",
+        highlight = "NeoTreeModified",
+      },
+      name = {
+        use_git_status_colors = false,
+        highlight = "NeoTreeFileName",
+      },
+      git_status = {
+        symbols = {
+          -- Change or disable git symbols
+          added = "",
+          modified = "",
+          deleted = "",
+          renamed = "",
+          untracked = "",
+          ignored = "",
+          unstaged = "",
+          staged = "",
+          conflict = "",
+        },
+      },
+    },
+    window = {
+      width = 30,
+      position = "right",
+      mappings = {
+        -- Your mappings
+      },
+    },
+  },
+}

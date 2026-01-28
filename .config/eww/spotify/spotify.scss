@@ -1,0 +1,141 @@
+/* Clean Spotify Widget */
+* {
+  all: unset;
+}
+
+.spotify-player {
+  background: transparent;
+  border-radius: 20px;
+  padding: 15px; /* Creates the inset border */
+}
+
+.album-art-section {
+  min-height: 320px; /* Adjust height for better proportions */
+  min-width: 350px; /* YOUR width - not touching */
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.album-art-image {
+  min-width: 350px; /* Match section width */
+  min-height: 320px; /* Match section height */
+  border-radius: 16px;
+}
+
+.album-art-overlay {
+  min-height: 320px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0.6) 75%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  border-radius: 16px;
+}
+
+.track-info {
+  padding: 16px 20px;
+}
+
+.track-info label {
+  color: #ffffff;
+}
+
+.track-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #ffffff;
+}
+
+.track-artist {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.controls-container {
+  background: transparent;
+  min-width: 350px; /* YOUR width - not touching */
+  padding: 20px 24px 24px 24px;
+  border-radius: 0 0 16px 16px;
+}
+
+.progress-bar {
+  margin-bottom: 20px;
+  min-width: 300px; /* YOUR width - not touching */
+}
+
+.progress-bar label {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  min-width: 40px;
+}
+
+scale trough {
+  min-height: 4px;
+  min-width: 220px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+scale highlight {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+}
+
+scale slider {
+  min-width: 12px;
+  min-height: 12px;
+  border-radius: 6px;
+  background: #ffffff;
+  margin: -4px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.control-buttons button {
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 20px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 20px;
+}
+
+.control-buttons button:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-play {
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a;
+  font-size: 28px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-play:hover {
+  background: #ffffff;
+}
+
+.btn-goto {
+  margin-top: 16px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+  font-size: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.btn-goto:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
