@@ -1,0 +1,5 @@
+# Enable wake for Qwertykeys Neo 65 CU keyboard (2.4GHz dongle)
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="36b0", ATTRS{idProduct}=="3002", ATTR{power/wakeup}="enabled", ATTR{power/control}="on", ATTR{power/autosuspend}="-1"
+
+# Enable wake for Keychron M3 mouse (2.4GHz dongle)
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="d031", ATTR{power/wakeup}="enabled", ATTR{power/control}="on", ATTR{power/autosuspend}="-1"
