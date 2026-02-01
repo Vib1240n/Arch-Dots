@@ -8,7 +8,7 @@ import QtQuick.Layouts
 
 StyledRect {
     id: root
-    width: 150
+    Layout.fillWidth: true
     height: 50
     radius: Appearance.rounding.verylarge
     color: Appearance.m3colors.m3surfaceContainerHigh

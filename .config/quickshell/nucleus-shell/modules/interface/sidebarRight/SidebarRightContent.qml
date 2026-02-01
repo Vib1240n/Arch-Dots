@@ -198,6 +198,8 @@ Item {
             Layout.preferredWidth: parent.width
 
             RowLayout {
+                spacing: 8
+
                 Network {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 80
@@ -209,6 +211,8 @@ Item {
             }
 
             RowLayout {
+                spacing: 8
+
                 Bluetooth {
                     Layout.preferredWidth: 220
                     Layout.preferredHeight: 80
@@ -222,6 +226,34 @@ Item {
                     Layout.fillWidth: true
                 }
             }
+
+            // CPU and Disk row
+            RowLayout {
+                spacing: 8
+
+                CPU {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 80
+                }
+
+                Disk {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 80
+                }
+            }
+
+            // RAM full width
+            RAM {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 80
+            }
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            height: 1
+            color: Appearance.m3colors.m3outlineVariant
+            radius: 1
         }
 
         ColumnLayout {

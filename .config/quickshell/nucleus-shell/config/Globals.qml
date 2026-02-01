@@ -9,6 +9,7 @@ Singleton {
     property QtObject states
 
     visiblility: QtObject {
+        property bool audioOutputPopup: false
         property bool powermenu: false
         property bool launcher: false
         property bool sidebarRight: false

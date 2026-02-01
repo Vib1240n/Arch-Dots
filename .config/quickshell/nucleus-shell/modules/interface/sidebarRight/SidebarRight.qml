@@ -1,12 +1,12 @@
 import qs.config
 import qs.modules.widgets
-import qs.services
 import qs.modules.functions
 import QtQuick
 import Quickshell
 import QtQuick.Layouts
 import Quickshell.Wayland
 import Quickshell.Io
+import Quickshell.Hyprland
 import QtQuick.Controls
 import Quickshell.Services.Pipewire
 import Qt5Compat.GraphicalEffects
@@ -27,6 +27,13 @@ PanelWindow {
     property real sidebarRightWidth: 500
 
     implicitWidth: sidebarRightWidth
+
+    HyprlandFocusGrab {
+        id: grab
+
+        active: true
+        windows: [sidebarRight]
+    }
 
     anchors {
         top: true
@@ -57,7 +64,17 @@ PanelWindow {
 
         anchors.fill: parent
 
-        SidebarRightContent{}
+        FocusScope {
+            focus: true 
+            anchors.fill: parent
+            Keys.onPressed: {
+                if (event.key === Qt.Key_Escape) {
+                    Globals.visiblility.sidebarRight = false;
+                }
+            }
+            SidebarRightContent {
+            }
+        }
 
     }
 

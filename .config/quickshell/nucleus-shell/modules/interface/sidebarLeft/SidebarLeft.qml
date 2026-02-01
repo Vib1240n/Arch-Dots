@@ -3,16 +3,16 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Quickshell
-import Quickshell.Io
 import Quickshell.Hyprland
+import Quickshell.Io
 import Quickshell.Wayland
-import qs.modules.functions
 import qs.config
+import qs.modules.functions
 import qs.modules.widgets
 
 PanelWindow {
     id: sidebarLeft
-    WlrLayershell.namespace: "nucleus:sidebarleft"
+
     // --- Directly use Hyprland's focused monitor ---
     property real sidebarLeftWidth: 500
 
@@ -21,6 +21,7 @@ PanelWindow {
         Globals.visiblility.sidebarLeft = !Globals.visiblility.sidebarLeft;
     }
 
+    WlrLayershell.namespace: "nucleus:sidebarleft"
     WlrLayershell.layer: WlrLayer.Top
     visible: Config.initialized && Globals.visiblility.sidebarLeft && !Globals.visiblility.sidebarRight
     color: "transparent"
@@ -28,9 +29,10 @@ PanelWindow {
     implicitWidth: sidebarLeftWidth
 
     HyprlandFocusGrab {
-      id: grab
-      active: true
-      windows: [ sidebarLeft ]
+        id: grab
+
+        active: true
+        windows: [sidebarLeft]
     }
 
     anchors {
@@ -53,9 +55,17 @@ PanelWindow {
         radius: Appearance.rounding.normal
         implicitWidth: sidebarLeft.sidebarLeftWidth
         anchors.fill: parent
-
-        SidebarLeftContent { }
-
+        FocusScope {
+            focus: true 
+            anchors.fill: parent
+            Keys.onPressed: {
+                if (event.key === Qt.Key_Escape) {
+                    Globals.visiblility.sidebarLeft = false;
+                }
+            }
+            SidebarLeftContent {
+            }
+        }
     }
 
     IpcHandler {

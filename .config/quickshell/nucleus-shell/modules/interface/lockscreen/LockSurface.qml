@@ -1,15 +1,16 @@
+import "../../widgets/morphedPolygons/geometry/offset.js" as Offset
+import "../../widgets/morphedPolygons/material-shapes.js" as MaterialShapes // For polygons
+import "../../widgets/morphedPolygons/shapes/corner-rounding.js" as CornerRounding
 import QtQuick
 import QtQuick.Controls.Fusion
 import QtQuick.Layouts
 import Quickshell.Wayland
 import qs.config
 import qs.modules.functions
+import qs.modules.interface.background
 import qs.modules.widgets
 import qs.modules.widgets.morphedPolygons
 import qs.services
-import "../../widgets/morphedPolygons/geometry/offset.js" as Offset
-import "../../widgets/morphedPolygons/material-shapes.js" as MaterialShapes // For polygons
-import "../../widgets/morphedPolygons/shapes/corner-rounding.js" as CornerRounding
 
 Rectangle {
     id: root
@@ -117,16 +118,24 @@ Rectangle {
             // Polygon
             MorphedPolygon {
                 id: shapeCanvas
+
                 anchors.fill: parent
-                color: Appearance.m3colors.m3surfaceContainerLow
+                color: Appearance.m3colors.m3secondaryContainer
                 roundedPolygon: analogClockContainer.shapes[Config.runtime.appearance.background.clock.shape]()
             }
 
+            ClockDial {
+                anchors.fill: parent
+                anchors.margins: parent.width * 0.12
+                color: Appearance.colors.colOnSecondaryContainer
+                z: 0
+            }
+
             // Hour hand
-            Rectangle {
-                z: 1
-                width: 12
-                height: parent.height * 0.38
+            StyledRect {
+                z: 2
+                width: 10
+                height: parent.height * 0.3
                 radius: Appearance.rounding.full
                 color: Qt.darker(Appearance.m3colors.m3secondary, 0.8)
                 x: analogClockContainer.cx - width / 2
@@ -135,37 +144,73 @@ Rectangle {
                 rotation: (analogClockContainer.hours % 12 + analogClockContainer.minutes / 60) * 30
             }
 
+            StyledRect {
+                anchors.centerIn: parent
+                width: 16
+                height: 16
+                radius: width / 2
+                color: Appearance.m3colors.m3secondary
+                z: 99 // Ensures its on top of everthing
+
+                // Inner dot
+                StyledRect {
+                    width: parent.width / 2
+                    height: parent.height / 2
+                    radius: width / 2
+                    anchors.centerIn: parent
+                    z: 100
+                    color: Appearance.m3colors.m3primaryContainer
+                }
+
+            }
+
             // Minute hand
-            Rectangle {
-                width: 12
-                height: parent.height * 0.3
+            StyledRect {
+                width: 14
+                height: parent.height * 0.35
                 radius: Appearance.rounding.full
                 color: Appearance.m3colors.m3secondary
                 x: analogClockContainer.cx - width / 2
                 y: analogClockContainer.cy - height
                 transformOrigin: Item.Bottom
                 rotation: analogClockContainer.minutes * 6
+                z: 10 // On top of all hands
             }
 
             // Second hand
-            Rectangle {
-                visible: false
+            StyledRect {
+                visible: true
                 width: 4
-                height: parent.height * 0.22
+                height: parent.height * 0.28
                 radius: Appearance.rounding.full
                 color: Appearance.m3colors.m3error
                 x: analogClockContainer.cx - width / 2
                 y: analogClockContainer.cy - height
                 transformOrigin: Item.Bottom
                 rotation: analogClockContainer.seconds * 6
+                z: 2
             }
 
             StyledText {
-                text: Time.format("ddd MMM d")
+                text: Time.format("hh")
+                anchors.top: parent.top
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: parent.height / 4 - 30
+                anchors.topMargin: 60
+                font.pixelSize: 100
                 font.bold: true
+                opacity: 0.3
+                animate: false
+            }
+
+            StyledText {
+                text: Time.format("mm")
+                anchors.top: parent.top
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.topMargin: 150
+                font.pixelSize: 100
+                font.bold: true
+                opacity: 0.3
+                animate: false
             }
 
         }

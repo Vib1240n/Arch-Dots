@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
+import Quickshell.Hyprland
 import qs.config
 import qs.modules.functions
 import qs.modules.widgets
@@ -23,7 +24,70 @@ Scope {
                 Config.updateKey("appearance.background.path", wallpaper)
             }
 
-            color: (currentImage.status === Image.Error) ? Appearance.colors.colLayer2 : "transparent" // To prevent showing nothing.
+            // parallax config
+            property bool parallaxEnabled: Config.runtime.appearance.background.parallax.enabled
+            property real parallaxZoom: Config.runtime.appearance.background.parallax.zoom
+            property int workspaceRange: Config.runtime.bar.modules.workspaces.workspaceIndicators
+
+            // hyprland
+            property int activeWorkspaceId: Hyprland.focusedWorkspace?.id ?? 1
+
+            // wallpaper geometry
+            property real wallpaperWidth: bgImg.implicitWidth
+            property real wallpaperHeight: bgImg.implicitHeight
+
+            property real wallpaperToScreenRatio: {
+                if (wallpaperWidth <= 0 || wallpaperHeight <= 0)
+                    return 1
+                return Math.min(
+                    wallpaperWidth / width,
+                    wallpaperHeight / height
+                )
+            }
+
+            property real effectiveScale: parallaxEnabled ? parallaxZoom : 1
+
+            property real movableXSpace: Math.max(
+                0,
+                ((wallpaperWidth / wallpaperToScreenRatio * effectiveScale) - width) / 2
+            )
+
+            // workspace mapping
+            property int lowerWorkspace: Math.floor((activeWorkspaceId - 1) / workspaceRange) * workspaceRange + 1
+            property int upperWorkspace: lowerWorkspace + workspaceRange
+            property int workspaceSpan: Math.max(1, upperWorkspace - lowerWorkspace)
+
+            property real valueX: {
+                if (!parallaxEnabled)
+                    return 0.5
+                return (activeWorkspaceId - lowerWorkspace) / workspaceSpan
+            }
+
+            // sidebar globals
+            property bool sidebarLeftOpen: Globals.visiblility.sidebarLeft
+                && Config.runtime.appearance.background.parallax.enableSidebarLeft
+
+            property bool sidebarRightOpen: Globals.visiblility.sidebarRight
+                && Config.runtime.appearance.background.parallax.enableSidebarRight
+
+            property real sidebarOffset: {
+                if (sidebarLeftOpen && !sidebarRightOpen)
+                    return -0.15
+                if (sidebarRightOpen && !sidebarLeftOpen)
+                    return 0.15
+                return 0
+            }
+
+            property real effectiveValueX: Math.max(
+                0,
+                Math.min(
+                    1,
+                    valueX + sidebarOffset
+                )
+            )
+
+            // window
+            color: (bgImg.status === Image.Error) ? Appearance.colors.colLayer2 : "transparent"
             WlrLayershell.namespace: "nucleus:background"
             exclusionMode: ExclusionMode.Ignore
             WlrLayershell.layer: WlrLayer.Background
@@ -37,6 +101,7 @@ Scope {
                 bottom: true
             }
 
+            // wallpaper picker
             Process {
                 id: wallpaperProc
 
@@ -44,42 +109,71 @@ Scope {
 
                 stdout: StdioCollector {
                     onStreamFinished: {
-                        const out = text.trim();
+                        const out = text.trim()
                         if (out !== "null" && out.length > 0) {
-                            applyWallpaper(out);
+                            applyWallpaper(out)
                         }
-                        // Only run regenColors if auto-generated colors are enabled
-                        Quickshell.execDetached(["qs", "-c", "nucleus-shell", "ipc", "call", "clock", "changePosition"]);
+
+                        Quickshell.execDetached([
+                            "qs", "-c", "nucleus-shell", "ipc", "call", "clock", "changePosition"
+                        ])
                         Quickshell.execDetached([
                             "qs", "-c", "nucleus-shell", "ipc", "call", "global", "regenColors"
-                        ]);
+                        ])
+                    }
+                }
+            }
+
+            // wallpaper
+            Item {
+                anchors.fill: parent
+                clip: true
+
+                StyledImage {
+                    id: bgImg
+
+                    visible: status === Image.Ready
+                    smooth: false
+                    cache: false
+                    fillMode: Image.PreserveAspectCrop
+                    source: Config.runtime.appearance.background.path
+
+                    width: wallpaperWidth / wallpaperToScreenRatio * effectiveScale
+                    height: wallpaperHeight / wallpaperToScreenRatio * effectiveScale
+
+                    x: -movableXSpace - (effectiveValueX - 0.5) * 2 * movableXSpace
+                    y: 0
+
+                    Behavior on x {
+                        NumberAnimation {
+                            duration: 600
+                            easing.type: Easing.OutCubic
+                        }
+                    }
+
+                    onStatusChanged: {
+                        if (status === Image.Ready) {
+                            backgroundContainer.wallpaperWidth = implicitWidth
+                            backgroundContainer.wallpaperHeight = implicitHeight
+                        }
                     }
                 }
 
-            }
-
-            Item {
-                anchors.fill: parent
-
-                Image {
-                    id: currentImage
-
+                MouseArea {
+                    id: widgetCanvas
                     anchors.fill: parent
-                    fillMode: Image.PreserveAspectCrop
-                    source: Config.runtime.appearance.background.path
-                    opacity: 1
                 }
 
-
+                // error ui
                 Item {
                     anchors.centerIn: parent
-                    visible: currentImage.status === Image.Error
+                    visible: bgImg.status === Image.Error
 
                     Rectangle {
                         width: 550
                         height: 400
                         radius: Appearance.rounding.windowRounding
-                        color: "transparent" // It looks better somehow
+                        color: "transparent"
                         anchors.centerIn: parent
 
                         ColumnLayout {
@@ -87,7 +181,6 @@ Scope {
                             anchors.margins: Appearance.margin.normal
                             spacing: Appearance.margin.small
 
-                            // Icon
                             MaterialSymbol {
                                 text: "wallpaper"
                                 font.pixelSize: Appearance.font.size.wildass
@@ -95,7 +188,6 @@ Scope {
                                 Layout.alignment: Qt.AlignHCenter
                             }
 
-                            // Heading
                             StyledText {
                                 text: "Wallpaper Missing"
                                 font.pixelSize: Appearance.font.size.hugeass
@@ -105,7 +197,6 @@ Scope {
                                 Layout.alignment: Qt.AlignHCenter
                             }
 
-                            // Description
                             StyledText {
                                 text: "Seems like you haven't set a wallpaper yet."
                                 font.pixelSize: Appearance.font.size.small
@@ -115,11 +206,8 @@ Scope {
                                 Layout.alignment: Qt.AlignHCenter
                             }
 
-                            Item {
-                                Layout.fillHeight: true
-                            }
+                            Item { Layout.fillHeight: true }
 
-                            // Action
                             StyledButton {
                                 text: "Set wallpaper"
                                 icon: "wallpaper"
@@ -128,35 +216,27 @@ Scope {
                                 Layout.alignment: Qt.AlignHCenter
                                 onClicked: wallpaperProc.running = true
                             }
-
                         }
-
                     }
-
                 }
-
             }
 
             Clock {
                 id: clock
-
-                imageFailed: currentImage.status === Image.Error
+                imageFailed: bgImg.status === Image.Error
             }
 
             IpcHandler {
+                target: "background"
+
                 function change() {
-                    wallpaperProc.running = true;
+                    wallpaperProc.running = true
                 }
 
                 function next() {
-                    WallpaperSlideshow.nextWallpaper();
+                    WallpaperSlideshow.nextWallpaper()
                 }
-
-                target: "background"
             }
-
         }
-
     }
-
 }

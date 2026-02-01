@@ -1,0 +1,13 @@
+default {
+  shader synthwave.glsl
+  shader_speed 0.5
+  fps 30
+  resolution 1920x1080
+}
+
+performance {
+  shader matrix.glsl
+  shader_speed 0.3
+  fps 24
+  resolution 1280x720
+}
