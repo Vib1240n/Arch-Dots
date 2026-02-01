@@ -1,0 +1,28 @@
+[ids]
+0001:0001
+
+[main]
+# Swap Left Alt and Left Meta for macOS-style layout
+leftalt = leftmeta
+leftmeta = leftalt
+
+# Keep all other mappings
+capslock = overload(hyper, capslock)
+leftshift = overload(shift, enter)
+leftcontrol = overload(meh, leftcontrol)
+f1 = mute
+f2 = volumedown
+f3 = volumeup
+f4 = previoussong
+f5 = playpause
+f6 = nextsong
+f7 = brightnessdown
+f8 = brightnessup
+f9 = f9
+f10 = f10
+f11 = f11
+f12 = f12
+
+[hyper:C-A-S-M]
+
+[meh:C-A-S]
