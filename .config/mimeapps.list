@@ -1,8 +1,8 @@
 [Default Applications]
-x-scheme-handler/http=zen.desktop
-x-scheme-handler/https=zen.desktop
+x-scheme-handler/http=opera.desktop
+x-scheme-handler/https=opera.desktop
 x-scheme-handler/chrome=zen.desktop
-text/html=zen.desktop
+text/html=opera.desktop
 application/x-extension-htm=zen.desktop
 application/x-extension-html=zen.desktop
 application/x-extension-shtml=zen.desktop
@@ -14,6 +14,9 @@ application/x-gnome-saved-search=nemo.desktop
 image/jpeg=imv.desktop
 x-scheme-handler/discord=vesktop.desktop
 image/png=imv-dir.desktop
+x-scheme-handler/nxm=com.nexusmods.app.desktop
+x-scheme-handler/about=opera.desktop
+x-scheme-handler/unknown=opera.desktop
 
 [Added Associations]
 x-scheme-handler/http=zen.desktop;

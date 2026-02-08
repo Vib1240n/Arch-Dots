@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import qs.services
 import qs.config
-import qs.modules.widgets
+import qs.modules.components
 
 Item {
     id: clockContainer

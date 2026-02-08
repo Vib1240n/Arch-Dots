@@ -5,6 +5,7 @@ import QtCore
 import Quickshell
 import Quickshell.Io
 import qs.plugins
+import qs.services
 
 Singleton {
     id: root
@@ -25,7 +26,7 @@ Singleton {
         for (let i = 0; i < keys.length - 1; ++i) {
             let k = keys[i]
             if (obj[k] === undefined || obj[k] === null || typeof obj[k] !== "object") {
-                obj[k] = new JsonObject()  // Use JsonObject for serialization
+                obj[k] = {}  // Use Plain JS for serialization
             }
             obj = obj[k]
             if (!obj) {
@@ -57,7 +58,7 @@ Singleton {
             return
 
         if (!root.runtime.plugins)
-            root.runtime.plugins = new JsonObject()
+            root.runtime.plugins = {}
 
         function mergeDefaults(target, defaults) {
             let changed = false
@@ -109,7 +110,7 @@ Singleton {
                 pluginObj.defaults = { enabled: false }
 
             if (!root.runtime.plugins[name]) {
-                root.runtime.plugins[name] = new JsonObject()
+                root.runtime.plugins[name] = {}
                 anyChange = true
             }
 
@@ -133,13 +134,14 @@ Singleton {
     Timer { id: fileReloadTimer; interval: root.readWriteDelay; repeat: false; onTriggered: configFileView.reload() }
     Timer { id: fileWriteTimer; interval: root.readWriteDelay; repeat: false; onTriggered: configFileView.writeAdapter() }
 
-    Timer {
+    Timer { // Used to output all log/debug to the terminal
         interval: 1200
         running: true
         repeat: false
         onTriggered: {
             console.log("Injecting plugin configs")
             root.loadPluginConfigs(PluginLoader.plugins)
+            console.log("Detected Compositor:", Compositor.detectedCompositor)
         }
     }
 
@@ -164,7 +166,8 @@ Singleton {
                 property string theme: "dark"
                 property bool tintIcons: false
                 property JsonObject animations: JsonObject { property bool enabled: true }
-                property JsonObject rounding: JsonObject { property double factor: 0.6 }
+                property JsonObject transparency: JsonObject { property bool enabled: false; property double alpha: 0.2 }
+                property JsonObject rounding: JsonObject { property double factor: 1 }
                 property JsonObject colors: JsonObject {
                     property string scheme: "catppuccin-lavender"
                     property string matugenScheme: "scheme-neutral"
@@ -212,7 +215,7 @@ Singleton {
                 property string position: "center"
             }
             property JsonObject shell: JsonObject {
-                property string version: "0.5.3"
+                property string version: "0.6.2"
                 property string releaseChannel: "stable"
                 property string qsVersion: "0.0.0"
             }

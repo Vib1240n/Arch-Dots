@@ -6,12 +6,12 @@ import Quickshell
 import Quickshell.Io
 import qs.config
 import qs.modules.functions
-import qs.modules.widgets
+import qs.modules.components
 import qs.services
 
-Window {
+FloatingWindow {
     id: appWin
-
+    color: Appearance.m3colors.m3background
     property bool initialChatSelected: false
     property bool chatsInitialized: false
 
@@ -157,7 +157,7 @@ Window {
 
     StyledRect {
         anchors.fill: parent
-        color: Appearance.m3colors.m3background
+        color: "transparent"
         visible: Config.runtime.misc.intelligence.enabled
 
         ColumnLayout {
@@ -251,7 +251,7 @@ Window {
                     icon: "close_fullscreen"
                     Layout.preferredWidth: 40
                     onClicked: {
-                        Quickshell.execDetached(["qs", "-c", "nucleus-shell", "ipc", "call", "intelligence", "closeWindow"]);
+                        Quickshell.execDetached(["nucleus", "ipc", "intelligence", "closeWindow"]);
                         Globals.visiblility.sidebarLeft = false;
                     }
                 }

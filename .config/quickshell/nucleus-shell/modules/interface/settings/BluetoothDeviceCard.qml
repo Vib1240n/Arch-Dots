@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
-import qs.modules.widgets 
+import qs.modules.components 
 import qs.config
 import qs.modules.functions
 import Quickshell.Bluetooth as QsBluetooth

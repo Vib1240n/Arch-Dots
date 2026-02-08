@@ -7,25 +7,26 @@ import Quickshell.Io
 import Quickshell.Hyprland
 import Quickshell.Wayland
 
-/**
- * Unified Hyprland data provider
- * Combines reactive Quickshell.Hyprland data + raw hyprctl JSON updates.
- * combined version of hyprland services from github.com/yannpelletier/twinshell and github.com/end-4/dots-hyprland
- */
-
 Singleton {
     id: root
 
-    // --- Reactive Quickshell.Hyprland data ---
-    readonly property var toplevels: Hyprland.toplevels
-    readonly property var workspaces: Hyprland.workspaces
-    readonly property var monitors: Hyprland.monitors
-    readonly property Toplevel activeToplevel: ToplevelManager.activeToplevel
-    readonly property HyprlandWorkspace focusedWorkspace: Hyprland.focusedWorkspace
-    readonly property HyprlandMonitor focusedMonitor: Hyprland.focusedMonitor
-    readonly property int focusedWorkspaceId: focusedWorkspace?.id ?? 1
+    // true if Hyprland is running, false otherwise
+    readonly property bool isHyprland: Compositor.require("hyprland")
 
-    // --- Additional parsed hyprctl data ---
+    // reactive Hyprland data, only valid if Hyprland is running
+    signal stateChanged()
+    readonly property var toplevels: isHyprland ? Hyprland.toplevels : []
+    readonly property var workspaces: isHyprland ? Hyprland.workspaces : []
+    readonly property var monitors: isHyprland ? Hyprland.monitors : []
+    readonly property Toplevel activeToplevel: isHyprland ? ToplevelManager.activeToplevel : null
+    readonly property HyprlandWorkspace focusedWorkspace: isHyprland ? Hyprland.focusedWorkspace : null
+    readonly property HyprlandMonitor focusedMonitor: isHyprland ? Hyprland.focusedMonitor : null
+    readonly property int focusedWorkspaceId: focusedWorkspace?.id ?? 1
+    property real screenW: focusedMonitor ? focusedMonitor.width : 0
+    property real screenH: focusedMonitor ? focusedMonitor.height : 0
+    property real screenScale: focusedMonitor ? focusedMonitor.scale : 1
+
+    // parsed hyprctl data, defaults are empty
     property var windowList: []
     property var windowByAddress: ({})
     property var addresses: []
@@ -35,36 +36,41 @@ Singleton {
     property var workspaceById: ({})
     property var workspaceIds: []
     property var activeWorkspaceInfo: null
-
-    // --- Other info ---
     property string keyboardLayout: "?"
 
-    // --- Dispatch wrapper ---
+    // dispatch a command to Hyprland, no-op if not running
     function dispatch(request: string): void {
+        if (!isHyprland) return
         Hyprland.dispatch(request)
     }
 
+    // switch workspace safely
+    function changeWorkspace(targetWorkspaceId) {
+        if (!isHyprland || !targetWorkspaceId) return
+        root.dispatch("workspace " + targetWorkspaceId)
+    }
+
+    // find most recently focused window in a workspace
     function focusedWindowForWorkspace(workspaceId) {
-        const wsWindows = root.windowList.filter(w => w.workspace.id === workspaceId);
-        if (wsWindows.length === 0) return null;
-
-        // Most recently focused window (lowest focusHistoryID)
+        if (!isHyprland) return null
+        const wsWindows = root.windowList.filter(w => w.workspace.id === workspaceId)
+        if (wsWindows.length === 0) return null
         return wsWindows.reduce((best, win) => {
-            const bestFocus = best?.focusHistoryID ?? Infinity;
-            const winFocus = win?.focusHistoryID ?? Infinity;
-            return winFocus < bestFocus ? win : best;
-        }, null);
+            const bestFocus = best?.focusHistoryID ?? Infinity
+            const winFocus = win?.focusHistoryID ?? Infinity
+            return winFocus < bestFocus ? win : best
+        }, null)
     }
 
-    // --- Simple helper ---
+    // check if a workspace has any windows
     function isWorkspaceOccupied(id: int): bool {
-        return Hyprland.workspaces.values.find((w) => {
-            return w?.id === id
-        })?.lastIpcObject.windows > 0 || false
+        if (!isHyprland) return false
+        return Hyprland.workspaces.values.find(w => w?.id === id)?.lastIpcObject.windows > 0 || false
     }
 
-    // --- Update functions (raw JSON) ---
+    // update all hyprctl processes
     function updateAll() {
+        if (!isHyprland) return
         getClients.running = true
         getLayers.running = true
         getMonitors.running = true
@@ -72,7 +78,9 @@ Singleton {
         getActiveWorkspace.running = true
     }
 
+    // largest window in a workspace
     function biggestWindowForWorkspace(workspaceId) {
+        if (!isHyprland) return null
         const windowsInThisWorkspace = root.windowList.filter(w => w.workspace.id === workspaceId)
         return windowsInThisWorkspace.reduce((maxWin, win) => {
             const maxArea = (maxWin?.size?.[0] ?? 0) * (maxWin?.size?.[1] ?? 0)
@@ -81,26 +89,31 @@ Singleton {
         }, null)
     }
 
-
-    // --- Keyboard layout fetcher ---
+    // refresh keyboard layout
     function refreshKeyboardLayout() {
+        if (!isHyprland) return
         hyprctlDevices.running = true
     }
 
-    // --- Processes ---
+    // only create hyprctl processes if Hyprland is running
+    Component.onCompleted: {
+        if (isHyprland) {
+            updateAll()
+            refreshKeyboardLayout()
+        }
+    }
+
+    // process to get keyboard layout
     Process {
         id: hyprctlDevices
+        running: false
         command: ["hyprctl", "devices", "-j"]
         stdout: StdioCollector {
             onStreamFinished: {
                 try {
                     const devices = JSON.parse(this.text)
                     const keyboard = devices.keyboards.find(k => k.main) || devices.keyboards[0]
-                    if (keyboard && keyboard.active_keymap) {
-                        root.keyboardLayout = keyboard.active_keymap.toUpperCase().slice(0, 2)
-                    } else {
-                        root.keyboardLayout = "?"
-                    }
+                    root.keyboardLayout = keyboard?.active_keymap?.toUpperCase()?.slice(0, 2) ?? "?"
                 } catch (err) {
                     console.error("Failed to parse keyboard layout:", err)
                     root.keyboardLayout = "?"
@@ -111,6 +124,7 @@ Singleton {
 
     Process {
         id: getClients
+        running: false
         command: ["hyprctl", "clients", "-j"]
         stdout: StdioCollector {
             onStreamFinished: {
@@ -129,34 +143,31 @@ Singleton {
 
     Process {
         id: getMonitors
+        running: false
         command: ["hyprctl", "monitors", "-j"]
         stdout: StdioCollector {
             onStreamFinished: {
-                try {
-                    root.monitorsInfo = JSON.parse(this.text)
-                } catch (e) {
-                    console.error("Failed to parse monitors:", e)
-                }
+                try { root.monitorsInfo = JSON.parse(this.text) }
+                catch (e) { console.error("Failed to parse monitors:", e) }
             }
         }
     }
 
     Process {
         id: getLayers
+        running: false
         command: ["hyprctl", "layers", "-j"]
         stdout: StdioCollector {
             onStreamFinished: {
-                try {
-                    root.layers = JSON.parse(this.text)
-                } catch (e) {
-                    console.error("Failed to parse layers:", e)
-                }
+                try { root.layers = JSON.parse(this.text) }
+                catch (e) { console.error("Failed to parse layers:", e) }
             }
         }
     }
 
     Process {
         id: getWorkspaces
+        running: false
         command: ["hyprctl", "workspaces", "-j"]
         stdout: StdioCollector {
             onStreamFinished: {
@@ -166,33 +177,28 @@ Singleton {
                     for (let ws of root.workspacesInfo) map[ws.id] = ws
                     root.workspaceById = map
                     root.workspaceIds = root.workspacesInfo.map(ws => ws.id)
-                } catch (e) {
-                    console.error("Failed to parse workspaces:", e)
-                }
+                } catch (e) { console.error("Failed to parse workspaces:", e) }
             }
         }
     }
 
     Process {
         id: getActiveWorkspace
+        running: false
         command: ["hyprctl", "activeworkspace", "-j"]
         stdout: StdioCollector {
             onStreamFinished: {
-                try {
-                    root.activeWorkspaceInfo = JSON.parse(this.text)
-                } catch (e) {
-                    console.error("Failed to parse active workspace:", e)
-                }
+                try { root.activeWorkspaceInfo = JSON.parse(this.text) }
+                catch (e) { console.error("Failed to parse active workspace:", e) }
             }
         }
     }
 
-    // --- Live event connection ---
+    // only connect to Hyprland events if running
     Connections {
-        target: Hyprland
+        target: isHyprland ? Hyprland : null
         function onRawEvent(event) {
-            if (event.name.endsWith("v2"))
-                return
+            if (!isHyprland || event.name.endsWith("v2")) return
 
             if (event.name.includes("activelayout"))
                 refreshKeyboardLayout()
@@ -204,11 +210,7 @@ Singleton {
                 Hyprland.refreshToplevels()
 
             updateAll()
+            root.stateChanged()
         }
-    }
-
-    Component.onCompleted: {
-        updateAll()
-        refreshKeyboardLayout()
     }
 }

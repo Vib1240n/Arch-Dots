@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# This script the now depreciated as it is succeeded by the nucleus-cli (https://github.com/unf6/nucleus-cli)
+
 # Config
 
 INSTALL_DIR="$HOME/.config/nucleus-shell/plugins"
@@ -78,7 +80,7 @@ name: \(.name)
 version: \(.version)
 author: \(.author)
 description: \(.description)
-img: \(.img // "none")
+requires_nucleus: \(.requires_nucleus // "none")
 repo: '"$repo"'
 ---"
       ' "$dir/manifest.json"
@@ -105,7 +107,7 @@ name: \(.name)
 version: \(.version)
 author: \(.author)
 description: \(.description)
-img: \(.img // "none")
+requires_nucleus: \(.requires_nucleus // "none")
 repo: '"$repo"'
 ---"
   ' "$path/manifest.json"
@@ -164,7 +166,7 @@ fetch_all_machine() { # For quickshell
           .version,
           .author,
           .description,
-          (.img // "none"),
+          (.requires_nucleus // "none"),
           "'"$repo"'"
         ] | @tsv
       ' "$dir/manifest.json"

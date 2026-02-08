@@ -7,7 +7,7 @@ import Quickshell.Io
 import Quickshell.Wayland
 import qs.config
 import qs.modules.functions
-import qs.modules.widgets
+import qs.modules.components
 import qs.services
 
 Item {

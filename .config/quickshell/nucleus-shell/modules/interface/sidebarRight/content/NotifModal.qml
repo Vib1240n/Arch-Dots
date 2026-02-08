@@ -8,7 +8,7 @@ import qs.modules.functions
 import qs.modules.interface.notifications
 import qs.services
 import qs.config
-import qs.modules.widgets
+import qs.modules.components
 
 StyledRect {
     id: root

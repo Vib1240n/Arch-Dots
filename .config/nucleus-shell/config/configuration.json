@@ -7,7 +7,7 @@
             "clock": {
                 "animateHands": false,
                 "edgeSpacing": 50,
-                "enabled": true,
+                "enabled": false,
                 "isAnalog": false,
                 "shape": 2,
                 "xPos": 1200,
@@ -15,12 +15,12 @@
             },
             "enabled": true,
             "parallax": {
-                "enableSidebarLeft": true,
-                "enableSidebarRight": true,
+                "enableSidebarLeft": false,
+                "enableSidebarRight": false,
                 "enabled": false,
                 "zoom": 1.1
             },
-            "path": "file:///home/vib1240n/Pictures/wallpapers/Night%20City/pexels-stephan-seeber-1261728.jpg",
+            "path": "file:///home/vib1240n/Pictures/Wallpapers/Night%20City/wp8964569-ultrawide-8k-wallpapers.jpg",
             "slideshow": {
                 "enabled": false,
                 "folder": "/home/vib1240n/Pictures/wallpapers",
@@ -38,7 +38,11 @@
             "factor": 0.5
         },
         "theme": "dark",
-        "tintIcons": false
+        "tintIcons": false,
+        "transparency": {
+            "alpha": 0.5,
+            "enabled": true
+        }
     },
     "bar": {
         "density": 55,
@@ -101,6 +105,6 @@
     "shell": {
         "qsVersion": "0.2.1",
         "releaseChannel": "stable",
-        "version": "0.5.3"
+        "version": "0.6.2"
     }
 }

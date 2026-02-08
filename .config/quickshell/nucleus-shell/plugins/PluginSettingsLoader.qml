@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Layouts
 import qs.config
 import qs.plugins
-import qs.modules.widgets
 
 ColumnLayout {
     id: pluginColumn

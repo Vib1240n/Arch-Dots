@@ -21,7 +21,6 @@ Item {
         }
 
         SystemUsageModule {
-            visible: !isHorizontal
         }
 
         ClockModule {
@@ -69,7 +68,6 @@ Item {
 
         BongoCat {
             Layout.rightMargin: 20
-            visible: !isHorizontal
         }
 
         StatusIconsModule {

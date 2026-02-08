@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import qs.config
 import qs.plugins
-import qs.modules.widgets
+import qs.modules.components
 
 Item { // I didn't want the flicable implicitHeight headache
     id: pluginsPage

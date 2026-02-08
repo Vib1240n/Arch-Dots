@@ -1,6 +1,6 @@
-import "../../widgets/morphedPolygons/geometry/offset.js" as Offset
-import "../../widgets/morphedPolygons/material-shapes.js" as MaterialShapes // For polygons
-import "../../widgets/morphedPolygons/shapes/corner-rounding.js" as CornerRounding
+import "../../components/morphedPolygons/geometry/offset.js" as Offset
+import "../../components/morphedPolygons/material-shapes.js" as MaterialShapes // For polygons
+import "../../components/morphedPolygons/shapes/corner-rounding.js" as CornerRounding
 import QtQuick
 import QtQuick.Controls.Fusion
 import QtQuick.Layouts
@@ -8,8 +8,8 @@ import Quickshell.Wayland
 import qs.config
 import qs.modules.functions
 import qs.modules.interface.background
-import qs.modules.widgets
-import qs.modules.widgets.morphedPolygons
+import qs.modules.components
+import qs.modules.components.morphedPolygons
 import qs.services
 
 Rectangle {

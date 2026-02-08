@@ -6,34 +6,30 @@ pragma Singleton
 
 Singleton {
     id: root
-    property var map: ({})
+    property var map: ({
+    })
 
     function notifyMissingVariant(theme, variant) {
         Quickshell.execDetached(["notify-send", "Nucleus Shell", `Theme '${theme}' does not have a ${variant} variant.`, "--urgency=normal", "--expire-time=5000"]);
     }
 
-    // Watch colorschemes folder for changes (event-based)
-    Process {
-        id: themeWatcher
-        running: true
-        command: ["inotifywait", "-m", "-e", "create,delete,modify", Directories.shellConfig + "/colorschemes"]
-        stdout: SplitParser {
-            onRead: data => {
-                if (data.includes(".json")) {
-                    loadThemes.running = true
-                }
-            }
-        }
+    Timer {
+        interval: 5000
+        repeat: true 
+        running: true 
+        onTriggered: loadThemes.running = true
     }
 
     Process {
         id: loadThemes
+
         command: ["ls", Directories.shellConfig + "/colorschemes"]
         running: true
 
         stdout: StdioCollector {
             onStreamFinished: {
-                const map = {};
+                const map = {
+                };
                 text.split("\n").map((t) => {
                     return t.trim();
                 }).filter((t) => {
@@ -42,18 +38,17 @@ Singleton {
                     const name = t.replace(/\.json$/, "");
                     const parts = name.split("-");
                     const variant = parts.pop();
-                    const themeName = parts.join("-");
-                    if (!map[themeName])
-                        map[themeName] = {};
-                    map[themeName][variant] = name;
+                    const base = parts.join("-");
+                    if (!map[base])
+                        map[base] = {
+                    };
+
+                    map[base][variant] = name;
                 });
                 root.map = map;
             }
         }
+
     }
 
-    // Load once on startup
-    Component.onCompleted: {
-        loadThemes.running = true
-    }
 }

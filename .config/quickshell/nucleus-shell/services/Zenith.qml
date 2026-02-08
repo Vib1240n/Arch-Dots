@@ -21,7 +21,7 @@ Singleton {
     // process to load data and talk to zenith
 
     Timer {
-        interval: 60000
+        interval: 1000
         repeat: true 
         running: true 
         onTriggered: listChatsProcess.running = true;

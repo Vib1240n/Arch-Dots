@@ -2,7 +2,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Wayland
 import qs.config
-import qs.modules.widgets
+import qs.modules.components
 
 Scope {
     id: root
@@ -89,7 +89,6 @@ Scope {
 
             StyledRect {
                 id: background
-
                 color: Appearance.m3colors.m3background
                 anchors.fill: parent
                 topLeftRadius: {

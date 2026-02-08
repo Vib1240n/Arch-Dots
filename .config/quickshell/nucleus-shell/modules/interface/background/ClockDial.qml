@@ -1,5 +1,5 @@
 import QtQuick
-import qs.modules.widgets
+import qs.modules.components
 
 Item {
     id: root

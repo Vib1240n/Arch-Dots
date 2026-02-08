@@ -4,7 +4,7 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Widgets
 import qs.config
-import qs.modules.widgets
+import qs.modules.components
 import qs.services
 
 ContentMenu {
@@ -106,7 +106,7 @@ ContentMenu {
             text: "Change Wallpaper"
             Layout.fillWidth: true
             onClicked: {
-                Quickshell.execDetached(["qs", "-c", "nucleus-shell", "ipc", "call", "background", "change"]);
+                Quickshell.execDetached(["nucleus", "ipc",  "background", "change"]);
             }
         }
 
@@ -235,7 +235,7 @@ ContentMenu {
                 text: "Skip Next"
                 enabled: WallpaperSlideshow.wallpapers.length > 0
                 onClicked: {
-                    Quickshell.execDetached(["qs", "-c", "nucleus-shell", "ipc", "call", "background", "next"]);
+                    Quickshell.execDetached(["nucleus", "ipc", "background", "next"]);
                 }
             }
 

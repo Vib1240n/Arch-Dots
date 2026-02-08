@@ -1,5 +1,5 @@
 import qs.config
-import qs.modules.widgets
+import qs.modules.components
 import qs.modules.functions
 import qs.services
 import QtQuick
@@ -8,7 +8,7 @@ import QtQuick.Layouts
 
 StyledRect {
     id: root
-    Layout.fillWidth: true
+    width: 150
     height: 50
     radius: Appearance.rounding.verylarge
     color: Appearance.m3colors.m3surfaceContainerHigh

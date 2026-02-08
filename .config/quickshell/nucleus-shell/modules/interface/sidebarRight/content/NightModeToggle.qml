@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import qs.services
 import qs.config
-import qs.modules.widgets
+import qs.modules.components
 
 Rectangle {
     id: root
@@ -26,7 +26,7 @@ Rectangle {
         anchors.fill: parent
         onClicked: {
             nightTime = !nightTime;
-            nightTime ? Quickshell.execDetached(["hyprsunset", "-t", "4000"]) : Quickshell.execDetached(["killall", "hyprsunset"]);
+            nightTime ? Quickshell.execDetached(["gammastep", "-O", "4000"]) : Quickshell.execDetached(["killall", "gammastep"]);
         }
     }
 

@@ -8,18 +8,11 @@ import Quickshell.Services.Pipewire
 import Quickshell.Wayland
 import qs.config
 import qs.modules.functions
-import qs.modules.widgets
+import qs.modules.components
 import qs.services
 
 PanelWindow {
     id: launcher
-
-    property var monitor: Hyprland.focusedMonitor
-    property real screenW: monitor ? monitor.width : 0
-    property real screenH: monitor ? monitor.height : 0
-    property real scale: monitor ? monitor.scale : 1
-    property real launcherWidth: screenW * 0.28 / scale
-    property real launcherHeight: screenH * 0.7 / scale
 
     function togglelauncher() {
         Globals.visiblility.launcher = !Globals.visiblility.launcher;
@@ -35,8 +28,8 @@ PanelWindow {
     WlrLayershell.namespace: "nucleus:launcher"
     color: "transparent"
     exclusiveZone: 0
-    implicitWidth: launcherWidth
-    implicitHeight: launcherHeight
+    implicitWidth: DisplayMetrics.scaledWidth(0.28)
+    implicitHeight: DisplayMetrics.scaledHeight(0.7)
     onVisibleChanged: {
         if (!Globals.visiblility.launcher) {
             searchField.text = "";
@@ -113,7 +106,7 @@ PanelWindow {
             topRightRadius: Appearance.rounding.verylarge
             bottomLeftRadius: searchField.text !== "" ? 0 : Appearance.rounding.verylarge
             bottomRightRadius: searchField.text !== "" ? 0 : Appearance.rounding.verylarge
-            implicitWidth: launcher.launcherWidth
+            implicitWidth: launcher.implicitWidth
             implicitHeight: 65
             anchors.top: parent.top
             anchors.horizontalCenter: parent.horizontalCenter
@@ -165,7 +158,7 @@ PanelWindow {
 
             id: container
 
-            readonly property real maxResultsHeight: launcher.launcherHeight - 130
+            readonly property real maxResultsHeight: launcher.implicitHeight - 130
             readonly property real contentHeightClamped: Math.min(launcherContent.listView.contentHeight + 50, maxResultsHeight)
 
             color: Appearance.m3colors.m3background
@@ -177,7 +170,7 @@ PanelWindow {
             anchors.top: parent.top
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.topMargin: 65
-            implicitWidth: launcher.launcherWidth
+            implicitWidth: launcher.implicitWidth
             implicitHeight: searchField.text !== "" ? contentHeightClamped : 0
 
             Rectangle {
@@ -227,14 +220,6 @@ PanelWindow {
         }
 
         target: "launcher"
-    }
-
-    Connections {
-        function onFocusedMonitorChanged() {
-            launcher.monitor = Hyprland.focusedMonitor;
-        }
-
-        target: Hyprland
     }
 
 }

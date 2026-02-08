@@ -4,7 +4,7 @@ import QtQuick.Layouts
 import QtMultimedia
 import Quickshell
 import Quickshell.Widgets
-import qs.modules.widgets 
+import qs.modules.components
 import qs.config 
 import qs.services
 

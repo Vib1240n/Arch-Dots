@@ -1,5 +1,5 @@
 import qs.config
-import qs.modules.widgets
+import qs.modules.components
 import qs.services
 import qs.modules.functions
 import QtQuick
@@ -81,7 +81,7 @@ Item {
                         iconSize: Appearance.font.size.hugeass + 2
 
                         onButtonClicked: {
-                            Quickshell.execDetached(["hyprpicker"])
+                            Quickshell.execDetached(["wl-color-picker"])
                             Globals.visiblility.sidebarRight = false;
                         }
                     }
@@ -198,8 +198,6 @@ Item {
             Layout.preferredWidth: parent.width
 
             RowLayout {
-                spacing: 8
-
                 Network {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 80
@@ -211,8 +209,6 @@ Item {
             }
 
             RowLayout {
-                spacing: 8
-
                 Bluetooth {
                     Layout.preferredWidth: 220
                     Layout.preferredHeight: 80
@@ -226,34 +222,6 @@ Item {
                     Layout.fillWidth: true
                 }
             }
-
-            // CPU and Disk row
-            RowLayout {
-                spacing: 8
-
-                CPU {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: 80
-                }
-
-                Disk {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: 80
-                }
-            }
-
-            // RAM full width
-            RAM {
-                Layout.fillWidth: true
-                Layout.preferredHeight: 80
-            }
-        }
-
-        Rectangle {
-            Layout.fillWidth: true
-            height: 1
-            color: Appearance.m3colors.m3outlineVariant
-            radius: 1
         }
 
         ColumnLayout {

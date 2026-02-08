@@ -7,7 +7,7 @@ import Quickshell.Io
 import Quickshell.Widgets
 import qs.config
 import qs.modules.functions
-import qs.modules.widgets
+import qs.modules.components
 import qs.services
 
 Scope {
@@ -243,6 +243,7 @@ Scope {
                                         text: modelData.label
                                         font.pixelSize: 14
                                         font.bold: true
+                                        opacity: modelData.header ? 1 : 0
                                     }
 
                                 }

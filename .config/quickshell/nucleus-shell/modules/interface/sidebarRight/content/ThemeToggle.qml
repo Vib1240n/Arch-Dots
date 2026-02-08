@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import qs.services
 import qs.config
-import qs.modules.widgets
+import qs.modules.components
 
 Rectangle {
     id: root
@@ -27,7 +27,7 @@ Rectangle {
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            Quickshell.execDetached(["qs", "-c", "nucleus-shell", "ipc", "call", "global", "toggleTheme"]);
+            Quickshell.execDetached(["nucleus", "ipc", "global", "toggleTheme"]);
         }
     }
 

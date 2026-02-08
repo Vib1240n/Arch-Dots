@@ -1,6 +1,7 @@
 import qs.config
-import qs.modules.widgets
+import qs.modules.components
 import qs.modules.functions
+import qs.services
 import QtQuick
 import Quickshell
 import QtQuick.Layouts
@@ -16,11 +17,10 @@ PanelWindow {
     WlrLayershell.namespace: "nucleus:sidebarleft"
     WlrLayershell.layer: WlrLayer.Top
     visible: Config.initialized && Globals.visiblility.sidebarRight && !Globals.visiblility.sidebarLeft
-
     color: "transparent"
     exclusiveZone: 0
-
-    // --- Directly use Hyprland's focused monitor ---
+    WlrLayershell.keyboardFocus: Compositor.require("niri") && Globals.visiblility.sidebarRight
+    
     property var monitor: Hyprland.focusedMonitor
 
 
@@ -31,7 +31,7 @@ PanelWindow {
     HyprlandFocusGrab {
         id: grab
 
-        active: true
+        active: Compositor.require("hyprland")
         windows: [sidebarRight]
     }
 

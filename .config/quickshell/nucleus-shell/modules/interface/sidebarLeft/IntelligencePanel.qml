@@ -7,7 +7,7 @@ import Quickshell.Io
 import Quickshell.Wayland
 import qs.config
 import qs.modules.functions
-import qs.modules.widgets
+import qs.modules.components
 import qs.services
 
 Item {
@@ -135,7 +135,7 @@ Item {
         anchors.topMargin: 74
         radius: Appearance.rounding.normal
         anchors.fill: parent
-        color: Appearance.m3colors.m3background
+        color: "transparent"
         visible: Config.runtime.misc.intelligence.enabled
 
         ColumnLayout {
@@ -229,7 +229,7 @@ Item {
                     icon: "fullscreen"
                     Layout.preferredWidth: 40
                     onClicked: {
-                        Quickshell.execDetached(["qs", "-c", "nucleus-shell", "ipc", "call", "intelligence", "openWindow"]);
+                        Quickshell.execDetached(["nucleus", "ipc", "intelligence", "openWindow"]);
                         Globals.visiblility.sidebarLeft = false;
                     }
                 }

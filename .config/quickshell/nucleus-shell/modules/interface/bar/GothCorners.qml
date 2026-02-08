@@ -5,7 +5,7 @@ import Quickshell.Hyprland
 import Quickshell.Io
 import Quickshell.Wayland
 import qs.config
-import qs.modules.widgets
+import qs.modules.components
 
 PanelWindow {
     id: root

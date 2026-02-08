@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import Quickshell.Io
 import qs.modules.functions
 import qs.config
-import qs.modules.widgets
+import qs.modules.components
 import qs.services
 
 ContentMenu {

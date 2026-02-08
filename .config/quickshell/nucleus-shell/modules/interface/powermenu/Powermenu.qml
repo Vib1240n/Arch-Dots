@@ -9,20 +9,15 @@ import Quickshell.Services.Pipewire
 import Quickshell.Wayland
 import qs.config
 import qs.modules.functions
+import qs.services
 import qs.modules.interface.lockscreen
-import qs.modules.widgets
+import qs.modules.components
 
 PanelWindow {
     id: powermenu
 
-    property var monitor: Hyprland.focusedMonitor
-    property real screenW: monitor ? monitor.width : 0
-    property real screenH: monitor ? monitor.height : 0
-    property real scale: monitor ? monitor.scale : 1
-    property real powermenuWidth: screenW * 0.25 / scale
-    property real powermenuHeight: screenH * 0.3 / scale
+    WlrLayershell.keyboardFocus: Compositor.require("niri") && Globals.visiblility.powermenu
 
-    // --- Toggle logic ---
     function togglepowermenu() {
         Globals.visiblility.powermenu = !Globals.visiblility.powermenu; // Simple toggle logic kept in a function as it might have more things to it later on.
     }
@@ -32,13 +27,13 @@ PanelWindow {
     visible: Config.initialized && Globals.visiblility.powermenu
     color: "transparent"
     exclusiveZone: 0
-    implicitWidth: powermenuWidth
-    implicitHeight: powermenuHeight
+    implicitWidth: DisplayMetrics.scaledWidth(0.25)
+    implicitHeight: DisplayMetrics.scaledWidth(0.168)
 
     HyprlandFocusGrab {
         id: grab
 
-        active: true
+        active: Compositor.require("hyprland")
         windows: [powermenu]
     }
 
@@ -47,7 +42,7 @@ PanelWindow {
 
         color: Appearance.m3colors.m3background
         radius: Appearance.rounding.verylarge
-        implicitWidth: powermenu.powermenuWidth
+        implicitWidth: powermenu.implicitWidth
         anchors.fill: parent
 
         FocusScope {
@@ -101,7 +96,7 @@ PanelWindow {
                     PowerMenuButton {
                         buttonIcon: "lock"
                         onClicked: {
-                            Quickshell.execDetached(["qs", "-c", "nucleus-shell", "ipc", "call", "lockscreen", "lock"]);
+                            Quickshell.execDetached(["nucleus", "ipc", "lockscreen", "lock"]);
                             Globals.visiblility.powermenu = false;
                         }
                     }
