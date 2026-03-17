@@ -1,0 +1,32 @@
+[position]
+anchor = "top-right"
+margin_top = 10
+margin_right = 10
+
+[appearance]
+width = 300
+
+[behavior]
+poll_interval = 500
+close_on_escape = true
+close_on_unfocus = false
+
+[sections]
+cpu = true
+memory = true
+disk = true
+battery = true
+network = false
+temperatures = true
+
+[temperatures]
+show_labels = ["package", "gpu", "core 0"]
+max_display = 4
+warning_threshold = 75
+critical_threshold = 90
+
+[animation]
+enabled = true
+type = "slide"
+direction = "down"
+duration = 250

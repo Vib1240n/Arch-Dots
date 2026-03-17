@@ -1,0 +1,12 @@
+{
+    "CollapsibleUI": true,
+    "CallTimeCounter": true,
+    "ReadAllNotificationsButton": true,
+    "BDFDB": true,
+    "ChannelsPreview": false,
+    "InvisibleTyping": true,
+    "BetterAnimations": true,
+    "PasscodeLock": false,
+    "WhoReacted": false,
+    "Translator": true
+}

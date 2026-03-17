@@ -1,0 +1,726 @@
+/**
+ * @name Glassmorphic Material You
+ * @description A glassmorphic Material You theme with prominent blur effects and enhanced contrast for BetterDiscord
+ * @author vib1240n
+ * @version 2.0.0
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MATERIAL YOU COLOR SYSTEM - Enhanced Contrast
+   ═══════════════════════════════════════════════════════════════════════════ */
+:root {
+  /* ═══════════════════════════════════════════════════════════════════
+       BLUR CONTROLS - Adjust these to change all blur effects
+       ═══════════════════════════════════════════════════════════════════ */
+  --blur-small: 10px; /* Tooltips, message actions */
+  --blur-medium: 10px; /* Context menus, quick switcher */
+  --blur-large: 80px; /* Autocomplete, emoji picker, popouts */
+  --blur-xl: 10px; /* Modals, profiles */
+
+  /* PRIMARY ACCENT HUE - Change this to shift entire color scheme */
+  --accent-hue: 260;
+  --accent-chroma: 0.1;
+
+  /* ─────────────────────────────────────────────────────────────────────
+       TEXT COLORS - 5% More Contrast
+       ───────────────────────────────────────────────────────────────────── */
+  --text-0: oklch(18% 0.02 var(--accent-hue)); /* on-primary */
+  --text-1: oklch(98% 0.01 var(--accent-hue)); /* high emphasis +3% */
+  --text-2: oklch(90% 0.02 var(--accent-hue)); /* medium emphasis +5% */
+  --text-3: oklch(75% 0.02 var(--accent-hue)); /* on-surface +5% */
+  --text-4: oklch(55% 0.02 var(--accent-hue)); /* variant +5% */
+  --text-5: oklch(40% 0.02 var(--accent-hue)); /* disabled +5% */
+
+  /* ─────────────────────────────────────────────────────────────────────
+       SURFACE TONES - Slightly Lighter
+       ───────────────────────────────────────────────────────────────────── */
+  --bg-1: oklch(30% 0.02 var(--accent-hue)); /* surface container highest +2% */
+  --bg-2: oklch(24% 0.02 var(--accent-hue)); /* surface container high +2% */
+  --bg-3: oklch(19% 0.02 var(--accent-hue)); /* surface container +2% */
+  --bg-4: oklch(14% 0.02 var(--accent-hue)); /* surface +2% */
+
+  /* ─────────────────────────────────────────────────────────────────────
+       MATERIAL STATES
+       ───────────────────────────────────────────────────────────────────── */
+  --hover: oklch(85% 0.02 var(--accent-hue) / 0.08);
+  --active: oklch(85% 0.02 var(--accent-hue) / 0.12);
+  --active-2: oklch(85% 0.02 var(--accent-hue) / 0.16);
+  --message-hover: oklch(55% 0.01 var(--accent-hue) / 0.04);
+
+  /* ─────────────────────────────────────────────────────────────────────
+       PRIMARY PALETTE
+       ───────────────────────────────────────────────────────────────────── */
+  --accent-1: oklch(80% var(--accent-chroma) var(--accent-hue));
+  --accent-2: oklch(70% var(--accent-chroma) var(--accent-hue));
+  --accent-3: oklch(60% var(--accent-chroma) var(--accent-hue));
+  --accent-4: oklch(50% var(--accent-chroma) var(--accent-hue));
+  --accent-5: oklch(40% var(--accent-chroma) var(--accent-hue));
+
+  --accent-new: oklch(70% 0.16 var(--accent-hue));
+
+  /* Mention/Reply gradients */
+  --mention: linear-gradient(
+    to right,
+    oklch(70% var(--accent-chroma) var(--accent-hue) / 0.15) 0%,
+    transparent 70%
+  );
+  --mention-hover: linear-gradient(
+    to right,
+    oklch(70% var(--accent-chroma) var(--accent-hue) / 0.2) 0%,
+    transparent 70%
+  );
+
+  /* ─────────────────────────────────────────────────────────────────────
+       STATUS COLORS
+       ───────────────────────────────────────────────────────────────────── */
+  --online: oklch(52% 0.15 145);
+  --idle: oklch(68% 0.14 85);
+  --dnd: oklch(45% 0.18 25);
+  --streaming: oklch(68% 0.18 295);
+  --offline: var(--text-4);
+
+  /* ─────────────────────────────────────────────────────────────────────
+       BORDER COLORS
+       ───────────────────────────────────────────────────────────────────── */
+  --border-light: oklch(50% 0.02 var(--accent-hue) / 0.08);
+  --border: oklch(50% 0.02 var(--accent-hue) / 0.12);
+  --button-border: oklch(100% 0 0 / 0.08);
+
+  /* ─────────────────────────────────────────────────────────────────────
+       SEMANTIC PALETTES
+       ───────────────────────────────────────────────────────────────────── */
+  --red-1: oklch(78% 0.14 25);
+  --red-2: oklch(68% 0.16 25);
+  --red-3: oklch(58% 0.16 25);
+  --red-4: oklch(48% 0.14 25);
+  --red-5: oklch(38% 0.12 25);
+
+  --green-1: oklch(78% 0.12 145);
+  --green-2: oklch(68% 0.14 145);
+  --green-3: oklch(58% 0.14 145);
+  --green-4: oklch(48% 0.12 145);
+  --green-5: oklch(38% 0.1 145);
+
+  --blue-1: oklch(78% var(--accent-chroma) var(--accent-hue));
+  --blue-2: oklch(68% var(--accent-chroma) var(--accent-hue));
+  --blue-3: oklch(58% var(--accent-chroma) var(--accent-hue));
+  --blue-4: oklch(48% var(--accent-chroma) var(--accent-hue));
+  --blue-5: oklch(38% var(--accent-chroma) var(--accent-hue));
+
+  --yellow-1: oklch(85% 0.12 85);
+  --yellow-2: oklch(78% 0.14 85);
+  --yellow-3: oklch(70% 0.14 85);
+  --yellow-4: oklch(62% 0.12 85);
+  --yellow-5: oklch(54% 0.1 85);
+
+  --purple-1: oklch(78% 0.12 320);
+  --purple-2: oklch(68% 0.14 320);
+  --purple-3: oklch(58% 0.14 320);
+  --purple-4: oklch(48% 0.12 320);
+  --purple-5: oklch(38% 0.1 320);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GLASSMORPHIC FLOATING ELEMENTS - PROMINENT BLUR (No saturation)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Context Menus */
+.menu_c1e9c4,
+.menu__773e9 {
+  background: oklch(34% 0.02 var(--accent-hue) / 0.75) !important;
+  backdrop-filter: blur(var(--blur-medium)) !important;
+  -webkit-backdrop-filter: blur(var(--blur-medium)) !important;
+  border: 1px solid oklch(100% 0 0 / 0.08) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 8px 32px oklch(0% 0 0 / 0.4),
+    0 2px 8px oklch(0% 0 0 / 0.2),
+    inset 0 1px 0 oklch(100% 0 0 / 0.05);
+  overflow: hidden;
+}
+
+.menu_c1e9c4 .item_c1e9c4,
+.menu__773e9 .item__48dda {
+  border-radius: 12px;
+  margin: 2px 6px;
+  transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.menu_c1e9c4 .item_c1e9c4:hover,
+.menu__773e9 .item__48dda:hover {
+  background: oklch(
+    80% var(--accent-chroma) var(--accent-hue) / 0.15
+  ) !important;
+}
+
+.menu_c1e9c4 .item_c1e9c4:active,
+.menu__773e9 .item__48dda:active {
+  background: oklch(
+    80% var(--accent-chroma) var(--accent-hue) / 0.25
+  ) !important;
+  transform: scale(0.98);
+}
+
+/* Tooltips */
+.tooltip_c36707,
+.tooltip__85c21 {
+  background: oklch(20% 0.02 var(--accent-hue) / 0.85) !important;
+  backdrop-filter: blur(var(--blur-small)) !important;
+  -webkit-backdrop-filter: blur(var(--blur-small)) !important;
+  border: 1px solid oklch(100% 0 0 / 0.06);
+  border-radius: 12px !important;
+  box-shadow: 0 4px 16px oklch(0% 0 0 / 0.3);
+}
+
+/* Autocomplete / Search Suggestions */
+.autocomplete__6b0e0,
+.autocomplete__13533,
+.container__55c99 {
+  background: oklch(16% 0.02 var(--accent-hue) / 0.8) !important;
+  backdrop-filter: blur(var(--blur-large)) !important;
+  -webkit-backdrop-filter: blur(var(--blur-large)) !important;
+  border: 1px solid oklch(100% 0 0 / 0.08) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px oklch(0% 0 0 / 0.35);
+  overflow: hidden;
+}
+
+/* Modals */
+.root__49fc1,
+.root_c81bad,
+.container__8a031,
+.modal__7cd47,
+.modal_eff7d5 {
+  background: oklch(14% 0.02 var(--accent-hue) / 0.88) !important;
+  backdrop-filter: blur(var(--blur-xl)) !important;
+  -webkit-backdrop-filter: blur(var(--blur-xl)) !important;
+  border: 1px solid oklch(100% 0 0 / 0.08) !important;
+  border-radius: 24px !important;
+  box-shadow:
+    0 24px 80px oklch(0% 0 0 / 0.5),
+    0 8px 24px oklch(0% 0 0 / 0.3),
+    inset 0 1px 0 oklch(100% 0 0 / 0.05);
+}
+
+/* Profile Popouts */
+.userPopoutOuter_c69a7b,
+.userProfileOuter_c69a7b,
+.outer_c0bea0 {
+  background: oklch(14% 0.02 var(--accent-hue) / 0.85) !important;
+  backdrop-filter: blur(var(--blur-xl)) !important;
+  -webkit-backdrop-filter: blur(var(--blur-xl)) !important;
+  border: 1px solid oklch(100% 0 0 / 0.08) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 16px 48px oklch(0% 0 0 / 0.45),
+    0 4px 16px oklch(0% 0 0 / 0.25);
+}
+
+/* Emoji/GIF Picker */
+.contentWrapper__08434,
+.picker_e39b72 {
+  background: oklch(14% 0.02 var(--accent-hue) / 0.85) !important;
+  backdrop-filter: blur(var(--blur-large)) !important;
+  -webkit-backdrop-filter: blur(var(--blur-large)) !important;
+  border: 1px solid oklch(100% 0 0 / 0.08) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 16px 48px oklch(0% 0 0 / 0.4);
+}
+
+/* Inbox Popout */
+.messagesPopoutWrap_e8b59c,
+.messagesPopout__5c4cd {
+  background: oklch(14% 0.02 var(--accent-hue) / 0.85) !important;
+  backdrop-filter: blur(var(--blur-large)) !important;
+  -webkit-backdrop-filter: blur(var(--blur-large)) !important;
+  border: 1px solid oklch(100% 0 0 / 0.08) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 16px 48px oklch(0% 0 0 / 0.4);
+}
+
+/* Channel Info Popout */
+.popout__76f04 {
+  background: oklch(16% 0.02 var(--accent-hue) / 0.85) !important;
+  backdrop-filter: blur(var(--blur-large)) !important;
+  -webkit-backdrop-filter: blur(var(--blur-large)) !important;
+  border: 1px solid oklch(100% 0 0 / 0.08) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px oklch(0% 0 0 / 0.35);
+}
+
+/* Message Action Bar */
+.wrapper__9f785,
+.container__4fd6e {
+  background: oklch(20% 0.02 var(--accent-hue) / 0.85) !important;
+  backdrop-filter: blur(var(--blur-small)) !important;
+  -webkit-backdrop-filter: blur(var(--blur-small)) !important;
+  border: 1px solid oklch(100% 0 0 / 0.08) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 16px oklch(0% 0 0 / 0.3);
+}
+
+/* Quick Switcher */
+.quickswitcher_f66a8d,
+.quickswitcher__5f4e5 {
+  background: oklch(14% 0.02 var(--accent-hue) / 0.85) !important;
+  backdrop-filter: blur(var(--blur-xl)) !important;
+  -webkit-backdrop-filter: blur(var(--blur-xl)) !important;
+  border: 1px solid oklch(100% 0 0 / 0.08) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 24px 80px oklch(0% 0 0 / 0.5);
+}
+
+/* User Area VC Region Popout */
+.quickSelectPopout_ebaca5 {
+  background: oklch(18% 0.02 var(--accent-hue) / 0.85) !important;
+  backdrop-filter: blur(var(--blur-medium)) !important;
+  -webkit-backdrop-filter: blur(var(--blur-medium)) !important;
+  border: 1px solid oklch(100% 0 0 / 0.08) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px oklch(0% 0 0 / 0.3);
+}
+
+/* Status picker */
+.menu_c1e9c4[class*="status"],
+.menu__773e9[class*="status"] {
+  background: oklch(16% 0.02 var(--accent-hue) / 0.85) !important;
+  backdrop-filter: blur(var(--blur-large)) !important;
+  -webkit-backdrop-filter: blur(var(--blur-large)) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MATERIAL YOU FLAT SURFACES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Server List */
+.guilds__5e434,
+.wrapper__8cf75 {
+  background: oklch(14% 0.02 var(--accent-hue)) !important;
+  border: none !important;
+  box-shadow:
+    0 2px 8px oklch(0% 0 0 / 0.2),
+    0 1px 2px oklch(0% 0 0 / 0.1);
+}
+
+/* Channel Sidebar */
+.sidebar_c0bea0,
+.container_c0bea0 {
+  background: oklch(16% 0.02 var(--accent-hue)) !important;
+  border: none !important;
+  box-shadow:
+    0 2px 8px oklch(0% 0 0 / 0.15),
+    0 1px 2px oklch(0% 0 0 / 0.08);
+}
+
+/* User Panel */
+.panels__5e434,
+.container__14526 {
+  background: oklch(14% 0.02 var(--accent-hue)) !important;
+  border: none !important;
+  box-shadow:
+    0 -2px 8px oklch(0% 0 0 / 0.15),
+    0 -1px 2px oklch(0% 0 0 / 0.08);
+}
+
+/* Chat Area */
+.chatContent_f75fb0,
+.chat_f75fb0 {
+  background: oklch(12% 0.02 var(--accent-hue)) !important;
+  border: none !important;
+}
+
+/* Chat Titlebar */
+.title_f75fb0,
+.container__9293f {
+  background: oklch(14% 0.02 var(--accent-hue)) !important;
+  border: none !important;
+  box-shadow: 0 2px 6px oklch(0% 0 0 / 0.12);
+}
+
+/* Member List */
+.container_c8ffbb,
+.members_cbd271 {
+  background: oklch(14% 0.02 var(--accent-hue)) !important;
+  border: none !important;
+  box-shadow:
+    0 2px 8px oklch(0% 0 0 / 0.12),
+    0 1px 2px oklch(0% 0 0 / 0.06);
+}
+
+/* Friends/DM List */
+.peopleColumn__133bf,
+.container__133bf {
+  background: oklch(12% 0.02 var(--accent-hue)) !important;
+  border: none !important;
+  box-shadow: 0 2px 8px oklch(0% 0 0 / 0.12);
+}
+
+/* Active Now Panel */
+.nowPlayingColumn__133bf {
+  background: oklch(14% 0.02 var(--accent-hue)) !important;
+  border: none !important;
+  box-shadow: 0 2px 8px oklch(0% 0 0 / 0.12);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MATERIAL YOU COMPONENTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Material FAB-style buttons */
+.circleIconButton__5bc7e,
+.circleIconButton_c7f112 {
+  background: oklch(60% var(--accent-chroma) var(--accent-hue)) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 3px 8px oklch(0% 0 0 / 0.3),
+    0 1px 3px oklch(0% 0 0 / 0.15);
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.circleIconButton__5bc7e:hover,
+.circleIconButton_c7f112:hover {
+  background: oklch(55% var(--accent-chroma) var(--accent-hue)) !important;
+  box-shadow:
+    0 6px 16px oklch(0% 0 0 / 0.35),
+    0 2px 6px oklch(0% 0 0 / 0.2);
+  transform: scale(1.05);
+}
+
+/* Material Chips (Reactions) */
+.reaction__23977 {
+  background: oklch(22% 0.02 var(--accent-hue)) !important;
+  border: none !important;
+  border-radius: 20px !important;
+  padding: 4px 10px;
+  transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.reaction__23977:hover {
+  background: oklch(28% 0.03 var(--accent-hue)) !important;
+}
+
+.reaction__23977.reactionMe__23977 {
+  background: oklch(
+    60% var(--accent-chroma) var(--accent-hue) / 0.25
+  ) !important;
+  border: 1px solid oklch(70% var(--accent-chroma) var(--accent-hue) / 0.4) !important;
+}
+
+/* Material Text Fields (Chat Input) */
+.channelTextArea_f75fb0,
+.textArea_c49189 {
+  background: oklch(18% 0.02 var(--accent-hue)) !important;
+  border: none !important;
+  border-radius: 24px !important;
+  box-shadow:
+    inset 0 2px 4px oklch(0% 0 0 / 0.1),
+    0 1px 2px oklch(0% 0 0 / 0.05);
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.channelTextArea_f75fb0:focus-within,
+.textArea_c49189:focus-within {
+  background: oklch(20% 0.02 var(--accent-hue)) !important;
+  box-shadow:
+    inset 0 2px 4px oklch(0% 0 0 / 0.08),
+    0 0 0 2px oklch(70% var(--accent-chroma) var(--accent-hue) / 0.5);
+}
+
+/* Material Cards (Embeds) */
+.embedFull__623de,
+.embed_cd2a24 {
+  background: oklch(18% 0.02 var(--accent-hue)) !important;
+  border: none !important;
+  border-left: 4px solid oklch(60% var(--accent-chroma) var(--accent-hue)) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 6px oklch(0% 0 0 / 0.15);
+}
+
+/* Material Switches */
+.container__3f21e {
+  background: oklch(30% 0.02 var(--accent-hue)) !important;
+  border-radius: 16px !important;
+  transition: background 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.container__3f21e.checked__3f21e {
+  background: oklch(60% var(--accent-chroma) var(--accent-hue)) !important;
+}
+
+/* Server Icons - Rounded square style */
+.wrapper__6e9f8:not([data-list-item-id="guildsnav___home"])
+  .childWrapper__6e9f8,
+.wrapper_fea3ef .childWrapper_fea3ef {
+  border-radius: 16px !important;
+  transition: border-radius 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.wrapper__6e9f8:not([data-list-item-id="guildsnav___home"]):hover
+  .childWrapper__6e9f8,
+.wrapper_fea3ef:hover .childWrapper_fea3ef {
+  border-radius: 12px !important;
+}
+
+/* DMs Button - Material FAB style */
+.wrapper__6e9f8[data-list-item-id="guildsnav___home"] .childWrapper__6e9f8 {
+  background: oklch(60% var(--accent-chroma) var(--accent-hue)) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 3px 8px oklch(0% 0 0 / 0.3);
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.wrapper__6e9f8[data-list-item-id="guildsnav___home"]:hover
+  .childWrapper__6e9f8 {
+  background: oklch(55% var(--accent-chroma) var(--accent-hue)) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 16px oklch(0% 0 0 / 0.35);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MATERIAL MOTION & INTERACTIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Channel hover */
+.wrapper__2ea32 .link__2ea32,
+.link_c0bea0 {
+  border-radius: 12px;
+  transition:
+    background 0.15s cubic-bezier(0.2, 0, 0, 1),
+    margin-left 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.wrapper__2ea32:hover .link__2ea32,
+.link_c0bea0:hover {
+  background: oklch(80% var(--accent-chroma) var(--accent-hue) / 0.08);
+}
+
+.wrapper__2ea32:active .link__2ea32,
+.link_c0bea0:active {
+  background: oklch(80% var(--accent-chroma) var(--accent-hue) / 0.12);
+}
+
+/* Member hover */
+.container__91a9d,
+.member_cbd271 {
+  border-radius: 12px;
+  transition:
+    background 0.15s cubic-bezier(0.2, 0, 0, 1),
+    margin-left 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.container__91a9d:hover,
+.member_cbd271:hover {
+  background: oklch(80% var(--accent-chroma) var(--accent-hue) / 0.08);
+}
+
+/* Message hover */
+.message__5126c,
+.message_ccca67 {
+  border-radius: 8px;
+  transition: background 0.15s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.message__5126c:hover,
+.message_ccca67:hover {
+  background: oklch(
+    80% var(--accent-chroma) var(--accent-hue) / 0.04
+  ) !important;
+}
+
+/* Unread bar */
+.newMessagesBar__0f481,
+.newMessagesBar_c5865b {
+  background: oklch(60% var(--accent-chroma) var(--accent-hue)) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 4px 12px oklch(0% 0 0 / 0.3);
+}
+
+.newMessagesBar__0f481:hover,
+.newMessagesBar_c5865b:hover {
+  box-shadow: 0 6px 16px oklch(0% 0 0 / 0.35);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCROLLBAR STYLING
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(40% 0.02 var(--accent-hue) / 0.5);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(50% 0.02 var(--accent-hue) / 0.7);
+  background-clip: content-box;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SETTINGS SIDEBAR
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.side_aa8da2 .item_aa8da2,
+.side__1e031 .item__48dda {
+  border-radius: 24px !important;
+  margin: 2px 0;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.side_aa8da2 .item_aa8da2:hover,
+.side__1e031 .item__48dda:hover {
+  background: oklch(
+    80% var(--accent-chroma) var(--accent-hue) / 0.08
+  ) !important;
+}
+
+.side_aa8da2 .item_aa8da2.selected_aa8da2,
+.side__1e031 .item__48dda.selected__48dda {
+  background: oklch(
+    60% var(--accent-chroma) var(--accent-hue) / 0.2
+  ) !important;
+  color: oklch(80% var(--accent-chroma) var(--accent-hue)) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VOICE CHANNEL STYLING
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.callContainer_cb9592,
+.wrapper_f90abb {
+  background: oklch(10% 0.02 var(--accent-hue)) !important;
+  border-radius: 20px !important;
+  border: none !important;
+}
+
+.colorable_f1ceac.primaryDark_f1ceac,
+.button_dd4f85 {
+  background: oklch(22% 0.02 var(--accent-hue)) !important;
+  border-radius: 16px !important;
+  transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.colorable_f1ceac.primaryDark_f1ceac:hover,
+.button_dd4f85:hover {
+  background: oklch(28% 0.02 var(--accent-hue)) !important;
+}
+
+.colorable_f1ceac.red_f1ceac {
+  background: oklch(60% 0.16 25) !important;
+}
+
+.colorable_f1ceac.red_f1ceac:hover {
+  background: oklch(55% 0.18 25) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ADDITIONAL ELEMENTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Main app background */
+.bg__960e4,
+.app_a3002d,
+.app__f7fc2 {
+  background: oklch(10% 0.015 var(--accent-hue)) !important;
+}
+
+/* Thread browser */
+.container_fb64c9 {
+  background: oklch(14% 0.02 var(--accent-hue)) !important;
+  border-radius: 20px !important;
+  border: none !important;
+}
+
+/* Pins/Search Results sidebar */
+.searchResultsWrap_a98f3b {
+  background: oklch(14% 0.02 var(--accent-hue)) !important;
+  border-radius: 20px !important;
+  border: none !important;
+  box-shadow: 0 2px 8px oklch(0% 0 0 / 0.15);
+}
+
+/* Bot tags */
+.botTagRegular__82f07,
+.botTag_a1aae9 {
+  background: oklch(60% var(--accent-chroma) var(--accent-hue)) !important;
+  border-radius: 6px !important;
+}
+
+/* Selection highlight */
+::selection {
+  background: oklch(60% var(--accent-chroma) var(--accent-hue) / 0.4);
+}
+
+/* Code blocks */
+.hljs {
+  background: oklch(10% 0.02 var(--accent-hue)) !important;
+  border-radius: 12px !important;
+}
+
+/* Typing indicator */
+.typing_b88801 {
+  background: oklch(12% 0.02 var(--accent-hue) / 0.95) !important;
+  backdrop-filter: blur(var(--blur-small));
+  -webkit-backdrop-filter: blur(var(--blur-small));
+}
+
+/* Notice banner */
+.notice__6e2b9 {
+  background: oklch(55% var(--accent-chroma) var(--accent-hue)) !important;
+  border-radius: 12px !important;
+}
+
+/* Reply preview bar */
+.replyBar_f75fb0 {
+  background: oklch(16% 0.02 var(--accent-hue)) !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+/* Avatar status ring glow */
+.avatar__08316[class*="online"],
+.wrapper__51d96[class*="online"] {
+  box-shadow: 0 0 8px oklch(72% 0.15 145 / 0.5);
+}
+
+/* Remove all remaining borders */
+.container__89463,
+.container__133bf,
+.container__01ae2,
+.container_f391e3,
+.homeWrapper__0920e {
+  border: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCENT COLOR PRESETS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Purple (Default) - Uncomment to use */
+/* :root { --accent-hue: 260; --accent-chroma: 0.1; } */
+
+/* Teal / Cyan */
+/* :root { --accent-hue: 180; --accent-chroma: 0.12; } */
+
+/* Pink / Magenta */
+/* :root { --accent-hue: 340; --accent-chroma: 0.15; } */
+
+/* Blue */
+/* :root { --accent-hue: 240; --accent-chroma: 0.13; } */
+
+/* Green */
+/* :root { --accent-hue: 145; --accent-chroma: 0.12; } */
+
+/* Orange / Amber */
+/* :root { --accent-hue: 40; --accent-chroma: 0.14; } */
+
+/* Red / Coral */
+/* :root { --accent-hue: 15; --accent-chroma: 0.15; } */

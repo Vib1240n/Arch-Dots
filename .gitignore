@@ -1,82 +1,106 @@
-*chromimum*
-*BraveSoftware*
-*Electron*
-*lite-xl*
-# Auto-generated / cache directories
-.claude/
-audacity/
-BambuStudio/
-BetterDiscord Installer/
-BraveSoftware/
-chromium/
-dconf/
-Electron/
-flutter/
-FreeCAD/
-glow/
-google-chrome/
-gthumb/
-immich-go/
-marlin/
-mozilla/
-Nextcloud/
-opera/
-Proton/
-Proton Mail/
-qtvirtualkeyboard/
-simple-update-notifier/
-solaar/
-spotify/
-Twitter/
-via-nativia/
-vivaldi/
-yay/
-zed/
+# Global ignores - matches anywhere in repo
+**/Cache/
+**/cache/
+**/Cache_Data/
+**/*cache*/
+**/Code Cache/
+**/GPUCache/
+**/Local Storage/
+**/Session Storage/
+**/IndexedDB/
+**/blob_storage/
+**/Network/
+**/Crashpad/
+**/Crash Reports/
+**/.Trash*/
+**/node_modules/
+**/__pycache__/
+**/*.pyc
+**/*.log
+**/*.bak
+**/*~
+**/.DS_Store
 
-# Potential secrets / tokens
+# Secrets / tokens
 **/*token*
 **/*secret*
 **/*credential*
 **/*.pem
 **/*.key
 **/*oauth*
-**/*auth.json
-**/config.json
-**/settings.json
 
-# Discord / Vesktop - keep configs but ignore tokens/cache
-vesktop*/Cache/
-vesktop*/Code Cache/
-vesktop*/GPUCache/
-vesktop*/Local Storage/
-vesktop*/Session Storage/
-vesktop*/IndexedDB/
-vesktop*/blob_storage/
-vesktop*/Network/
-discord/Cache/
-discord/Code Cache/
-discord/GPUCache/
-discord/Local Storage/
-discord/Session Storage/
-discord/IndexedDB/
-discord/blob_storage/
-discord/Network/
+# Auto-generated app configs
+.config/.claude/
+.config/audacity/
+.config/BambuStudio/
+.config/BetterDiscord Installer/
+.config/BraveSoftware/
+.config/chromium/
+.config/dconf/
+.config/discord/
+.config/Electron/
+.config/flutter/
+.config/FreeCAD/
+.config/glow/
+.config/google-chrome/
+.config/gthumb/
+.config/immich-go/
+.config/lite-xl/
+.config/marlin/
+.config/mozilla/
+.config/Nextcloud/
+.config/opera/
+.config/Proton/
+.config/Proton Mail/
+.config/pulse/
+.config/qtvirtualkeyboard/
+.config/simple-update-notifier/
+.config/solaar/
+.config/spotify/
+.config/Twitter/
+.config/via-nativia/
+.config/vivaldi/
+.config/yay/
+.config/zed/
 
-# BetterDiscord - keep plugins/themes, ignore cache
-BetterDiscord/data/
-BetterDiscord/*cache*
+# Vesktop / Electron - aggressive ignore
+**/vesktop*/sessionData/
+**/vesktop*/ExtensionCache/
+**/vesktop*/SingletonCookie
+**/vesktop*/SingletonLock
+**/vesktop*/SingletonSocket
+**/vesktop*/state.json
+**/vesktop*/*.json
+**/*Singleton*
+**/Service Worker/
+**/Dictionaries/
+**/DawnGraphiteCache/
+**/DawnWebGPUCache/
+**/WebStorage/
+**/WebrtcVideoStats/
+**/VideoDecodeStats/
+**/shared_proto_db/
+**/Shared Dictionary/
+**/*.bdic
+**/Cookies
+**/Cookies-journal
+**/DIPS
+**/DIPS-wal
+**/TransportSecurity
+**/Trust Tokens*
+**/SharedStorage*
+**/Network Persistent State
+**/Preferences
+**/Local Extension Settings/
+**/*.map
+**/LOCK
+**/LOG
+**/LOG.old
+**/MANIFEST-*
+**/CURRENT
 
-# Misc auto-generated
-pulse/
-**/*.log
-**/*.bak
-**/*~
-**/.DS_Store
-**/node_modules/
-**/__pycache__/
-**/*.pyc
+# Go telemetry
+.config/go/
 
-# Lock files that shouldn't be synced
-**/*.lock
-**/package-lock.json
-**/yarn.lock
+# Input remapper presets (machine specific)
+.config/input-remapper-2/

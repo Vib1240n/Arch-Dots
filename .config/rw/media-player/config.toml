@@ -1,0 +1,18 @@
+[position]
+anchor = "top-left"
+margin_top = 0
+margin_left = 30
+
+[appearance]
+width = 420
+
+[behavior]
+poll_interval = 500
+close_on_escape = true
+close_on_unfocus = false
+
+[animation]
+enabled = true
+type = "slide"
+direction = "top"
+duration = 450

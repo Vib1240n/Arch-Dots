@@ -1,0 +1,36 @@
+{
+	"all": {
+		"ModuleIdCache": {
+			"ChannelTextAreaButtons": "147025",
+			"ChannelTextAreaEditor": "415409",
+			"DiscordTag": "297413",
+			"Embed": "871751",
+			"EmojiPickerListRow": "923861",
+			"InboxHeader": "765627",
+			"Menu": "861672",
+			"MessageButtons": "907495",
+			"MessageReply": "162792",
+			"Messages": "371648",
+			"UnreadDMs": "845211"
+		},
+		"changeLogs": {
+			"BDFDB": "4.4.7",
+			"ReadAllNotificationsButton": "1.8.5",
+			"Translator": "2.7.9"
+		},
+		"choices": {
+			"toastPosition": "right"
+		},
+		"general": {
+			"shareData": true,
+			"showToasts": true,
+			"checkForUpdates": false,
+			"showSupportBadges": false,
+			"useChromium": false
+		},
+		"hashes": {
+			"0BDFDB.data.json": "1ef679459a2ffe8df025bf3c9b8323c492d65e6e",
+			"0BDFDB.raw.css": "edada1edc762888eebc5aa44e5b8c1baf2e60104"
+		}
+	}
+}

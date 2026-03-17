@@ -1,0 +1,38 @@
+[position]
+anchor = "top-right"
+margin_top = 10
+margin_right = 10
+
+[appearance]
+width = 360
+
+[behavior]
+poll_interval = 1000
+close_on_escape = true
+close_on_unfocus = false
+
+[sections]
+toggles = true
+sliders = true
+media = true
+stats = true
+
+[toggles]
+wifi = true
+bluetooth = true
+dnd = true
+caffeinate = true
+night_light = true
+vpn = true
+airplane = false
+
+[sliders]
+volume = true
+brightness = true
+volume_output_selector = true
+
+[animation]
+enabled = true
+type = "slide"
+direction = "down"
+duration = 250

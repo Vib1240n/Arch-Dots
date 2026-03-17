@@ -23,3 +23,48 @@ alias bitwarden='ssh -i ~/.ssh/id_rsa root@192.168.6.79 -p 22'
 alias aibot='ssh -i ~/.ssh/id_rsa ubuntu@192.168.6.88 -p 22'
 alias truenas='ssh -i ~/.ssh/id_rsa truenas_admin@192.168.6.107 -p 22'
 alias ionos='ssh -p 22 -i ~/.ssh/ionos_rsa ubuntu@74.208.167.123'
+# Hyprland configs
+alias hyprconf='nvim ~/.config/hypr/hyprland.conf'
+alias hyprenv='nvim ~/.config/hypr/hyprenv.conf'
+alias hyprbind='nvim ~/.config/hypr/keybinds.conf'
+alias hyprwin='nvim ~/.config/hypr/windowrules.conf'
+alias hyprstart='nvim ~/.config/hypr/autostart.conf'
+alias hyprdir='cd ~/.config/hypr'
+
+# Waybar
+alias waybarconf='nvim ~/.config/waybar/config.jsonc'
+alias waybarstyle='nvim ~/.config/waybar/style.css'
+alias waybardir='cd ~/.config/waybar'
+
+# Rust Widgets / Launch GUI / Cliphist GUI
+alias rwconf='nvim ~/Development/rust-widgets/config.toml'
+alias rwdir='cd ~/Development/rust-widgets'
+alias launchconf='nvim ~/.config/launch-gui/config.toml'
+alias cliphistconf='nvim ~/.config/cliphist-gui/config.toml'
+alias cliphistdir='cd ~/Development/cliphist-gui'
+
+# Kitty
+alias kittyconf='nvim ~/.config/kitty/kitty.conf'
+
+# Dunst
+alias dunstconf='nvim ~/.config/dunst/dunstrc'
+
+# Swww / Hyprlock / Hypridle
+alias hyprlockconf='nvim ~/.config/hypr/hyprlock.conf'
+alias hypridleconf='nvim ~/.config/hypr/hypridle.conf'
+
+# Quick reload commands
+alias hyprreload='hyprctl reload'
+alias waybarreload='killall waybar; waybar &'
+alias dunstreload='killall dunst; dunst &'
+
+# Dotfiles
+alias dots='cd ~/Development/dotfiles'
+alias dotspush='cd ~/Development/dotfiles && git add -A && git commit -m "update" && git push'
+
+# Scripts
+alias scripts='cd ~/Development/scripts'
+
+# Build commands for your Rust apps
+alias rwbuild='cd ~/Development/rust-widgets && cargo build --release'
+alias clipbuild='cd ~/Development/cliphist-gui && cargo build --release'

@@ -1,0 +1,21 @@
+[position]
+anchor = "top-right"
+margin_top = 10
+margin_right = 10
+
+[appearance]
+width = 520
+show_app_volumes = true
+show_input = true
+show_device_selector = true
+
+[behavior]
+poll_interval = 500
+close_on_escape = true
+close_on_unfocus = false
+
+[animation]
+enabled = true
+type = "slide"
+direction = "up"
+duration = 250

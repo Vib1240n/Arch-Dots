@@ -1,0 +1,33 @@
+[window]
+width = 880
+height = 520
+anchor = center
+margin_top = 0
+margin_bottom = 150
+margin_left = 0
+margin_right = 0
+search_height = 80
+
+[style]
+theme = ~/.config/launch-gui/style.css
+
+[behavior]
+terminal = kitty
+calculator = true
+vim_mode = true
+animation_duration = 400
+animation_easing = ease-out
+
+
+
+
+[keybinds]
+select = Return Enter
+close = Escape
+clear_search = Ctrl+u
+next = Down Tab
+prev = Up Shift+Tab
+page_down = Page_Down
+page_up = Page_Up
+first = Home
+last = End

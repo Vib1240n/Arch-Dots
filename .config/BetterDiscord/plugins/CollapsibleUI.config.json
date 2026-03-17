@@ -1,0 +1,19 @@
+{
+    "version": "12.3.4",
+    "buttons-active": [
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true
+    ],
+    "transition-speed": 400,
+    "collapse-toolbar": "all",
+    "channel-list-width": 338
+}

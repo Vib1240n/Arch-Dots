@@ -1,0 +1,26 @@
+{
+    "currentVersionInfo": {
+        "version": "2.1.13",
+        "hasShownChangelog": true
+    },
+    "settings": {
+        "trigger": {
+            "displayOn": "hover",
+            "hoverDelay": 0.4
+        },
+        "behaviour": {
+            "scroll": "shift",
+            "nsfw": "obscure"
+        },
+        "appearance": {
+            "popoutHeight": 40,
+            "darkenChat": true,
+            "darkenLevel": 0.3,
+            "displayMode": "cozy",
+            "groupSpacingSync": true,
+            "groupSpacing": 16,
+            "messagesCount": 40,
+            "typingUsers": true
+        }
+    }
+}
