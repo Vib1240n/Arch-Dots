@@ -1,0 +1,82 @@
+*chromimum*
+*BraveSoftware*
+*Electron*
+*lite-xl*
+# Auto-generated / cache directories
+.claude/
+audacity/
+BambuStudio/
+BetterDiscord Installer/
+BraveSoftware/
+chromium/
+dconf/
+Electron/
+flutter/
+FreeCAD/
+glow/
+google-chrome/
+gthumb/
+immich-go/
+marlin/
+mozilla/
+Nextcloud/
+opera/
+Proton/
+Proton Mail/
+qtvirtualkeyboard/
+simple-update-notifier/
+solaar/
+spotify/
+Twitter/
+via-nativia/
+vivaldi/
+yay/
+zed/
+
+# Potential secrets / tokens
+**/*token*
+**/*secret*
+**/*credential*
+**/*.pem
+**/*.key
+**/*oauth*
+**/*auth.json
+**/config.json
+**/settings.json
+
+# Discord / Vesktop - keep configs but ignore tokens/cache
+vesktop*/Cache/
+vesktop*/Code Cache/
+vesktop*/GPUCache/
+vesktop*/Local Storage/
+vesktop*/Session Storage/
+vesktop*/IndexedDB/
+vesktop*/blob_storage/
+vesktop*/Network/
+discord/Cache/
+discord/Code Cache/
+discord/GPUCache/
+discord/Local Storage/
+discord/Session Storage/
+discord/IndexedDB/
+discord/blob_storage/
+discord/Network/
+
+# BetterDiscord - keep plugins/themes, ignore cache
+BetterDiscord/data/
+BetterDiscord/*cache*
+
+# Misc auto-generated
+pulse/
+**/*.log
+**/*.bak
+**/*~
+**/.DS_Store
+**/node_modules/
+**/__pycache__/
+**/*.pyc
+
+# Lock files that shouldn't be synced
+**/*.lock
+**/package-lock.json
+**/yarn.lock
