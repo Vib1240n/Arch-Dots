@@ -1,0 +1,18 @@
+# Volume OSD config
+# Location: ~/.config/rw/volume-osd/config.toml
+
+[position]
+anchor = "top-center"
+margin_top = 50
+margin_right = 0
+margin_bottom = 0
+margin_left = 0
+
+[appearance]
+width = 200
+height = 48
+icon_size = 24
+show_percentage = true
+
+[behavior]
+timeout = 1500  # Auto-hide after 1.5 seconds

@@ -2,37 +2,33 @@
 # cliphist-gui configuration
 # Location: ~/.config/cliphist-gui/config
 # ===========================================================
-
 [window]
 # Window dimensions in pixels
 width = 400
 height = 650
-
 # Window position on screen
 # Options: center, top, top-left, top-right, bottom, bottom-left, bottom-right, cursor
 anchor = bottom
-
 # Margins from screen edges (pixels, used with non-center anchors)
 margin_top = 0
 margin_bottom = 150
 margin_left = 0
 margin_right = 0
-
 [style]
 # Path to CSS theme file
 # Use ~ for home directory expansion
 theme = ~/.config/cliphist-gui/style.css
-
 [behavior]
 # Maximum entries to display (0 = unlimited)
 max_items = 0
-
 # Hide window after selecting an entry
 close_on_select = true
-
 # Send desktop notification after copying
 notify_on_copy = true
-
+# Maximum pinned items (default: 20)
+max_pinned = 20
+# Custom pin icon path (default = built-in)
+pin_icon = default
 [keybinds]
 # Format: action = Key1 Key2 ...
 # Multiple keys separated by spaces (all trigger the same action)
@@ -43,7 +39,6 @@ notify_on_copy = true
 #   Letters: a-z
 #   Special: Return Enter Escape Esc Tab Delete Del Backspace Space
 #   Navigation: Up Down Left Right Home End Page_Up Page_Down
-
 select = Return Enter
 delete = Ctrl+Backspace
 clear_search = Ctrl+u
@@ -54,3 +49,6 @@ page_down = Page_Down
 page_up = Page_Up
 first = Home
 last = End
+pin = p Ctrl+p
+unpin = u Ctrl+Shift+u
+tab_switch = Alt+Tab

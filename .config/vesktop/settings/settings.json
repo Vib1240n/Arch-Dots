@@ -261,9 +261,6 @@
         "MessageLogger": {
             "enabled": false
         },
-        "MessageTags": {
-            "enabled": false
-        },
         "MoreQuickReactions": {
             "enabled": false
         },
@@ -533,6 +530,9 @@
         },
         "BadgeAPI": {
             "enabled": true
+        },
+        "CustomCommands": {
+            "enabled": false
         }
     },
     "uiElements": {
@@ -549,6 +549,6 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1768329622735
+        "settingsSyncVersion": 1774463790841
     }
 }

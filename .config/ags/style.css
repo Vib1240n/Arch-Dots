@@ -1,153 +1,174 @@
-/* Media Player Container */
-.media-player {
-  background: #18181b; /* zinc-900 */
-  border: 1px solid #27272a; /* zinc-800 */
-  border-radius: 8px;
-  min-width: 320px;
-  padding: 0;
+/* ============================================
+   AGS Bar - Glassmorphic Material You Theme
+   GTK4 Compatible
+   ============================================ */
+
+/* Global */
+* {
+  font-family: "SF Pro Text", "JetBrainsMono Nerd Font", sans-serif;
+  font-size: 16px;
+  color: rgba(252, 252, 252, 1);
 }
 
-/* Album Art */
-.album-art {
-  min-width: 320px;
-  min-height: 320px;
-  background: #27272a; /* Placeholder for album art */
-  border-radius: 8px 8px 0 0;
-}
-
-/* Controls Container */
-.controls {
-  padding: 16px;
-}
-
-/* Track Info */
-.track-info {
-  margin-bottom: 12px;
-}
-
-.track-title {
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 4px;
-}
-
-.track-title label {
-  max-width: 280px;
-}
-
-.track-artist {
-  color: #a1a1aa; /* zinc-400 */
-  font-size: 12px;
-}
-
-.track-artist label {
-  max-width: 280px;
-}
-
-/* Progress Section */
-.progress-section {
-  margin-bottom: 12px;
-}
-
-.progress-slider {
-  margin-bottom: 4px;
-}
-
-.progress-slider trough {
-  min-height: 4px;
-  background: #27272a; /* zinc-800 */
-  border-radius: 2px;
-}
-
-.progress-slider slider {
-  min-width: 12px;
-  min-height: 12px;
-  background: #ffffff;
-  border-radius: 6px;
-  margin: -4px 0;
-}
-
-.progress-slider highlight {
-  background: #ffffff;
-  border-radius: 2px;
-}
-
-.time-labels {
-  margin-top: 4px;
-}
-
-.time-current,
-.time-total {
-  color: #a1a1aa; /* zinc-400 */
-  font-size: 11px;
-}
-
-/* Control Buttons */
-.control-buttons {
-  margin: 12px 0;
-}
-
-.control-buttons button {
-  min-width: 36px;
-  min-height: 36px;
-  background: transparent;
-  border: none;
-  margin: 0 4px;
-  padding: 0;
-}
-
-.control-buttons button:hover {
-  background: #27272a; /* zinc-800 */
-  border-radius: 18px;
-}
-
-.control-buttons button label {
-  color: #ffffff;
-  font-size: 12px;
-}
-
-.btn-play {
-  min-width: 40px;
+/* Bar Window */
+window.bar {
+  background: rgba(20, 22, 24, 0.85);
+  border-radius: 15px;
+  border: 1px solid rgba(87, 89, 92, 0.3);
+  margin: 6px 10px 0 10px;
   min-height: 40px;
 }
 
-/* Volume Control */
-.volume-control {
-  margin-top: 12px;
+/* Centerbox */
+centerbox {
+  padding: 0 10px;
+  min-height: 40px;
 }
 
-.volume-icon {
-  color: #a1a1aa; /* zinc-400 */
-  font-size: 12px;
-  margin-right: 8px;
+/* Module Boxes */
+box.modules-left,
+box.modules-center,
+box.modules-right {
+  padding: 6px 0;
+  min-height: 28px;
 }
 
-.volume-slider {
-  margin: 0 8px;
+/* ============================================
+   Workspaces
+   ============================================ */
+
+box.workspaces {
+  padding: 0 4px;
+  min-height: 28px;
 }
 
-.volume-slider trough {
-  min-height: 4px;
-  background: #27272a; /* zinc-800 */
-  border-radius: 2px;
+box.workspaces button {
+  background: transparent;
+  color: rgba(252, 252, 252, 0.4);
+  padding: 4px 10px;
+  margin: 2px;
+  border-radius: 10px;
+  min-width: 28px;
+  min-height: 24px;
+  border: none;
 }
 
-.volume-slider slider {
-  min-width: 10px;
-  min-height: 10px;
-  background: #ffffff;
-  border-radius: 5px;
-  margin: -3px 0;
+box.workspaces button:hover {
+  background: rgba(41, 44, 48, 0.5);
+  color: rgba(252, 252, 252, 1);
 }
 
-.volume-slider highlight {
-  background: #ffffff;
-  border-radius: 2px;
+box.workspaces button.active {
+  background: rgba(41, 44, 48, 0.6);
+  color: #3daee9;
+  font-weight: 600;
 }
 
-.volume-percent {
-  color: #a1a1aa; /* zinc-400 */
-  font-size: 11px;
-  min-width: 32px;
+/* ============================================
+   Clock
+   ============================================ */
+
+button.clock {
+  font-family: "SF Pro Display", "SF Pro Text", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: rgba(252, 252, 252, 1);
+  padding: 4px 16px;
+  margin-right: 6px;
+  margin-left: 10px;
+  background: rgba(41, 44, 48, 0.5);
+  border-radius: 10px;
+  border: none;
+  min-height: 28px;
+}
+
+button.clock:hover {
+  background: rgba(61, 174, 233, 0.2);
+  color: #3daee9;
+}
+
+/* ============================================
+   Icon Modules (Volume, Network, Battery, Control)
+   ============================================ */
+
+button.volume,
+button.network,
+button.battery,
+button.control {
+  padding: 4px 12px;
+  margin: 0 2px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  min-height: 28px;
+  min-width: 36px;
+}
+
+button.volume:hover,
+button.network:hover,
+button.battery:hover,
+button.control:hover {
+  background: rgba(41, 44, 48, 0.5);
+}
+
+/* Critical battery flash animation */
+@keyframes flash {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+button.battery.critical {
+  animation: flash 1s ease-in-out infinite;
+}
+
+/* ============================================
+   System Tray
+   ============================================ */
+
+box.tray {
+  padding: 0 8px;
+  min-height: 28px;
+}
+
+box.tray menubutton {
+  padding: 2px 4px;
+  background: transparent;
+  border: none;
+  min-height: 24px;
+}
+
+box.tray menubutton:hover {
+  background: rgba(41, 44, 48, 0.5);
+  border-radius: 6px;
+}
+
+/* ============================================
+   Caffeinate
+   ============================================ */
+
+button.caffeinate {
+  color: rgba(252, 252, 252, 0.55);
+  padding: 4px 8px;
+  background: transparent;
+  border: none;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 16px;
+  min-height: 28px;
+}
+
+button.caffeinate:hover {
+  color: #3daee9;
+}
+
+/* ============================================
+   Images
+   ============================================ */
+
+image {
+  -gtk-icon-size: 18px;
 }

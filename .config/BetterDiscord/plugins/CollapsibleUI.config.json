@@ -15,5 +15,6 @@
     ],
     "transition-speed": 400,
     "collapse-toolbar": "all",
-    "channel-list-width": 338
+    "channel-list-width": 190,
+    "size-collapse": true
 }

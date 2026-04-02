@@ -1,5 +1,6 @@
 [soe][Autogain#0]
 bypass=true
-reference=2
+outputGain=2.7
+reference=0
 silenceThreshold=-70.1
 target=-18

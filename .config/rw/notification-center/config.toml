@@ -1,0 +1,37 @@
+# notification-center config
+# Location: ~/.config/rw/notification-center/config.toml
+
+[position]
+anchor = "top-right"
+margin_top = 10
+margin_right = 10
+margin_bottom = 0
+margin_left = 0
+
+[appearance]
+panel_width = 280
+popup_width = 360
+max_height = 1000
+max_history = 50
+
+[behavior]
+close_on_escape = true
+close_on_unfocus = false
+dnd_enabled = false
+play_sounds = true
+# critical_sound = "/path/to/sound.wav"
+
+[popup]
+anchor = "top-right"
+margin = 10
+gap = 8
+timeout_low = 3000
+timeout_normal = 2000
+timeout_critical = 1  # 0 = no auto-dismiss
+max_visible = 10
+
+[animation]
+enabled = true
+type = "slide"
+direction = "right"
+duration = 200

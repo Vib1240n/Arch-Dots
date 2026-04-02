@@ -1,15 +1,15 @@
 [Default Applications]
-x-scheme-handler/http=opera.desktop
-x-scheme-handler/https=opera.desktop
+x-scheme-handler/http=zen.desktop
+x-scheme-handler/https=zen.desktop
 x-scheme-handler/chrome=zen.desktop
-text/html=opera.desktop
+text/html=zen.desktop
 application/x-extension-htm=zen.desktop
 application/x-extension-html=zen.desktop
 application/x-extension-shtml=zen.desktop
 application/xhtml+xml=zen.desktop
 application/x-extension-xhtml=zen.desktop
 application/x-extension-xht=zen.desktop
-inode/directory=nemo.desktop
+inode/directory=io.elementary.files.desktop
 application/x-gnome-saved-search=nemo.desktop
 image/jpeg=imv.desktop
 x-scheme-handler/discord=vesktop.desktop
@@ -17,17 +17,12 @@ image/png=imv-dir.desktop
 x-scheme-handler/nxm=com.nexusmods.app.desktop
 x-scheme-handler/about=opera.desktop
 x-scheme-handler/unknown=opera.desktop
+x-scheme-handler/betterdiscord=discord.desktop
 
 [Added Associations]
 x-scheme-handler/http=zen.desktop;
 x-scheme-handler/https=zen.desktop;
-x-scheme-handler/chrome=zen.desktop;
 text/html=zen.desktop;
-application/x-extension-htm=zen.desktop;
-application/x-extension-html=zen.desktop;
-application/x-extension-shtml=zen.desktop;
-application/xhtml+xml=zen.desktop;
-application/x-extension-xhtml=zen.desktop;
-application/x-extension-xht=zen.desktop;
 image/jpeg=imv.desktop;
 image/png=imv-dir.desktop;
+x-scheme-handler/chrome=zen.desktop;

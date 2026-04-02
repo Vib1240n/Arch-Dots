@@ -1,5 +1,6 @@
 [soe][Loudness#0]
 bypass=true
-iirApproximation=3
-mode=1
+iirApproximation=4
+outputGain=0.9
+std=0
 volume=2

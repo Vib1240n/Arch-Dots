@@ -1,0 +1,4 @@
+~/Development/cliphist-gui ❯ cat ~/.config/cliphist-gui/pinned/index.json
+cat: /home/vib1240n/.config/cliphist-gui/pinned/index.json: No such file or directory
+ vib1240n@msi-archy main ≡  ~9  2                                                                        took  48ms  11:01:31  
+~/Development/cliphist-gui ❯ 

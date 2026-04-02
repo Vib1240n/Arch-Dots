@@ -1,97 +1,105 @@
--- Neo-tree configuration with glassmorphic styling
--- Toggle FLOATING_MODE to switch between styles:
---   true  = Option A: Floating popup (left side, transparent blur)
---   false = Option B: Docked sidebar with transparent styling
-local FLOATING_MODE = true -- <-- CHANGE THIS TO SWITCH
+-- -- Neo-tree configuration with glassmorphic styling
+-- -- Toggle FLOATING_MODE to switch between styles:
+-- --   true  = Option A: Floating popup (left side, transparent blur)
+-- --   false = Option B: Docked sidebar with transparent styling
+-- local FLOATING_MODE = true -- <-- CHANGE THIS TO SWITCH
+--
+-- local shared_config = {
+--   filesystem = {
+--     filtered_items = {
+--       hide_dotfiles = false,
+--       hide_gitignored = false,
+--     },
+--   },
+--   default_component_configs = {
+--     indent = {
+--       indent_size = 2,
+--       padding = 1,
+--       with_markers = true,
+--       indent_marker = "|",
+--       last_indent_marker = "`-",
+--       highlight = "NeoTreeIndentMarker",
+--       with_expanders = true,
+--       expander_collapsed = "",
+--       expander_expanded = "",
+--     },
+--     icon = {
+--       folder_closed = "",
+--       folder_open = "",
+--       folder_empty = "",
+--       default = "",
+--       highlight = "NeoTreeFileIcon",
+--     },
+--     modified = {
+--       symbol = "",
+--       highlight = "NeoTreeModified",
+--     },
+--     name = {
+--       use_git_status_colors = false,
+--       highlight = "NeoTreeFileName",
+--     },
+--     git_status = {
+--       symbols = {
+--         added = "",
+--         modified = "",
+--         deleted = "",
+--         renamed = "",
+--         untracked = "",
+--         ignored = "",
+--         unstaged = "",
+--         staged = "",
+--         conflict = "",
+--       },
+--     },
+--   },
+-- }
+--
+-- -- Option A: Floating popup window (left side)
+-- local floating_window = {
+--   position = "float",
+--   popup = {
+--     border = "rounded",
+--     position = { row = "2", col = "2" }, -- left side, 2 chars from edge
+--     size = function(state)
+--       local root_name = vim.fn.fnamemodify(state.path, ":~")
+--       local root_len = string.len(root_name) + 4
+--       return {
+--         width = math.max(root_len, 40),
+--         height = vim.o.lines - 6,
+--       }
+--     end,
+--   },
+--   mappings = {},
+-- }
+--
+-- -- Option B: Docked sidebar (right side)
+-- local docked_window = {
+--   position = "right",
+--   width = 35,
+--   mapping_options = {
+--     noremap = true,
+--     nowait = true,
+--   },
+--   mappings = {},
+-- }
+--
+-- -- Merge shared config with selected window style
+-- local opts = vim.tbl_deep_extend("force", shared_config, {
+--   window = FLOATING_MODE and floating_window or docked_window,
+--   popup_border_style = "rounded",
+--   -- Event handler - winblend not needed when using Kitty color-match transparency
+--   event_handlers = {},
+-- })
+--
+-- return {
+--   "nvim-neo-tree/neo-tree.nvim",
+--   -- opts = opts,
+--   enabled = false,
+-- }
 
-local shared_config = {
-  filesystem = {
-    filtered_items = {
-      hide_dotfiles = false,
-      hide_gitignored = false,
-    },
-  },
-  default_component_configs = {
-    indent = {
-      indent_size = 2,
-      padding = 1,
-      with_markers = true,
-      indent_marker = "|",
-      last_indent_marker = "`-",
-      highlight = "NeoTreeIndentMarker",
-      with_expanders = true,
-      expander_collapsed = "",
-      expander_expanded = "",
-    },
-    icon = {
-      folder_closed = "",
-      folder_open = "",
-      folder_empty = "",
-      default = "",
-      highlight = "NeoTreeFileIcon",
-    },
-    modified = {
-      symbol = "",
-      highlight = "NeoTreeModified",
-    },
-    name = {
-      use_git_status_colors = false,
-      highlight = "NeoTreeFileName",
-    },
-    git_status = {
-      symbols = {
-        added = "",
-        modified = "",
-        deleted = "",
-        renamed = "",
-        untracked = "",
-        ignored = "",
-        unstaged = "",
-        staged = "",
-        conflict = "",
-      },
-    },
-  },
-}
-
--- Option A: Floating popup window (left side)
-local floating_window = {
-  position = "float",
-  popup = {
-    border = "rounded",
-    position = { row = "2", col = "2" }, -- left side, 2 chars from edge
-    size = function(state)
-      local root_name = vim.fn.fnamemodify(state.path, ":~")
-      local root_len = string.len(root_name) + 4
-      return {
-        width = math.max(root_len, 40),
-        height = vim.o.lines - 6,
-      }
-    end,
-  },
-  mappings = {},
-}
-
--- Option B: Docked sidebar (right side)
-local docked_window = {
-  position = "right",
-  width = 35,
-  mapping_options = {
-    noremap = true,
-    nowait = true,
-  },
-  mappings = {},
-}
-
--- Merge shared config with selected window style
-local opts = vim.tbl_deep_extend("force", shared_config, {
-  window = FLOATING_MODE and floating_window or docked_window,
-  popup_border_style = "rounded",
-  -- Event handler - winblend not needed when using Kitty color-match transparency
-  event_handlers = {},
-})
-
+-- Neo-tree DISABLED - using mini.files instead
+-- This overrides AstroNvim's default Neo-tree inclusion
 return {
-  "nvim-neo-tree/neo-tree.nvim",
-  opts = opts,
+  { "nvim-neo-tree/neo-tree.nvim", enabled = false },
+  { "s1n7ax/nvim-window-picker", enabled = false }, -- Neo-tree dependency
 }

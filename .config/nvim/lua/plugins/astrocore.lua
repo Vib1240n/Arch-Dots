@@ -70,6 +70,13 @@ return {
       n = {
         -- second key is the lefthand side of the map
 
+        --          ╭─────────────────────────────────────────────────────────╮
+        --          │     Disable AstroNvim's default Neo-tree keybindings    │
+        --          │            (using mini.files instead)                   │
+        --          ╰─────────────────────────────────────────────────────────╯
+        ["<Leader>e"] = false,
+        ["<Leader>o"] = false,
+
         -- Cmd+C/V for copy/paste (works in GUI Neovim like Neovide)
         ["<D-c>"] = { '"+y', desc = "Copy to clipboard" },
         ["<D-v>"] = { '"+p', desc = "Paste from clipboard" },
@@ -102,17 +109,6 @@ return {
         ["<Leader>cl"] = { "<Cmd>CBline<CR>", noremap = true, silent = true, desc = "Simple line comment box" },
         ["<Leader>RR"] = { "<Cmd>AstroReload<CR>", noremap = true, silent = true, desc = "Reload Astronvim" },
         ["<Leader>sr"] = { ":", noremap = true, silent = true, desc = "search and replace" },
-        -- RR"] = { ":RunCode<CR>", noremap = true, silent
-        -- false, desc = "Code Runner" },
-        --
-        -- tables with just a `desc` key will be registered with
-        -- which-key if it's installed
-        -- this is useful for naming menus
-        -- Leader>b"] = { desc = "Buffers" },
-        --
-        -- setting a mapping to false will disable it
-        -- C-S>"] = false,
-        --
       },
       v = {
         -- Cmd+C/V for copy/paste (works in GUI Neovim like Neovide)
@@ -133,11 +129,11 @@ return {
       },
       i = {
         -- Cmd+V to paste in insert mode
-        ["<D-v>"] = { '<C-r>+', desc = "Paste from clipboard" },
+        ["<D-v>"] = { "<C-r>+", desc = "Paste from clipboard" },
       },
       c = {
         -- Cmd+V to paste in command mode
-        ["<D-v>"] = { '<C-r>+', desc = "Paste from clipboard" },
+        ["<D-v>"] = { "<C-r>+", desc = "Paste from clipboard" },
       },
     },
   },

@@ -1,57 +1,24 @@
-2026/01/29-18:22:03.053 b74cb Reusing MANIFEST /home/vib1240n/.config/vesktop/sessionData/Local Storage/leveldb/MANIFEST-000001
-2026/01/29-18:22:03.060 b74cb Recovering log #925
-2026/01/29-18:22:03.060 b74cb Reusing old log /home/vib1240n/.config/vesktop/sessionData/Local Storage/leveldb/000925.log 
-2026/01/29-18:24:03.479 b74cb Level-0 table #929: started
-2026/01/29-18:24:03.491 b74cb Level-0 table #929: 75714 bytes OK
-2026/01/29-18:24:03.495 b74cb Delete type=0 #925
-2026/01/29-18:24:03.496 b74cb Compacting 4@0 + 1@1 files
-2026/01/29-18:24:03.501 b74cb Generated table #930@0: 94 keys, 47472 bytes
-2026/01/29-18:24:03.501 b74cb Compacted 4@0 + 1@1 files => 47472 bytes
-2026/01/29-18:24:03.505 b74cb compacted to: files[ 0 1 0 0 0 0 0 ]
-2026/01/29-18:24:03.506 b74cb Delete type=2 #926
-2026/01/29-18:24:03.506 b74cb Delete type=2 #929
-2026/01/29-18:24:03.506 b74cb Delete type=2 #919
-2026/01/29-18:24:03.506 b74cb Delete type=2 #921
-2026/01/29-18:24:03.506 b74cb Delete type=2 #924
-2026/01/29-18:25:03.478 b74cb Level-0 table #932: started
-2026/01/29-18:25:03.481 b74cb Level-0 table #932: 34287 bytes OK
-2026/01/29-18:25:03.485 b74cb Delete type=0 #928
-2026/01/29-18:27:03.478 b74cb Level-0 table #934: started
-2026/01/29-18:27:03.490 b74cb Level-0 table #934: 25092 bytes OK
-2026/01/29-18:27:03.494 b74cb Delete type=0 #931
-2026/01/29-18:30:03.479 b74cb Level-0 table #936: started
-2026/01/29-18:30:03.490 b74cb Level-0 table #936: 22679 bytes OK
-2026/01/29-18:30:03.495 b74cb Delete type=0 #933
-2026/01/29-18:32:03.478 b74cb Level-0 table #938: started
-2026/01/29-18:32:03.485 b74cb Level-0 table #938: 22633 bytes OK
-2026/01/29-18:32:03.489 b74cb Delete type=0 #935
-2026/01/29-18:32:03.489 b74cb Compacting 4@0 + 1@1 files
-2026/01/29-18:32:03.494 b74cb Generated table #939@0: 95 keys, 42328 bytes
-2026/01/29-18:32:03.495 b74cb Compacted 4@0 + 1@1 files => 42328 bytes
-2026/01/29-18:32:03.498 b74cb compacted to: files[ 0 1 0 0 0 0 0 ]
-2026/01/29-18:32:03.499 b74cb Delete type=2 #938
-2026/01/29-18:32:03.499 b74cb Delete type=2 #932
-2026/01/29-18:32:03.499 b74cb Delete type=2 #936
-2026/01/29-18:32:03.499 b74cb Delete type=2 #934
-2026/01/29-18:32:03.499 b74cb Delete type=2 #930
-2026/01/29-21:06:29.069 b74cb Level-0 table #941: started
-2026/01/29-21:06:29.072 b74cb Level-0 table #941: 29736 bytes OK
-2026/01/29-21:06:29.076 b74cb Delete type=0 #937
-2026/01/30-00:19:53.312 b74cb Level-0 table #943: started
-2026/01/30-00:19:53.316 b74cb Level-0 table #943: 43813 bytes OK
-2026/01/30-00:19:53.320 b74cb Delete type=0 #940
-2026/01/30-09:40:12.295 b74cb Level-0 table #945: started
-2026/01/30-09:40:12.299 b74cb Level-0 table #945: 36631 bytes OK
-2026/01/30-09:40:12.303 b74cb Delete type=0 #942
-2026/01/30-13:00:03.164 b74a5 Level-0 table #947: started
-2026/01/30-13:00:03.168 b74a5 Level-0 table #947: 39814 bytes OK
-2026/01/30-13:00:03.172 b74a5 Delete type=0 #944
-2026/01/30-13:00:03.172 b74a5 Compacting 4@0 + 1@1 files
-2026/01/30-13:00:03.177 b74a5 Generated table #948@0: 97 keys, 53011 bytes
-2026/01/30-13:00:03.178 b74a5 Compacted 4@0 + 1@1 files => 53011 bytes
-2026/01/30-13:00:03.181 b74a5 compacted to: files[ 0 1 0 0 0 0 0 ]
-2026/01/30-13:00:03.181 b74a5 Delete type=2 #947
-2026/01/30-13:00:03.181 b74a5 Delete type=2 #943
-2026/01/30-13:00:03.182 b74a5 Delete type=2 #939
-2026/01/30-13:00:03.182 b74a5 Delete type=2 #945
-2026/01/30-13:00:03.182 b74a5 Delete type=2 #941
+2026/03/31-20:29:18.550 ca07 Reusing MANIFEST /home/vib1240n/.config/vesktop/sessionData/Local Storage/leveldb/MANIFEST-000001
+2026/03/31-20:29:18.555 ca07 Recovering log #19820
+2026/03/31-20:29:18.555 ca07 Reusing old log /home/vib1240n/.config/vesktop/sessionData/Local Storage/leveldb/019820.log 
+2026/03/31-20:34:42.051 ca2d Level-0 table #19824: started
+2026/03/31-20:34:42.055 ca2d Level-0 table #19824: 94941 bytes OK
+2026/03/31-20:34:42.057 ca2d Delete type=0 #19820
+2026/03/31-20:47:10.168 ca2d Level-0 table #19826: started
+2026/03/31-20:47:10.172 ca2d Level-0 table #19826: 52456 bytes OK
+2026/03/31-20:47:10.173 ca2d Delete type=0 #19823
+2026/03/31-20:47:10.174 ca2d Compacting 4@0 + 1@1 files
+2026/03/31-20:47:10.177 ca2d Generated table #19827@0: 104 keys, 76322 bytes
+2026/03/31-20:47:10.177 ca2d Compacted 4@0 + 1@1 files => 76322 bytes
+2026/03/31-20:47:10.177 ca2d compacted to: files[ 0 1 0 0 0 0 0 ]
+2026/03/31-20:47:10.177 ca2d Delete type=2 #19821
+2026/03/31-20:47:10.177 ca2d Delete type=2 #19824
+2026/03/31-20:47:10.178 ca2d Delete type=2 #19818
+2026/03/31-20:47:10.178 ca2d Delete type=2 #19826
+2026/03/31-20:47:10.178 ca2d Delete type=2 #19816
+2026/03/31-23:18:26.060 ca2d Level-0 table #19829: started
+2026/03/31-23:18:26.064 ca2d Level-0 table #19829: 26864 bytes OK
+2026/03/31-23:18:26.066 ca2d Delete type=0 #19825
+2026/04/01-05:51:33.906 ca07 Level-0 table #19831: started
+2026/04/01-05:51:33.912 ca07 Level-0 table #19831: 48876 bytes OK
+2026/04/01-05:51:33.913 ca07 Delete type=0 #19828

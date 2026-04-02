@@ -13,10 +13,10 @@ outputDevice=bluez_output.C8_24_78_05_15_C9.1
 plugins=equalizer#0,autogain#0,bass_enhancer#0,loudness#0,stereo_tools#0
 usedPresets=Music Bass enhanced:1
 visiblePage=pluginsPage
-visiblePlugin=equalizer#0
+visiblePlugin=loudness#0
 
 [Window]
 autostartOnLogin=true
-height=1358
+height=1104
 noWindowAfterStarting=true
-width=1706
+width=2739

@@ -1,15 +1,5 @@
 @import "colors.css";
 
-/* Material 3 Colors */
-@define-color m3-surface #131313;
-@define-color m3-surface-container #1f1f1f;
-@define-color m3-on-surface #e2e2e2;
-@define-color m3-on-surface-variant #c6c6c6;
-@define-color m3-primary #a571f2;
-@define-color m3-outline #919191;
-@define-color m3-error #ffb4ab;
-@define-color m3-error-container #93000a;
-
 * {
   font-family: "JetBrainsMono Nerd Font";
   font-size: 14px;
@@ -17,53 +7,50 @@
   border: 0;
 }
 
-/* Main bar background - glassmorphic ONLY HERE */
 window#waybar {
-  background-color: alpha(@m3-surface-container, 0.35);
+  background-color: alpha(@color0, 0.85);
   margin: 4px 8px;
   border-radius: 16px;
-  border: 1px solid alpha(@m3-outline, 0.2);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid alpha(@color7, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* No individual backgrounds - transparent */
 #window {
   padding: 0 12px;
   margin: 6px 0 6px 6px;
   background-color: transparent;
-  color: @m3-on-surface;
+  color: @color15;
   font-weight: 500;
 }
 
-/* Workspaces - transparent, no background */
 #workspaces {
-  background-color: transparent;
+  background-color: alpha(@color7, 0.15);
   padding: 3px;
   margin: 4px 6px;
   border-radius: 12px;
-  border: none;
+  border: 1px solid alpha(@color7, 0.2);
 }
 
 #workspaces button {
   padding: 3px 12px;
-  color: alpha(@m3-on-surface, 0.7);
+  color: alpha(@color15, 0.7);
   background-color: transparent;
   border-radius: 8px;
   margin: 0 2px;
-  transition: all 0.2s;
-  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #workspaces button:hover {
-  background-color: alpha(@m3-outline, 0.95);
-  color: @m3-on-surface;
+  background-color: alpha(@color7, 0.25);
+  color: @color15;
 }
 
 #workspaces button.active {
-  color: @m3-on-surface;
-  background-color: alpha(@m3-outline, 0.8);
+  color: @color0;
+  background-color: @color7;
   border-radius: 8px;
   font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 #workspaces button.active:first-child {
@@ -75,33 +62,31 @@ window#waybar {
 }
 
 #custom-mode {
-  background-color: transparent;
-  color: @m3-on-surface;
+  background-color: alpha(@color2, 0.8);
+  color: @color15;
   padding: 4px 12px;
   margin: 4px 6px;
-  border-radius: 10px;
+  border-radius: 8px;
   font-weight: 600;
 }
 
-/* Clock - NO background, bigger text */
 #clock {
-  background-color: transparent;
-  color: @m3-on-surface;
+  background-color: @color7;
+  color: @color0;
   padding: 4px 14px;
   margin: 4px 0;
   border-radius: 12px;
   font-weight: 600;
-  font-size: 16px;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Details - transparent */
 #details {
-  background-color: transparent;
-  border: none;
+  background-color: alpha(@color14, 0.2);
+  border: 1px solid alpha(@color14, 0.3);
+  border-radius: 12px;
   padding: 4px 10px;
   margin: 4px 6px 4px 0;
-  color: @m3-on-surface;
+  color: @color15;
   opacity: 0;
   transition: opacity 0.2s;
 }
@@ -110,7 +95,10 @@ window#waybar {
   opacity: 1;
 }
 
-/* Status modules - ALL TRANSPARENT, no individual backgrounds */
+#details > * {
+  opacity: inherit;
+}
+
 #battery,
 #network,
 #pulseaudio,
@@ -118,13 +106,14 @@ window#waybar {
 #cpu,
 #memory,
 #disk {
-  background-color: transparent;
-  border: none;
-  border-radius: 0;
-  color: @m3-on-surface;
+  background-color: alpha(@color12, 0.15);
+  border: 1px solid alpha(@color12, 0.25);
+  border-radius: 10px;
+  color: @color15;
   padding: 3px 10px;
   margin: 4px 3px;
   min-width: 40px;
+  transition: all 0.2s;
 }
 
 #tray {
@@ -137,63 +126,61 @@ window#waybar {
 }
 
 #battery.warning {
-  color: @m3-error;
-  background-color: transparent;
+  color: @color11;
+  background-color: alpha(@color11, 0.15);
 }
 
 #battery.critical {
-  color: @m3-error-container;
-  background-color: transparent;
+  color: @color3;
+  background-color: alpha(@color3, 0.2);
 }
 
 #battery.charging {
-  color: @m3-primary;
-  background-color: transparent;
+  color: @color7;
+  background-color: alpha(@color7, 0.2);
 }
 
-/* Info - transparent */
 #info {
-  border: none;
-  background-color: alpha(@m3-outline, 0.1);
+  background-color: alpha(@color7, 0.15);
+  border: 1px solid alpha(@color7, 0.25);
+  border-radius: 12px;
   padding: 4px 12px;
-  margin: 6px 6px;
-  color: @m3-on-surface;
-  border-radius: 8px;
+  margin: 4px 6px;
+  color: @color15;
 }
 
-/* Spotify - transparent */
 #custom-spotify {
-  background-color: transparent;
-  border: none;
+  background-color: alpha(@color10, 0.2);
+  border: 1px solid alpha(@color10, 0.3);
   border-radius: 12px;
   padding: 4px 14px;
   margin: 4px 6px;
-  color: @m3-on-surface;
+  color: @color15;
   font-weight: 500;
 }
 
 #custom-spotify.Playing {
-  background-color: transparent;
-  color: @m3-primary;
+  background-color: @color7;
+  color: @color0;
+  border-color: transparent;
 }
 
 #custom-spotify.Paused {
   opacity: 0.7;
 }
 
-/* BT Battery - transparent */
 #custom-bluetooth-battery {
-  background-color: transparent;
-  border: none;
-  border-radius: 0;
+  background-color: alpha(@color7, 0.15);
+  border: 1px solid alpha(@color7, 0.25);
+  border-radius: 12px;
   padding: 4px 10px;
   margin: 4px 3px;
-  color: @m3-on-surface-variant;
+  color: @color15;
 }
 
 #custom-bluetooth-battery.connected {
-  color: @m3-on-surface;
-  background-color: transparent;
+  color: @color7;
+  background-color: alpha(@color7, 0.25);
 }
 
 #custom-bluetooth-battery.disconnected {
@@ -201,45 +188,46 @@ window#waybar {
 }
 
 #custom-caffeinate {
-  color: @m3-error;
+  color: @color11;
   padding: 0 10px;
-  background-color: transparent;
 }
 
 #custom-fan {
   min-width: 55px;
-  background-color: transparent;
 }
 
 #custom-fan.warning {
-  color: @m3-error;
+  color: @color11;
 }
 
 #custom-fan.critical {
-  color: @m3-error-container;
+  color: @color3;
   font-weight: 600;
 }
 
 #custom-bluetooth {
   padding: 0 10px;
-  color: @m3-on-surface-variant;
-  background-color: transparent;
+  color: @color7;
 }
 
-/* Notifications - transparent */
 #custom-notifications {
-  background-color: transparent;
-  border: none;
-  color: @m3-on-surface;
+  background-color: alpha(@color12, 0.2);
+  border: 1px solid alpha(@color12, 0.3);
+  color: @color15;
   padding: 3px 12px;
   margin: 4px 0 4px 6px;
-  border-radius: 0;
+  border-radius: 12px;
   transition: all 0.2s;
 }
 
 #custom-notifications.active {
-  background-color: transparent;
-  color: @m3-primary;
+  background-color: @color12;
+  color: @color0;
+  border-color: transparent;
+}
+
+#custom-notifications:hover {
+  background-color: alpha(@color12, 0.4);
 }
 
 #cpu,
@@ -250,14 +238,4 @@ window#waybar {
 
 #network.speed {
   min-width: 180px;
-}
-
-/* Tooltip - keep subtle glass */
-tooltip {
-  background-color: alpha(@m3-surface-container, 0.9);
-  border: 1px solid @m3-outline;
-  border-radius: 12px;
-  color: @m3-on-surface;
-  padding: 8px 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }

@@ -1,9 +1,6 @@
-2026/01/29-11:36:30.089 5b143 Reusing MANIFEST /home/vib1240n/.config/vesktop/sessionData/Local Storage/leveldb/MANIFEST-000001
-2026/01/29-11:36:30.095 5b143 Recovering log #920
-2026/01/29-11:36:30.095 5b143 Reusing old log /home/vib1240n/.config/vesktop/sessionData/Local Storage/leveldb/000920.log 
-2026/01/29-12:29:10.086 5b17b Level-0 table #924: started
-2026/01/29-12:29:10.099 5b17b Level-0 table #924: 36972 bytes OK
-2026/01/29-12:29:10.103 5b17b Delete type=0 #920
-2026/01/29-13:43:47.712 5b17b Level-0 table #926: started
-2026/01/29-13:43:47.723 5b17b Level-0 table #926: 64712 bytes OK
-2026/01/29-13:43:47.734 5b17b Delete type=0 #923
+2026/03/31-16:06:13.564 3977 Reusing MANIFEST /home/vib1240n/.config/vesktop/sessionData/Local Storage/leveldb/MANIFEST-000001
+2026/03/31-16:06:13.571 3977 Recovering log #19817
+2026/03/31-16:06:13.571 3977 Reusing old log /home/vib1240n/.config/vesktop/sessionData/Local Storage/leveldb/019817.log 
+2026/03/31-16:07:13.574 3977 Level-0 table #19821: started
+2026/03/31-16:07:13.578 3977 Level-0 table #19821: 36932 bytes OK
+2026/03/31-16:07:13.579 3977 Delete type=0 #19817

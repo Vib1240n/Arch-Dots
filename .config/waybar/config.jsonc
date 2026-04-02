@@ -1,209 +1,99 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 35,
-  "spacing": 1,
-  "margin-top": 5,
-  "margin-left": 5,
-  "margin-right": 5,
-  "border-radius": 5,
+  "height": 54,
+  "spacing": 0,
+  "margin-top": 6,
+  "margin-left": 10,
+  "margin-right": 10,
   "modules-left": [
-    "hyprland/window",
-    "hyprland/workspaces",
-    "custom/spotify",
+    "tray",
     "custom/mode",
-    "custom/caffeinate",
+    "custom/spotify",
+    "custom/caffeinate"
   ],
   "modules-center": [
-    "clock"
+    "hyprland/workspaces"
   ],
   "modules-right": [
-    "group/details",
-    "custom/bluetooth-battery",
-    "group/info"
+    "pulseaudio",
+    "network",
+    "battery",
+    "custom/control",
+    "clock"
   ],
-  "hyprland/window": {
-    "format": "",
-    "icon": true,
-    "icon-size": 24,
-    "separate-outputs": true,
-  },
   "hyprland/workspaces": {
     "format": "{id}",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
     "all-outputs": true,
-    "active-only": false,
+    "active-only": false
   },
   "custom/mode": {
     "format": " {}",
     "max-length": 40,
     "interval": 5,
     "exec": "cat /tmp/hypr_mode 2>/dev/null || echo ''",
-    "tooltip": false,
+    "tooltip": false
   },
   "clock": {
-    "format": "{:%I:%M %p, %A, %d %b %Y}",
-    "tooltip-format": "<tt><small>{calendar}</small></tt>",
-    "on-click": "swaync-client -t",
-    "calendar": {
-      "mode": "year",
-      "mode-mon-col": 3,
-      "weeks-pos": "right",
-      "on-click-right": "mode",
-      "format": {
-        "months": "<span color='#ffead3'><b>{}</b></span>",
-        "days": "<span color='#ecc6d9'>{}</span>",
-        "weeks": "<span color='#99ffdd'>W{}</span>",
-        "weekdays": "<span color='#ffcc66'>{}</span>",
-        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
-      },
-    },
-  },
-  "custom/notifications": {
-    "exec": "~/.config/waybar/scripts/notifications.sh",
-    "return-type": "json",
-    "interval": 2,
-    "format": "{}",
-    "on-click": "swaync-client -t",
-    "tooltip": true,
-  },
-  "cpu": {
-    "interval": 5,
-    "format": "󰻠 {usage}%",
-    "tooltip-format": "CPU: {usage}%\nLoad: {load}",
-    "on-click": "kitty -e btop",
-  },
-  "memory": {
-    "interval": 5,
-    "format": "󰍛 {used:0.1f} G/{total:0.1f} G",
-    "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G ({percentage}%)",
-    "on-click": "kitty -e btop",
-  },
-  "disk": {
-    "interval": 30,
-    "format": "󰋊 {percentage_used}%",
-    "path": "/",
-    "tooltip-format": "Disk: {used} / {total} ({percentage_used}%)\nFree: {free}",
-    "on-click": "kitty -e df -h",
-  },
-  "network#speed": {
-    "interval": 5,
-    "format": "󰓅 {bandwidthDownBits} 󰓢 {bandwidthUpBits}",
-    "tooltip-format": "Down: {bandwidthDownBytes}\nUp: {bandwidthUpBytes}",
-  },
-  "battery": {
-    "bat": "BAT0",
-    "interval": 10,
-    "states": {
-      "warning": 30,
-      "critical": 15,
-    },
-    "format": "{icon} {capacity}%",
-    "format-icons": [
-      "󰂎",
-      "󰁺",
-      "󰁻",
-      "󰁼",
-      "󰁽",
-      "󰁾",
-      "󰁿",
-      "󰂀",
-      "󰂁",
-      "󰂂",
-      "󰁹"
-    ],
-  },
-  "network": {
-    "format-wifi": "{icon} {essid}",
-    "format-ethernet": " {ifname}",
-    "format-disconnected": "睊",
-    "format-icons": [
-      "󰤯",
-      "󰤟",
-      "󰤢",
-      "󰤥",
-      "󰤨"
-    ],
-    "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-    "tooltip-format-wifi": "{icon} {essid} ({signalStrength}%)\n{ipaddr}/{cidr}",
-    "tooltip-format-ethernet": " {ifname}\n{ipaddr}/{cidr}",
-    "tooltip-format-disconnected": "Disconnected",
-    "on-click": "nm-connection-editor",
-  },
-  "pulseaudio": {
-    "format": "{icon} {volume}%",
-    "format-muted": "󰖁 {volume}%",
-    "format-icons": {
-      "default": [
-        "󰕿",
-        "󰖀",
-        "󰕾"
-      ],
-    },
-    "on-click": "rofi -show audio -modi audio:~/.config/rofi/scripts/audio-output-mode.sh -theme ~/.config/rofi/audio-menu.rasi",
-    "on-click-right": "pavucontrol",
-  },
-  "tray": {
-    "spacing": 10,
-    "icon-size": 16,
-  },
-  "group/details": {
-    "orientation": "horizontal",
-    "modules": [
-      "custom/details",
-      "custom/fan",
-      "cpu",
-      "memory",
-      "disk",
-      "network#speed",
-    ],
-  },
-  "group/info": {
-    "orientation": "horizontal",
-    "modules": [
-      "pulseaudio",
-      "network",
-      "battery",
-      "custom/bluetooth"
-    ],
+    "format": "{:%I:%M %p  |  %A, %B %d}",
+    "tooltip": false,
+    "on-click": "rw toggle notifications"
   },
   "custom/spotify": {
     "exec": "~/.config/waybar/scripts/spotify.sh",
     "return-type": "json",
     "interval": 5,
     "format": "{}",
-    "on-click": "~/.config/waybar/scripts/spotify-menu.sh",
-    "escape": true,
-  },
-  "custom/bluetooth-battery": {
-    "exec": "~/.config/waybar/scripts/bluetooth-battery.sh",
-    "return-type": "json",
-    "interval": 30,
-    "format": "{}",
-    "on-click": "bluetoothctl disconnect F6:1C:EF:20:6B:95",
-    "tooltip": true,
+    "escape": true
   },
   "custom/caffeinate": {
     "format": "{}",
-    "exec": "if [ -f /tmp/caffeinate.pid ]; then echo '󰅶 '; else echo ''; fi",
+    "exec": "if [ -f /tmp/caffeinate.pid ]; then echo '󰅶'; else echo '󰛊'; fi",
     "interval": 2,
     "on-click": "~/Development/bash_scripts/toggle-caffeinate.sh",
-    "tooltip": true,
-    "tooltip-format": "Click to toggle caffeinate",
+    "tooltip": false
   },
-  "custom/fan": {
-    "exec": "~/.config/waybar/scripts/fan-monitor.sh",
-    "return-type": "json",
-    "interval": 2,
-    "format": "{}",
-    "on-click": "kitty -e watch -n 1 'i8kctl; echo; sensors'",
-    "tooltip": true,
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "󰖁",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "on-click": "rw toggle volume",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+    "tooltip": false
   },
-  "custom/bluetooth": {
-    "format": "󰂯",
-    "tooltip-format": "Bluetooth",
-    "on-click": "~/.config/waybar/scripts/bluetooth-menu.sh",
-    "on-click-right": "blueman-manager",
+  "network": {
+    "format-wifi": "󰤨",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰤭",
+    "on-click": "rw toggle stats",
+    "tooltip": false
   },
+  "battery": {
+    "bat": "BAT1",
+    "interval": 10,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon}",
+    "format-charging": "󰂄",
+    "format-plugged": "󰚥",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "on-click": "rw toggle stats",
+    "tooltip": false
+  },
+  "custom/control": {
+    "format": "󰒓",
+    "on-click": "rw toggle control",
+    "tooltip": false
+  },
+  "tray": {
+    "spacing": 8,
+    "icon-size": 16
+  }
 }

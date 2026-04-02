@@ -1,0 +1,21 @@
+~/Development/cliphist-gui ❯ cat ~/.local/state/cliphist-gui/cliphist-gui.log | tail -20
+[2026-03-17 16:04:22] loaded css from /home/vib1240n/.config/cliphist-gui/style.css
+[2026-03-17 16:04:23] daemon started (400x650, anchor=Bottom, vim=false)
+[2026-03-17 16:04:33] loaded config from /home/vib1240n/.config/cliphist-gui/config
+[2026-03-17 21:52:10] loaded config from /home/vib1240n/.config/cliphist-gui/config
+[2026-03-18 16:33:23] loaded config from /home/vib1240n/.config/cliphist-gui/config
+[2026-03-18 16:33:23] loaded css from /home/vib1240n/.config/cliphist-gui/style.css
+[2026-03-18 16:33:23] generating 5 thumbnails in background
+[2026-03-18 16:33:23] daemon started (400x650, anchor=Bottom, vim=false)
+[2026-03-18 16:35:58] loaded config from /home/vib1240n/.config/cliphist-gui/config
+[2026-03-18 16:48:48] loaded config from /home/vib1240n/.config/cliphist-gui/config
+[2026-03-18 23:07:04] loaded config from /home/vib1240n/.config/cliphist-gui/config
+[2026-03-18 23:07:04] loaded css from /home/vib1240n/.config/cliphist-gui/style.css
+[2026-03-18 23:07:04] daemon started (400x650, anchor=Bottom, vim=false)
+[2026-03-19 10:59:11] loaded config from /home/vib1240n/.config/cliphist-gui/config
+[2026-03-19 11:00:39] loaded config from /home/vib1240n/.config/cliphist-gui/config
+[2026-03-19 11:00:39] loaded css from /home/vib1240n/.config/cliphist-gui/style.css
+[2026-03-19 11:00:39] daemon started (400x650, anchor=Bottom, vim=false)
+[2026-03-19 11:00:40] loaded config from /home/vib1240n/.config/cliphist-gui/config
+[2026-03-19 11:00:41] loaded config from /home/vib1240n/.config/cliphist-gui/config
+[2026-03-19 11:01:12] loaded config from /home/vib1240n/.config/cliphist-gui/config

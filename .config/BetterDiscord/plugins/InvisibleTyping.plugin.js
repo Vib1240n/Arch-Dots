@@ -1,12 +1,12 @@
 /**
  * @name InvisibleTyping
- * @version 1.4.5
+ * @version 1.4.6
  * @author Strencher
  * @authorId 415849376598982656
  * @description Enhanced version of silent typing.
  * @source https://github.com/Strencher/BetterDiscordStuff/blob/master/InvisibleTyping/InvisibleTyping.plugin.js
  * @invite gvA2ree
- * @changelogDate 2025-08-02
+ * @changelogDate 2026-03-20
  */
 
 'use strict';
@@ -17,7 +17,7 @@ const React = BdApi.React;
 /* @manifest */
 var manifest = {
     "name": "InvisibleTyping",
-    "version": "1.4.5",
+    "version": "1.4.6",
     "author": "Strencher",
     "authorId": "415849376598982656",
     "description": "Enhanced version of silent typing.",
@@ -30,7 +30,7 @@ var manifest = {
             "Fixed for the latest Discord update"
         ]
     }],
-    "changelogDate": "2025-08-02"
+    "changelogDate": "2026-03-20"
 };
 
 /* @api */
@@ -424,7 +424,7 @@ class InvisibleTyping {
         });
     }
     patchChannelTextArea() {
-        const ChatButtonsGroup = Webpack.getBySource("type", "showAllButtons", "paymentsBlocked")?.A;
+        const ChatButtonsGroup = Webpack.getBySource("showAllButtons", "promotionsByType")?.A;
         Patcher.after(ChatButtonsGroup, "type", (_, args, res) => {
             if (args.length == 2 && !args[0].disabled && args[0].type.analyticsName == "normal" && res.props.children && Array.isArray(res.props.children)) {
                 res.props.children.unshift(React.createElement(InvisibleTypingButton, {
