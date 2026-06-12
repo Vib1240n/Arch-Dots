@@ -13,44 +13,20 @@ import Tray from "gi://AstalTray";
 
 const ICONS = "/home/vib1240n/.config/waybar/icons";
 
-// ============================================
-// Audio Device Type Detection
-// ============================================
-
 type AudioDeviceType = "bluetooth" | "speakers" | "headphones" | "unknown";
 
 function getAudioDeviceType(sinkName: string): AudioDeviceType {
   const name = sinkName.toLowerCase();
-
-  // Bluetooth devices (bluez in sink name)
-  if (name.includes("bluez") || name.includes("bluetooth")) {
-    return "bluetooth";
-  }
-
-  // USB audio devices - check for known speaker/monitor names
+  if (name.includes("bluez") || name.includes("bluetooth")) return "bluetooth";
   if (
     name.includes("caldigit") ||
     name.includes("omen") ||
     name.includes("monitor")
-  ) {
+  )
     return "speakers";
-  }
-
-  // Generic USB audio likely speakers
-  if (name.includes("usb") && name.includes("audio")) {
-    return "speakers";
-  }
-
-  // HDMI/DisplayPort audio
-  if (name.includes("hdmi") || name.includes("displayport")) {
-    return "speakers";
-  }
-
-  // Default to speakers for analog outputs
-  if (name.includes("analog") || name.includes("alsa")) {
-    return "speakers";
-  }
-
+  if (name.includes("usb") && name.includes("audio")) return "speakers";
+  if (name.includes("hdmi") || name.includes("displayport")) return "speakers";
+  if (name.includes("analog") || name.includes("alsa")) return "speakers";
   return "unknown";
 }
 
@@ -60,25 +36,12 @@ function getAudioIcon(
   deviceType: AudioDeviceType,
 ): string {
   if (muted || volume === 0) return `${ICONS}/speaker.slash.fill.svg`;
-
-  // Use device-specific icons
-  if (deviceType === "bluetooth") {
-    return `${ICONS}/headphones.svg`;
-  }
-
-  if (deviceType === "speakers") {
-    return `${ICONS}/hifispeaker.fill.svg`;
-  }
-
-  // Fallback to volume-based speaker icons
+  if (deviceType === "bluetooth") return `${ICONS}/headphones.svg`;
+  if (deviceType === "speakers") return `${ICONS}/hifispeaker.fill.svg`;
   if (volume <= 0.33) return `${ICONS}/speaker.wave.1.fill.svg`;
   if (volume <= 0.66) return `${ICONS}/speaker.wave.2.fill.svg`;
   return `${ICONS}/speaker.wave.3.fill.svg`;
 }
-
-// ============================================
-// Bluetooth Battery Detection
-// ============================================
 
 interface BluetoothBattery {
   connected: boolean;
@@ -88,18 +51,12 @@ interface BluetoothBattery {
 
 function getBluetoothBattery(): BluetoothBattery {
   try {
-    // Check upower for headset devices
     const devices = exec("upower -e").trim().split("\n");
     const headset = devices.find((d) => d.includes("headset"));
-
-    if (!headset) {
-      return { connected: false, percentage: 0, name: "" };
-    }
-
+    if (!headset) return { connected: false, percentage: 0, name: "" };
     const info = exec(`upower -i ${headset}`);
     const percentMatch = info.match(/percentage:\s*(\d+)%/);
     const modelMatch = info.match(/model:\s*(.+)/);
-
     if (percentMatch) {
       return {
         connected: true,
@@ -107,69 +64,39 @@ function getBluetoothBattery(): BluetoothBattery {
         name: modelMatch ? modelMatch[1].trim() : "Headphones",
       };
     }
-  } catch (e) {
-    // No bluetooth headset connected
-  }
-
+  } catch (e) {}
   return { connected: false, percentage: 0, name: "" };
 }
-
-// ============================================
-// Network Type Detection
-// ============================================
 
 type NetworkType = "wifi" | "ethernet" | "disconnected";
 
 function getNetworkType(): NetworkType {
   try {
-    // Check nmcli for active connections - most reliable
-    const activeConnections = exec(
-      "nmcli -t -f TYPE,DEVICE,STATE c show --active",
-    ).trim();
-
-    // Check for ethernet first (802-3-ethernet)
-    if (
-      activeConnections.includes("802-3-ethernet") &&
-      activeConnections.includes("activated")
-    ) {
+    const ac = exec("nmcli -t -f TYPE,DEVICE,STATE c show --active").trim();
+    if (ac.includes("802-3-ethernet") && ac.includes("activated"))
       return "ethernet";
-    }
-
-    // Check for wifi (802-11-wireless)
-    if (
-      activeConnections.includes("802-11-wireless") &&
-      activeConnections.includes("activated")
-    ) {
+    if (ac.includes("802-11-wireless") && ac.includes("activated"))
       return "wifi";
-    }
-
-    // Fallback: check operstate files like the waybar script
     try {
-      const ethState = exec(
+      const e = exec(
         "cat /sys/class/net/enp*/operstate 2>/dev/null | head -1",
       ).trim();
-      if (ethState === "up") {
-        return "ethernet";
-      }
+      if (e === "up") return "ethernet";
     } catch {}
-
     try {
-      const wifiState = exec(
+      const w = exec(
         "cat /sys/class/net/wlan*/operstate 2>/dev/null | head -1",
       ).trim();
-      if (wifiState === "up") {
-        return "wifi";
-      }
+      if (w === "up") return "wifi";
     } catch {}
-
     return "disconnected";
   } catch (e) {
     return "disconnected";
   }
 }
 
-function getNetworkIcon(networkType: NetworkType): string {
-  switch (networkType) {
+function getNetworkIcon(t: NetworkType): string {
+  switch (t) {
     case "ethernet":
       return `${ICONS}/cable.connector.horizontal.svg`;
     case "wifi":
@@ -178,10 +105,6 @@ function getNetworkIcon(networkType: NetworkType): string {
       return `${ICONS}/wifi.slash.svg`;
   }
 }
-
-// ============================================
-// Battery Icon Helper
-// ============================================
 
 function getBatteryIcon(percentage: number, charging: boolean): string {
   if (charging) return `${ICONS}/battery.100percent.bolt.svg`;
@@ -192,215 +115,19 @@ function getBatteryIcon(percentage: number, charging: boolean): string {
   return `${ICONS}/battery.100percent.svg`;
 }
 
-// ============================================
-// Inline CSS with Workspace Animations
-// ============================================
-const css = `
-* {
-  font-family: "SF Pro Text", "JetBrainsMono Nerd Font", sans-serif;
-  font-size: 14px;
-  color: rgba(252, 252, 252, 1);
+const STYLE_PATH = GLib.build_filenamev([
+  GLib.get_home_dir(),
+  ".config/ags/style.css",
+]);
+let css: string;
+try {
+  const [ok, contents] = GLib.file_get_contents(STYLE_PATH);
+  css = ok ? new TextDecoder().decode(contents) : "";
+  if (!ok) printerr(`[bar] could not read ${STYLE_PATH}, using empty CSS`);
+} catch (e) {
+  printerr(`[bar] error reading ${STYLE_PATH}: ${e}`);
+  css = "";
 }
-
-/* Make all SVG icons white */
-image {
-  -gtk-icon-style: symbolic;
-  color: rgba(252, 252, 252, 1);
-}
-
-window {
-  background-color: rgba(20, 22, 24, 0.35);
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.bar-inner {
-  margin: 4px 8px;
-}
-
-/* ============================================
-   Animated Workspaces - Fluid Water Sloshing
-   ============================================ */
-
-.workspaces {
-  margin: 0 4px;
-  padding: 3px 5px;
-  background-color: rgba(41, 44, 48, 0.35);
-  border-radius: 14px;
-}
-
-.workspaces button {
-  background-color: transparent;
-  color: rgba(252, 252, 252, 0.45);
-  padding: 5px 12px;
-  margin: 2px 3px;
-  border-radius: 10px;
-  min-width: 30px;
-  min-height: 26px;
-  font-size: 14px;
-  font-weight: 500;
-  transition: 
-    color 180ms ease-out,
-    background-color 280ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    padding 280ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    min-width 280ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    margin 280ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.workspaces button:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-  color: rgba(252, 252, 252, 0.85);
-}
-
-.workspaces button.active {
-  background-color: rgba(61, 174, 233, 0.35);
-  color: #3daee9;
-  font-weight: 600;
-  min-width: 38px;
-  padding: 5px 16px;
-  margin: 2px 2px;
-  box-shadow: 
-    0 0 0 1px rgba(61, 174, 233, 0.3),
-    0 2px 12px rgba(61, 174, 233, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transition: 
-    color 120ms ease-out,
-    background-color 350ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    padding 350ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    min-width 350ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    margin 350ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 400ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* ============================================
-   Clock
-   ============================================ */
-
-.clock {
-  font-family: "SF Pro Display", "SF Pro Text", sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  color: rgba(252, 252, 252, 1);
-  padding: 6px 16px;
-  margin: 0 6px;
-  background-color: rgba(41, 44, 48, 0.5);
-  border-radius: 10px;
-  transition: all 200ms ease;
-}
-
-.clock:hover {
-  background-color: rgba(61, 174, 233, 0.2);
-  color: #3daee9;
-}
-
-/* ============================================
-   Modules
-   ============================================ */
-
-.module {
-  padding: 6px 12px;
-  margin: 0 4px;
-  background-color: transparent;
-  border-radius: 10px;
-  min-height: 36px;
-  transition: all 200ms ease;
-}
-
-.module:hover {
-  background-color: rgba(41, 44, 48, 0.5);
-}
-
-.module.critical {
-  color: #ed8796;
-}
-
-.module-label {
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(252, 252, 252, 1);
-}
-
-/* ============================================
-   Bluetooth Battery
-   ============================================ */
-
-.bt-battery {
-  padding: 4px 12px;
-  margin: 0 4px;
-  background-color: rgba(41, 44, 48, 0.4);
-  border-radius: 10px;
-  min-height: 36px;
-  transition: all 200ms ease;
-}
-
-.bt-battery:hover {
-  background-color: rgba(41, 44, 48, 0.6);
-}
-
-.bt-battery image {
-  margin-right: 8px;
-}
-
-.bt-battery label {
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(252, 252, 252, 1);
-}
-
-.bt-battery.low image {
-  opacity: 0.7;
-}
-
-.bt-battery.low label {
-  color: #ed8796;
-}
-
-/* ============================================
-   System Tray
-   ============================================ */
-
-.tray {
-  padding: 0 8px;
-}
-
-.tray-item {
-  padding: 6px 8px;
-  margin: 0 2px;
-  background-color: transparent;
-  border-radius: 8px;
-  transition: all 150ms ease;
-}
-
-.tray-item:hover {
-  background-color: rgba(41, 44, 48, 0.5);
-}
-
-/* ============================================
-   Caffeinate
-   ============================================ */
-
-.caffeinate {
-  color: rgba(252, 252, 252, 0.55);
-  padding: 6px 10px;
-  background-color: transparent;
-  font-family: "JetBrainsMono Nerd Font";
-  font-size: 18px;
-  transition: all 200ms ease;
-}
-
-.caffeinate:hover {
-  color: #3daee9;
-}
-
-.caffeinate.active {
-  color: #a6e3a1;
-}
-`;
-
-// ============================================
-// Widgets
-// ============================================
 
 function Workspaces() {
   const hypr = Hyprland.get_default();
@@ -410,23 +137,89 @@ function Workspaces() {
   const sortedWorkspaces = createComputed(() => {
     const ws = workspaces();
     if (!ws) return [];
-    return [...ws].filter((w) => w.id > 0).sort((a, b) => a.id - b.id);
+    return [...ws]
+      .filter((w) => w != null && w.id > 0 && w.monitor != null)
+      .sort((a, b) => a.id - b.id);
+  });
+
+  const activeSpecial = createPoll<{ name: string; id: number } | null>(
+    null,
+    500,
+    () => {
+      try {
+        const monitorsJson = exec("hyprctl monitors -j").trim();
+        const monitors = JSON.parse(monitorsJson);
+        for (const m of monitors) {
+          const sw = m.specialWorkspace;
+          if (sw && sw.name && sw.name.length > 0 && sw.id < 0) {
+            const displayName = sw.name.startsWith("special:")
+              ? sw.name.slice(8)
+              : sw.name;
+            return { name: displayName || "special", id: sw.id };
+          }
+        }
+        return null;
+      } catch {
+        return null;
+      }
+    },
+  );
+
+  const specialVisible = createComputed(() => activeSpecial() != null);
+  const specialLabel = createComputed(() => {
+    const s = activeSpecial();
+    return s ? s.name : "";
   });
 
   return (
     <box cssClasses={["workspaces"]}>
       <For each={sortedWorkspaces}>
         {(workspace) => {
-          const isActive = createComputed(() => focused()?.id === workspace.id);
+          const isActive = createComputed(() => {
+            const f = focused();
+            return f != null && workspace != null && f.id === workspace.id;
+          });
           const classes = createComputed(() => (isActive() ? ["active"] : []));
 
           return (
-            <button cssClasses={classes} onClicked={() => workspace.focus()}>
+            <button
+              cssClasses={classes}
+              onClicked={() => {
+                try {
+                  workspace.focus();
+                } catch {}
+              }}
+            >
               <label label={workspace.id.toString()} />
             </button>
           );
         }}
       </For>
+      <button
+        cssClasses={["special"]}
+        visible={specialVisible}
+        tooltipText={createComputed(() => {
+          const s = activeSpecial();
+          return s ? `Special: ${s.name}` : "";
+        })}
+        onClicked={() => {
+          const s = activeSpecial();
+          if (!s) return;
+          try {
+            execAsync([
+              "hyprctl",
+              "dispatch",
+              "togglespecialworkspace",
+              s.name,
+            ]);
+          } catch {}
+        }}
+      >
+        <box spacing={6}>
+          <image file={`${ICONS}/eye.fill.svg`} pixelSize={16} />
+          <label label={specialLabel} />
+        </box>
+      </button>
     </box>
   );
 }
@@ -481,43 +274,33 @@ function Volume() {
   const volume = createBinding(speaker, "volume");
   const muted = createBinding(speaker, "mute");
 
-  // Poll for sink name to detect device type
   const sinkInfo = createPoll(
     { name: "", type: "unknown" as AudioDeviceType },
     2000,
     () => {
       try {
         const defaultSink = exec("pactl get-default-sink").trim();
-        return {
-          name: defaultSink,
-          type: getAudioDeviceType(defaultSink),
-        };
+        return { name: defaultSink, type: getAudioDeviceType(defaultSink) };
       } catch {
         return { name: "", type: "unknown" as AudioDeviceType };
       }
     },
   );
 
-  const iconPath = createComputed(() => {
-    const info = sinkInfo();
-    return getAudioIcon(volume(), muted(), info.type);
-  });
-
-  const volumeText = createComputed(() => {
-    const vol = Math.round(volume() * 100);
-    return `${vol}%`;
-  });
-
+  const iconPath = createComputed(() =>
+    getAudioIcon(volume(), muted(), sinkInfo().type),
+  );
+  const volumeText = createComputed(() => `${Math.round(volume() * 100)}%`);
   const tooltip = createComputed(() => {
     const info = sinkInfo();
     const vol = Math.round(volume() * 100);
-    const deviceLabel =
+    const label =
       info.type === "bluetooth"
         ? "Bluetooth"
         : info.type === "speakers"
           ? "Speakers"
           : "Audio";
-    return `${deviceLabel}: ${vol}%`;
+    return `${label}: ${vol}%`;
   });
 
   return (
@@ -535,7 +318,6 @@ function Volume() {
 }
 
 function BluetoothBattery() {
-  // Poll every 5 minutes (300000ms) - battery level doesn't change fast
   const btInfo = createPoll(
     { connected: false, percentage: 0, name: "" },
     300000,
@@ -577,7 +359,6 @@ function NetworkWidget() {
     5000,
     getNetworkType,
   );
-
   const iconPath = createComputed(() => getNetworkIcon(networkType()));
   const tooltip = createComputed(() => {
     const t = networkType();
@@ -609,10 +390,9 @@ function BatteryWidget() {
     const isCritical = !charging() && percentage() <= 0.15;
     return isCritical ? ["module", "critical"] : ["module"];
   });
-  const percentText = createComputed(() => {
-    const pct = Math.round(percentage() * 100);
-    return `${pct}%`;
-  });
+  const percentText = createComputed(
+    () => `${Math.round(percentage() * 100)}%`,
+  );
   const tooltip = createComputed(() => {
     const pct = Math.round(percentage() * 100);
     const state = charging() ? "Charging" : "Battery";
@@ -667,10 +447,9 @@ function SysTray() {
 }
 
 function Caffeinate() {
-  const active = createPoll(false, 2000, () => {
-    return GLib.file_test("/tmp/caffeinate.pid", GLib.FileTest.EXISTS);
-  });
-
+  const active = createPoll(false, 2000, () =>
+    GLib.file_test("/tmp/caffeinate.pid", GLib.FileTest.EXISTS),
+  );
   const classes = createComputed(() =>
     active() ? ["caffeinate", "active"] : ["caffeinate"],
   );
@@ -689,10 +468,6 @@ function Caffeinate() {
     </button>
   );
 }
-
-// ============================================
-// Left/Center/Right Modules
-// ============================================
 
 function Left() {
   return (
@@ -724,10 +499,6 @@ function Right() {
   );
 }
 
-// ============================================
-// Bar
-// ============================================
-
 function Bar(gdkmonitor: Gdk.Monitor) {
   const { TOP, LEFT, RIGHT } = Astal.WindowAnchor;
 
@@ -735,6 +506,7 @@ function Bar(gdkmonitor: Gdk.Monitor) {
     <window
       visible
       gdkmonitor={gdkmonitor}
+      cssClasses={["bar"]}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       anchor={TOP | LEFT | RIGHT}
       application={app}
@@ -752,14 +524,36 @@ function Bar(gdkmonitor: Gdk.Monitor) {
   );
 }
 
-// ============================================
-// App Entry
-// ============================================
+function spawnBars() {
+  const monitors = app.get_monitors();
+  const seen = new Set<string>();
+
+  for (const m of monitors) {
+    if (m == null) continue;
+    const geom = m.get_geometry();
+    const key = `${m.get_connector() ?? "?"}-${geom.x}x${geom.y}-${geom.width}x${geom.height}`;
+    if (seen.has(key)) {
+      console.log(`[bar] skipping duplicate monitor: ${key}`);
+      continue;
+    }
+    seen.add(key);
+    console.log(`[bar] creating bar for ${key}`);
+    Bar(m);
+  }
+}
 
 app.start({
+  instanceName: "bar",
   css: css,
   main() {
-    const monitors = app.get_monitors();
-    monitors.map(Bar);
+    spawnBars();
+
+    const display = Gdk.Display.get_default();
+    if (display) {
+      display.connect("monitor-added", () => {
+        console.log("[bar] monitor-added, respawning bars");
+        spawnBars();
+      });
+    }
   },
 });

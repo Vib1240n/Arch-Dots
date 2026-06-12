@@ -1,0 +1,11 @@
+{
+  "workspaces": {
+    "OTcI44iZo6R3BgXGQd0paoUNYWH2": {
+      "id": "OTcI44iZo6R3BgXGQd0paoUNYWH2",
+      "name": "ThirdEye Data",
+      "url": "thirdeye-data-l5o46",
+      "apiKey": "SSY5S15MBW45xa8F7lM4"
+    }
+  },
+  "RF_WORKSPACE": "thirdeye-data-l5o46"
+}

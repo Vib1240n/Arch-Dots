@@ -2,7 +2,7 @@
  * @name Translator
  * @author DevilBro
  * @authorId 278543574059057154
- * @version 2.8.0
+ * @version 2.8.2
  * @description Allows you to translate incoming and your outgoing Messages within Discord
  * @invite Jx3TjNS
  * @donate https://www.paypal.me/MircoWittrien
@@ -1465,7 +1465,7 @@ module.exports = (_ => {
 				`;
 
 				const requestData = {
-					model: "deepseek-chat",
+					model: "deepseek-v4-flash",
 					messages: [{
 						role: "system",
 						content: "You are a senior bilingual localization specialist"

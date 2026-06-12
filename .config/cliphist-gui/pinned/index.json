@@ -5,5 +5,6 @@
   {"hash":"95cc02115309e895","content_type":"text","preview":"~/Development/cliphist-gui ❯ cat ~/.config/cliphist-gui/pinned/index.json cat: /home/vib1240n/.confi…","pinned_at":1773943662,"order":2},
   {"hash":"a0f24ede35965d3b","content_type":"text","preview":"use std::cell::RefCell; use std::rc::Rc; use gdk4::prelude::*; use gtk4::prelude::*; use gtk4::{ Ali…","pinned_at":1773943665,"order":3},
   {"hash":"dde3ce491e29c245","content_type":"text","preview":"use crate::config::APP_NAME; use common::css::char_truncate; use std::collections::hash_map::Default…","pinned_at":1773943672,"order":4},
-  {"hash":"dfbffe9cf9c7f4db","content_type":"image","preview":"[[ binary data 57 KiB png 310x244 ]]","pinned_at":1774206986,"order":6}
+  {"hash":"dfbffe9cf9c7f4db","content_type":"image","preview":"[[ binary data 57 KiB png 310x244 ]]","pinned_at":1774206986,"order":6},
+  {"hash":"4c83c70f027c5e80","content_type":"image","preview":"[[ binary data 154 KiB png 3440x87 ]]","pinned_at":1778964570,"order":7}
 ]

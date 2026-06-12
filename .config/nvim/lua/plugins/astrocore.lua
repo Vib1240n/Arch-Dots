@@ -109,6 +109,10 @@ return {
         ["<Leader>cl"] = { "<Cmd>CBline<CR>", noremap = true, silent = true, desc = "Simple line comment box" },
         ["<Leader>RR"] = { "<Cmd>AstroReload<CR>", noremap = true, silent = true, desc = "Reload Astronvim" },
         ["<Leader>sr"] = { ":", noremap = true, silent = true, desc = "search and replace" },
+        ["<Leader>fd"] = {
+          function() require("snacks").picker.files { cwd = vim.fn.expand "%:p:h" } end,
+          desc = "Find files (current file's dir)",
+        },
       },
       v = {
         -- Cmd+C/V for copy/paste (works in GUI Neovim like Neovide)

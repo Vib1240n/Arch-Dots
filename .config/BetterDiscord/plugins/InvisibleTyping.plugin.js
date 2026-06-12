@@ -1,36 +1,33 @@
 /**
  * @name InvisibleTyping
- * @version 1.4.6
+ * @version 1.5.0
  * @author Strencher
  * @authorId 415849376598982656
  * @description Enhanced version of silent typing.
  * @source https://github.com/Strencher/BetterDiscordStuff/blob/master/InvisibleTyping/InvisibleTyping.plugin.js
  * @invite gvA2ree
- * @changelogDate 2026-03-20
  */
 
 'use strict';
 
-/* react */
-const React = BdApi.React;
-
 /* @manifest */
-var manifest = {
+const manifest = {
+    "$schema": "../common/Schemas/manifest.schema.json",
     "name": "InvisibleTyping",
-    "version": "1.4.6",
+    "version": "1.5.0",
     "author": "Strencher",
     "authorId": "415849376598982656",
     "description": "Enhanced version of silent typing.",
     "source": "https://github.com/Strencher/BetterDiscordStuff/blob/master/InvisibleTyping/InvisibleTyping.plugin.js",
     "invite": "gvA2ree",
     "changelog": [{
-        "title": "It works again!",
-        "type": "fixed",
+        "title": "Added support for Voice Channels",
+        "type": "added",
         "items": [
-            "Fixed for the latest Discord update"
+            "Voice Channel Chats show now the Invisible Typing Button as well"
         ]
     }],
-    "changelogDate": "2026-03-20"
+    "changelogDate": "2026-05-24"
 };
 
 /* @api */
@@ -39,14 +36,9 @@ const {
     ContextMenu,
     Data,
     DOM,
-    Logger,
-    Net,
+    Hooks,
     Patcher,
-    Plugins,
-    ReactUtils,
-    Themes,
     UI,
-    Utils,
     Webpack
 } = new BdApi(manifest.name);
 
@@ -87,6 +79,7 @@ Styles.sheets.push("/* ../common/Changelog/style.scss */", `.Changelog-Title-Wra
 
 .Changelog-Item {
   color: #c4c9ce;
+  margin-bottom: 16px;
 }
 .Changelog-Item .Changelog-Header {
   display: flex;
@@ -96,16 +89,16 @@ Styles.sheets.push("/* ../common/Changelog/style.scss */", `.Changelog-Title-Wra
   margin-bottom: 10px;
 }
 .Changelog-Item .Changelog-Header.added {
-  color: #45BA6A;
+  color: #45ba6a;
 }
 .Changelog-Item .Changelog-Header.changed {
-  color: #F0B232;
+  color: #f0b232;
 }
 .Changelog-Item .Changelog-Header.fixed {
-  color: #EC4245;
+  color: #ec4245;
 }
 .Changelog-Item .Changelog-Header.improved {
-  color: #5865F2;
+  color: #5865f2;
 }
 .Changelog-Item .Changelog-Header::after {
   content: "";
@@ -123,9 +116,13 @@ Styles.sheets.push("/* ../common/Changelog/style.scss */", `.Changelog-Title-Wra
   color: var(--background-accent);
 }`);
 
+/* react */
+var React = BdApi.React;
+
 /* ../common/Changelog/index.tsx */
 function showChangelog(manifest) {
     if (Data.load("lastVersion") === manifest.version) return;
+    if (!manifest.changelog.length) return;
     const i18n = Webpack.getByKeys("getLocale");
     const formatter = new Intl.DateTimeFormat(i18n.getLocale(), {
         month: "long",
@@ -140,15 +137,209 @@ function showChangelog(manifest) {
     }, React.createElement("h4", {
         className: `Changelog-Header ${item.type}`
     }, item.title), item.items.map((item2) => React.createElement("span", null, item2))));
-    "changelogImage" in manifest && items.unshift(
-        React.createElement("img", {
-            className: "Changelog-Banner",
-            src: manifest.changelogImage
-        })
-    );
+    "changelogImage" in manifest && items.unshift(React.createElement("img", {
+        className: "Changelog-Banner",
+        src: manifest.changelogImage
+    }));
     UI.alert(title, items);
     Data.save("lastVersion", manifest.version);
 }
+
+/* ../common/ErrorBoundary/style.scss */
+Styles.sheets.push("/* ../common/ErrorBoundary/style.scss */", `.errorBoundary {
+  align-items: center;
+  background: #473c41;
+  border: 2px solid #f04747;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+  color: #fff;
+  font-size: 16px;
+}
+.errorBoundary .errorText {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}`);
+
+/* ../common/ErrorBoundary/index.tsx */
+const ErrorIcon = (props) => React.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    fill: "#ddd",
+    width: "24",
+    height: "24",
+    ...props
+}, React.createElement("path", {
+    d: "M0 0h24v24H0z",
+    fill: "none"
+}), React.createElement("path", {
+    d: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+}));
+class ErrorBoundary extends React.Component {
+    state = {
+        hasError: false,
+        error: null,
+        info: null
+    };
+    componentDidCatch(error, info) {
+        this.setState({
+            error,
+            info,
+            hasError: true
+        });
+        console.error(
+            `[ErrorBoundary:${this.props.id}] HI OVER HERE!! SHOW THIS SCREENSHOT TO THE DEVELOPER.
+`,
+            error
+        );
+    }
+    render() {
+        if (this.state.hasError) {
+            return this.props.mini ? React.createElement(ErrorIcon, {
+                fill: "#f04747"
+            }) : React.createElement("div", {
+                className: "errorBoundary"
+            }, React.createElement("div", {
+                className: "errorText"
+            }, React.createElement("span", null, "An error has occured while rendering ", this.props.id, "."), React.createElement("span", null, "Open console (", React.createElement("code", null, "CTRL + SHIFT + i / CMD + SHIFT + i"), ') - Select the "Console" tab and screenshot the big red error.')));
+        } else return this.props.children;
+    }
+}
+
+/* ../common/Settings/store.ts */
+const Dispatcher = Webpack.getByKeys("dispatch", "subscribe", {
+    searchExports: true
+});
+const Flux = Webpack.getByKeys("Store");
+const Settings = new class Settings2 extends Flux.Store {
+    constructor() {
+        super(Dispatcher, {});
+    }
+    _settings = Data.load("settings") ?? {};
+    get(key, def = null) {
+        return this._settings[key] ?? def;
+    }
+    set(key, value) {
+        this._settings[key] = value;
+        Data.save("settings", this._settings);
+        this.emitChange();
+    }
+}();
+
+/* ../common/Settings/items/dropdown.tsx */
+const {
+    SettingItem: SettingItem$2
+} = Components;
+const Select = Webpack.getByStrings('selectionMode:"single",onSelectionChange:', "isSelected:", {
+    searchExports: true
+});
+
+function DropdownItem(props) {
+    return React.createElement(ErrorBoundary, {
+        id: props.id
+    }, React.createElement(SettingItem$2, {
+        ...props
+    }, React.createElement(
+        Select, {
+            closeOnSelect: true,
+            options: props.options,
+            serialize: (v) => String(v),
+            select: (v) => Settings.set(props.id, v),
+            isSelected: (v) => Settings.get(props.id, props.value) === v
+        }
+    )));
+}
+
+/* ../common/Settings/items/slider.tsx */
+const {
+    SettingItem: SettingItem$1
+} = Components;
+const Slider = Webpack.getByStrings("stickToMarkers");
+
+function SliderItem(props) {
+    const value = Hooks.useStateFromStores([Settings], () => Settings.get(props.id, props.value));
+    return React.createElement(ErrorBoundary, {
+        id: props.id
+    }, React.createElement(SettingItem$1, {
+        ...props
+    }, React.createElement(
+        Slider, {
+            ...props,
+            handleSize: 10,
+            initialValue: value,
+            defaultValue: props.defaultValue,
+            minValue: props.minValue,
+            maxValue: props.maxValue,
+            onValueChange: (value2) => Settings.set(props.id, Math.round(value2)),
+            onValueRender: (value2) => Math.round(value2)
+        }
+    )));
+}
+
+/* ../common/Settings/items/switch.tsx */
+const {
+    SettingItem,
+    SwitchInput
+} = Components;
+
+function SwitchItem(props) {
+    const value = Hooks.useStateFromStores([Settings], () => Settings.get(props.id, props.value));
+    return React.createElement(ErrorBoundary, {
+        id: props.id
+    }, React.createElement(SettingItem, {
+        ...props,
+        inline: true
+    }, React.createElement(SwitchInput, {
+        value,
+        onChange: (v) => Settings.set(props.id, v)
+    })));
+}
+
+/* ../common/Settings/panel.tsx */
+function SettingsPanel({
+    items,
+    components: customComponents
+}) {
+    const ComponentMap = {
+        dropdown: DropdownItem,
+        switch: SwitchItem,
+        slider: SliderItem,
+        ...customComponents
+    };
+    return items.map((item) => {
+        const Component = ComponentMap[item.type];
+        return Component ? React.createElement(Component, {
+            key: item.id,
+            ...item
+        }) : null;
+    });
+}
+
+/* modules/shared.ts */
+Webpack.getByKeys("dispatch", "register", {
+    searchExports: true
+});
+Webpack.getByKeys("Store");
+const TypingModule = Webpack.getByKeys("startTyping");
+const buildClassName = (...args) => {
+    return args.reduce((classNames, arg) => {
+        if (!arg) return classNames;
+        if (typeof arg === "string" || typeof arg === "number") {
+            classNames.push(String(arg));
+        } else if (Array.isArray(arg)) {
+            const nestedClassNames = buildClassName(...arg);
+            if (nestedClassNames) classNames.push(nestedClassNames);
+        } else if (typeof arg === "object") {
+            for (const key in arg) {
+                if (Object.prototype.hasOwnProperty.call(arg, key) && arg[key]) {
+                    classNames.push(key);
+                }
+            }
+        }
+        return classNames;
+    }, []).join(" ");
+};
 
 /* components/typingButton.scss */
 Styles.sheets.push("/* components/typingButton.scss */", `.invisibleTypingButton svg {
@@ -162,7 +353,11 @@ Styles.sheets.push("/* components/typingButton.scss */", `.invisibleTypingButton
 }
 
 .invisibleTypingButton {
-  background: transparent;
+  box-sizing: border-box;
+  padding: 0;
+  margin-inline: 0;
+  min-height: var(--space-32);
+  min-width: var(--space-32);
 }
 .invisibleTypingButton:hover:not(.disabled) svg {
   color: var(--interactive-hover);
@@ -183,67 +378,29 @@ function Keyboard({
 }) {
     return React.createElement("svg", {
         ...props,
-        width: "25",
-        height: "25",
+        width: "22.5",
+        height: "22.5",
         viewBox: "0 0 576 512"
-    }, React.createElement("path", {
-        fill: "currentColor",
-        d: "M528 448H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h480c26.51 0 48 21.49 48 48v288c0 26.51-21.49 48-48 48zM128 180v-40c0-6.627-5.373-12-12-12H76c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm96 0v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm96 0v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm96 0v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm96 0v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm-336 96v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm96 0v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm96 0v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm96 0v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm-336 96v-40c0-6.627-5.373-12-12-12H76c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm288 0v-40c0-6.627-5.373-12-12-12H172c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h232c6.627 0 12-5.373 12-12zm96 0v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12z"
-    }), disabled ? React.createElement("rect", {
-        className: styles.disabledStrokeThrough,
-        x: "10",
-        y: "10",
-        width: "600pt",
-        height: "70px",
-        fill: "#f04747"
-    }) : null);
+    }, React.createElement(
+        "path", {
+            fill: "currentColor",
+            d: "M528 448H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h480c26.51 0 48 21.49 48 48v288c0 26.51-21.49 48-48 48zM128 180v-40c0-6.627-5.373-12-12-12H76c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm96 0v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm96 0v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm96 0v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm96 0v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm-336 96v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm96 0v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm96 0v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm96 0v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm-336 96v-40c0-6.627-5.373-12-12-12H76c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12zm288 0v-40c0-6.627-5.373-12-12-12H172c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h232c6.627 0 12-5.373 12-12zm96 0v-40c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12z"
+        }
+    ), disabled ? React.createElement(
+        "rect", {
+            className: styles.disabledStrokeThrough,
+            x: "10",
+            y: "10",
+            width: "600pt",
+            height: "70px",
+            fill: "#f04747"
+        }
+    ) : null);
 }
 
-/* modules/shared.js */
-const Dispatcher = Webpack.getByKeys("dispatch", "register", {
-    searchExports: true
-});
-const Flux = Webpack.getByKeys("Store");
-const TypingModule = Webpack.getByKeys("startTyping");
-const useStateFromStores = Webpack.getByStrings("useStateFromStores", {
-    searchExports: true
-});
-const buildClassName = (...args) => {
-    return args.reduce((classNames, arg) => {
-        if (!arg) return classNames;
-        if (typeof arg === "string" || typeof arg === "number") {
-            classNames.push(arg);
-        } else if (Array.isArray(arg)) {
-            const nestedClassNames = buildClassName(...arg);
-            if (nestedClassNames) classNames.push(nestedClassNames);
-        } else if (typeof arg === "object") {
-            Object.keys(arg).forEach((key) => {
-                if (arg[key]) classNames.push(key);
-            });
-        }
-        return classNames;
-    }, []).join(" ");
-};
-
-/* modules/settings.js */
-const Settings = new class Settings2 extends Flux.Store {
-    constructor() {
-        super(Dispatcher, {});
-    }
-    _settings = Data.load("settings") ?? {};
-    get(key, def) {
-        return this._settings[key] ?? def;
-    }
-    set(key, value) {
-        this._settings[key] = value;
-        Data.save("settings", this._settings);
-        this.emitChange();
-    }
-}();
-
 /* components/typingButton.tsx */
-const ChatButton = Webpack.getBySource("CHAT_INPUT_BUTTON_NOTIFICATION")?.A;
-const removeItem = function(array, item) {
+const ChatButton = Webpack.getBySource("CHAT_INPUT_BUTTON_NOTIFICATION", "animated.div")?.A;
+const removeItem = (array, item) => {
     while (array.includes(item)) {
         array.splice(array.indexOf(item), 1);
     }
@@ -251,43 +408,39 @@ const removeItem = function(array, item) {
 };
 
 function InvisibleTypingContextMenu() {
-    const enabled = useStateFromStores([Settings], () => Settings.get("autoEnable", true));
-    return React.createElement(
-        ContextMenu.Menu, {
-            navId: "invisible-typing-context-menu",
-            onClose: ContextMenu.close
-        },
-        React.createElement(
-            ContextMenu.Item, {
-                id: "globally-disable-or-enable-typing",
-                label: enabled ? "Disable Globally" : "Enable Globally",
-                action: () => {
-                    Settings.set("autoEnable", !enabled);
-                }
+    const enabled = Hooks.useStateFromStores([Settings], () => Settings.get("autoEnable", true));
+    return React.createElement(ContextMenu.Menu, {
+        navId: "invisible-typing-context-menu",
+        onClose: ContextMenu.close
+    }, React.createElement(
+        ContextMenu.Item, {
+            id: "globally-disable-or-enable-typing",
+            label: enabled ? "Disable Globally" : "Enable Globally",
+            action: () => {
+                Settings.set("autoEnable", !enabled);
             }
-        ),
-        React.createElement(
-            ContextMenu.Item, {
-                color: "danger",
-                label: "Reset Config",
-                disabled: !Settings.get("exclude", []).length,
-                id: "reset-config",
-                action: () => {
-                    Settings.set("exclude", []);
-                    UI.showToast("Successfully reset config for all channels.", {
-                        type: "success"
-                    });
-                }
+        }
+    ), React.createElement(
+        ContextMenu.Item, {
+            color: "danger",
+            label: "Reset Config",
+            disabled: !Settings.get("exclude", []).length,
+            id: "reset-config",
+            action: () => {
+                Settings.set("exclude", []);
+                UI.showToast("Successfully reset config for all channels.", {
+                    type: "success"
+                });
             }
-        )
-    );
+        }
+    ));
 }
 
 function InvisibleTypingButton({
     channel,
     isEmpty
 }) {
-    const enabled = useStateFromStores([Settings], InvisibleTypingButton.getState.bind(this, channel.id));
+    const enabled = Hooks.useStateFromStores([Settings], InvisibleTypingButton.getState.bind(this, channel.id));
     const handleClick = React.useCallback(() => {
         const excludeList = [...Settings.get("exclude", [])];
         if (excludeList.includes(channel.id)) {
@@ -299,38 +452,33 @@ function InvisibleTypingButton({
         }
         Settings.set("exclude", excludeList);
     }, [enabled]);
-    const handleContextMenu = React.useCallback((event) => {
-        ContextMenu.open(event, () => {
-            return React.createElement(InvisibleTypingContextMenu, null);
-        });
-    }, [enabled]);
+    const handleContextMenu = React.useCallback(
+        (event) => {
+            ContextMenu.open(event, () => {
+                return React.createElement(InvisibleTypingContextMenu, null);
+            });
+        },
+        [enabled]
+    );
     return React.createElement(Components.Tooltip, {
         text: enabled ? "Typing Enabled" : "Typing Disabled"
-    }, (props) => React.createElement(
-        "div", {
-            ...props,
-            onClick: handleClick,
-            onContextMenu: handleContextMenu,
-            style: {
-                padding: "5px"
-            }
-        },
-        React.createElement(
-            ChatButton, {
-                className: buildClassName(
-                    styles.invisibleTypingButton, {
-                        enabled,
-                        disabled: !enabled
-                    }
-                )
-            },
-            React.createElement(Keyboard, {
+    }, (props) => React.createElement("div", {
+        ...props,
+        onClick: handleClick,
+        onContextMenu: handleContextMenu
+    }, React.createElement(
+        ChatButton, {
+            className: buildClassName(styles.invisibleTypingButton, {
+                enabled,
                 disabled: !enabled
             })
-        )
-    ));
+        },
+        React.createElement(Keyboard, {
+            disabled: !enabled
+        })
+    )));
 }
-InvisibleTypingButton.getState = function(channelId) {
+InvisibleTypingButton.getState = (channelId) => {
     const isGlobal = Settings.get("autoEnable", true);
     const isExcluded = Settings.get("exclude", []).includes(channelId);
     if (isGlobal && isExcluded) return false;
@@ -338,55 +486,17 @@ InvisibleTypingButton.getState = function(channelId) {
     return isGlobal;
 };
 
-/* components/settings.json */
-var SettingsItems = [{
+/* settings.json */
+var items = [{
     type: "switch",
     name: "Automatically enable",
     note: "Automatically enables the typing indicator for each channel that isn't manually disabled",
     id: "autoEnable",
     value: true
 }];
-
-/* components/settings.jsx */
-const {
-    SettingItem,
-    SwitchInput
-} = Components;
-
-function SwitchItem(props) {
-    const value = useStateFromStores([Settings], () => Settings.get(props.id, props.value));
-    return React.createElement(
-        SettingItem, {
-            ...props,
-            inline: true
-        },
-        React.createElement(
-            SwitchInput, {
-                value,
-                onChange: (v) => {
-                    Settings.set(props.id, v);
-                }
-            }
-        )
-    );
-}
-
-function renderItems(items) {
-    return items.map((item) => {
-        switch (item.type) {
-            case "switch":
-                return React.createElement(SwitchItem, {
-                    ...item
-                });
-            default:
-                return null;
-        }
-    });
-}
-
-function SettingsPanel() {
-    return React.createElement("div", null, renderItems(SettingsItems));
-}
+var SettingsItems = {
+    items: items
+};
 
 /* index.tsx */
 class InvisibleTyping {
@@ -406,8 +516,7 @@ class InvisibleTyping {
     setState(channelId, value) {
         const excludeList = [...Settings.get("exclude", [])];
         if (value) {
-            if (!excludeList.includes(channelId))
-                excludeList.push(channelId);
+            if (!excludeList.includes(channelId)) excludeList.push(channelId);
         } else {
             excludeList.splice(excludeList.indexOf(channelId), 1);
             TypingModule.stopTyping(channelId);
@@ -415,7 +524,8 @@ class InvisibleTyping {
         Settings.set("exclude", excludeList);
     }
     patchTyping() {
-        Patcher.instead(TypingModule, "startTyping", (_, [channelId], originalMethod) => {
+        Patcher.instead(TypingModule, "startTyping", (_, args, originalMethod) => {
+            const [channelId] = args;
             const globalTypingEnabled = Settings.get("autoEnable", true);
             const excludeList = Settings.get("exclude", []);
             const shouldType = globalTypingEnabled ? !excludeList.includes(channelId) : excludeList.includes(channelId);
@@ -425,17 +535,20 @@ class InvisibleTyping {
     }
     patchChannelTextArea() {
         const ChatButtonsGroup = Webpack.getBySource("showAllButtons", "promotionsByType")?.A;
-        Patcher.after(ChatButtonsGroup, "type", (_, args, res) => {
-            if (args.length == 2 && !args[0].disabled && args[0].type.analyticsName == "normal" && res.props.children && Array.isArray(res.props.children)) {
+        Patcher.after(ChatButtonsGroup, "type", (_, methodArgs, res) => {
+            const [args] = methodArgs;
+            if (!args.disabled && ["normal", "sidebar"].includes(args.type.analyticsName) && Array.isArray(res.props?.children)) {
                 res.props.children.unshift(React.createElement(InvisibleTypingButton, {
-                    channel: args[0].channel,
-                    isEmpty: !Boolean(args[0].textValue)
+                    channel: args.channel,
+                    isEmpty: !args.textValue
                 }));
             }
         });
     }
     getSettingsPanel() {
-        return React.createElement(SettingsPanel, null);
+        return React.createElement(SettingsPanel, {
+            items: SettingsItems.items
+        });
     }
 }
 

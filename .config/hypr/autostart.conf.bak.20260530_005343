@@ -1,0 +1,23 @@
+# Shared autostart - runs regardless of shell
+exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec-once = hypridle
+exec-once = gnome-keyring-daemon --start --components=secrets
+exec-once = wl-paste --type text --watch cliphist store
+exec-once = wl-paste --type image --watch cliphist store
+exec-once = easyeffects &
+exec-once = udiskie --automount --notify &
+
+# Waybar shell autostart
+# exec-once = exec-once = ~/.config/ags/run-bar.sh &
+exec-once = sh -c 'sleep 1; /home/vib1240n/.config/ags/run-bar.sh'
+exec-once = awww-daemon
+exec-once = sleep 3 && awww img "$(cat ~/.cache/current-wallpaper 2>/dev/null || echo ~/Pictures/wallpapers/default.jpg)"
+
+# rust-widgets daemons
+exec-once = rw-volume-osd > /dev/null 2>&1 &
+exec-once = rw-notifications > /dev/null 2>&1 & 
+
+# GUI launchers
+exec-once = cliphist-gui > /dev/null 2>&1 &
+exec-once = launch-gui > /dev/null 2>&1 &
+exec-once = /usr/lib/polkit-kde-authentication-agent-1

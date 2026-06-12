@@ -1,0 +1,124 @@
+{
+    "telemetry.sqmId": "",
+    "telemetry.machineId": "802077afc145b53a2dcfb617e1eedea29dc055155860db0621913c60f92c2f39",
+    "telemetry.devDeviceId": "29da4a94-f281-4f49-bbcc-b5fe2dfcf350",
+    "backupWorkspaces": {
+        "workspaces": [],
+        "folders": [
+            {
+                "folderUri": "vscode-remote://ssh-remote%2Bmediastack/home/vib1240n/mediastack",
+                "remoteAuthority": "ssh-remote+mediastack"
+            },
+            {
+                "folderUri": "vscode-remote://ssh-remote%2Bcult/home/ubuntu/CULT",
+                "remoteAuthority": "ssh-remote+cult"
+            }
+        ],
+        "emptyWindows": []
+    },
+    "windowControlHeight": 43,
+    "profileAssociations": {
+        "workspaces": {
+            "file:///home/vib1240n/Development/CULT": "__default__profile__",
+            "vscode-remote://ssh-remote%2B74.208.167.123/home/ubuntu/CULT": "__default__profile__",
+            "file:///home/vib1240n/Development/CULT-Discord-bot": "__default__profile__",
+            "vscode-remote://ssh-remote%2Bvps/home/ubuntu/CULT": "__default__profile__",
+            "file:///home/vib1240n/.config/nvim/lua": "__default__profile__",
+            "file:///home/vib1240n/.config/hypr": "__default__profile__",
+            "vscode-remote://ssh-remote%2Bcult/home/ubuntu/CULT": "__default__profile__",
+            "vscode-remote://ssh-remote%2Bmediastack/home/vib1240n/mediastack": "__default__profile__"
+        },
+        "emptyWindows": {}
+    },
+    "windowsState": {
+        "lastActiveWindow": {
+            "folder": "vscode-remote://ssh-remote%2Bcult/home/ubuntu/CULT",
+            "backupPath": "/home/vib1240n/.config/Code/Backups/9bad3535cb202e3e7b6e0a4b33d6f5b0",
+            "remoteAuthority": "ssh-remote+cult",
+            "uiState": {
+                "mode": 0,
+                "x": 0,
+                "y": 0,
+                "width": 1886,
+                "height": 1376,
+                "zoomLevel": 2
+            }
+        },
+        "openedWindows": []
+    },
+    "theme": "vs-dark",
+    "themeBackground": "#181a1d",
+    "windowSplash": {
+        "zoomLevel": 0,
+        "baseTheme": "vs-dark",
+        "colorInfo": {
+            "foreground": "#bcbec4",
+            "background": "#181a1d",
+            "editorBackground": "#181a1d",
+            "titleBarBackground": "#181a1d",
+            "titleBarBorder": "rgba(24, 26, 29, 0)",
+            "activityBarBackground": "#181a1d",
+            "activityBarBorder": "rgba(24, 26, 29, 0)",
+            "sideBarBackground": "#181a1d",
+            "sideBarBorder": "rgba(24, 26, 29, 0)",
+            "statusBarBackground": "#181a1d",
+            "statusBarBorder": "rgba(24, 26, 29, 0)",
+            "statusBarNoFolderBackground": "#181a1d",
+            "windowBorder": "rgba(0, 0, 0, 0)"
+        },
+        "layoutInfo": {
+            "sideBarSide": "right",
+            "editorPartMinWidth": 220,
+            "titleBarHeight": 30,
+            "activityBarWidth": 54,
+            "sideBarWidth": 296,
+            "auxiliaryBarWidth": 0,
+            "statusBarHeight": 22,
+            "windowBorder": false
+        }
+    },
+    "windowSplashWorkspaceOverride": {
+        "layoutInfo": {
+            "sideBarWidth": 296,
+            "auxiliaryBarWidth": 212,
+            "workspaces": {
+                "75ec87f668882cf08926fea0afc6c516": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "8d2856a6a2e3b1596bbc874c764f2fa9": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "871355eaf7cf6927c03a207d75935b69": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "8a7a47fcd8de53fdd7431813f7cb6f67": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "e8b8f38320077d873a5dc935cf35031b": {
+                    "sideBarVisible": false,
+                    "auxiliaryBarVisible": false
+                },
+                "c02fcd05aa6985d23cc052c2b6e503c5": {
+                    "sideBarVisible": false,
+                    "auxiliaryBarVisible": false
+                },
+                "631add18255ae1f745161f537f015408": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "9ca0b8182cca6dc6d240016e9d20056f": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "a183cc5ff527f77f53855a3e0d6e3c1b": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                }
+            }
+        }
+    }
+}

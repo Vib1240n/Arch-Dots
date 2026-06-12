@@ -5,18 +5,21 @@ levelMetersFpsCap=120
 spectrumShape=lines
 
 [StreamInputs]
-inputDevice=alsa_input.usb-CalDigit_Inc._CalDigit_TS4_Audio_-_Rear-00.analog-stereo
+inputDevice=alsa_input.usb-HP__Inc_HyperX_SoloCast_2_1H55520K8L-00.analog-stereo
+plugins=autogain#0
+visiblePage=pluginsPage
+visiblePlugin=autogain#0
 
 [StreamOutputs]
 mostUsedPresets=Music Bass enhanced
-outputDevice=bluez_output.C8_24_78_05_15_C9.1
+outputDevice=alsa_output.usb-KTMicro_Anker_USB_Audio-00.analog-stereo
 plugins=equalizer#0,autogain#0,bass_enhancer#0,loudness#0,stereo_tools#0
 usedPresets=Music Bass enhanced:1
 visiblePage=pluginsPage
-visiblePlugin=loudness#0
+visiblePlugin=stereo_tools#0
 
 [Window]
 autostartOnLogin=true
-height=1104
+height=1370
 noWindowAfterStarting=true
-width=2739
+width=1706

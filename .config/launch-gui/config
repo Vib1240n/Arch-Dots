@@ -15,7 +15,7 @@ theme = ~/.config/launch-gui/style.css
 terminal = kitty
 calculator = true
 vim_mode = true
-animation_duration = 400
+animation_duration = 250
 animation_easing = ease-out
 
 

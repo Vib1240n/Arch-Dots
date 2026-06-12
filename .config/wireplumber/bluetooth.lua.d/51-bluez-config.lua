@@ -18,8 +18,8 @@ bluez_monitor.rules = {
     apply_properties = {
       ["bluez5.auto-connect"] = "[ a2dp_sink ]",
       ["bluez5.hw-volume"] = "[ a2dp_sink ]",
-      ["bluez5.a2dp.ldac.quality"] = "mq",
-      ["bluez5.a2dp.ldac.eqmid"] = "mq",
+      ["bluez5.a2dp.ldac.quality"] = "hq",
+      ["bluez5.a2dp.ldac.eqmid"] = "hq",
     },
   },
 }

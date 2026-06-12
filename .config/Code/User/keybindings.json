@@ -1,0 +1,179 @@
+// AstroNvim-style keybindings for VS Code
+// Maps AstroNvim's <Leader> (Space) commands to VS Code native commands
+// Active only in normal mode when vscode-neovim is loaded
+// Place at: ~/.config/Code/User/keybindings.json
+[
+  // ═══════════════════════════════════════════════════════════════
+  // FIND / TELESCOPE EQUIVALENTS (Leader f...)
+  // ═══════════════════════════════════════════════════════════════
+    {
+  "key": "g g",
+  "command": "cursorTop",
+  "when": "neovim.mode == 'normal' && editorTextFocus"
+},
+  // ═══════════════════════════════════════════════════════════════
+  // BUFFER MANAGEMENT (Leader b...)
+  // ═══════════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════════
+  // BUFFER NAVIGATION (]b and [b)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    "key": "] b",
+    "command": "workbench.action.nextEditor",
+    "when": "neovim.mode == 'normal'"
+  },
+  {
+    "key": "[ b",
+    "command": "workbench.action.previousEditor",
+    "when": "neovim.mode == 'normal'"
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // FILE EXPLORER (Leader e / E)
+  // ═══════════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════════
+  // LSP / CODE ACTIONS (Leader l...)
+  // ═══════════════════════════════════════════════════════════════
+  // gd / gD / gI / gr (vim-native bindings to LSP)
+  {
+    "key": "g d",
+    "command": "editor.action.revealDefinition",
+    "when": "neovim.mode == 'normal' && editorTextFocus"
+  },
+  {
+    "key": "g D",
+    "command": "editor.action.revealDeclaration",
+    "when": "neovim.mode == 'normal' && editorTextFocus"
+  },
+  {
+    "key": "g I",
+    "command": "editor.action.goToImplementation",
+    "when": "neovim.mode == 'normal' && editorTextFocus"
+  },
+  {
+    "key": "g r",
+    "command": "editor.action.goToReferences",
+    "when": "neovim.mode == 'normal' && editorTextFocus"
+  },
+  {
+    "key": "g y",
+    "command": "editor.action.goToTypeDefinition",
+    "when": "neovim.mode == 'normal' && editorTextFocus"
+  },
+  {
+    "key": "K",
+    "command": "editor.action.showHover",
+    "when": "neovim.mode == 'normal' && editorTextFocus"
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // GIT (Leader g...)
+  // ═══════════════════════════════════════════════════════════════
+  // Hunk navigation
+  {
+    "key": "] g",
+    "command": "workbench.action.editor.nextChange",
+    "when": "neovim.mode == 'normal' && editorTextFocus"
+  },
+  {
+    "key": "[ g",
+    "command": "workbench.action.editor.previousChange",
+    "when": "neovim.mode == 'normal' && editorTextFocus"
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // SEARCH / REPLACE (Leader s...)
+  // ═══════════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════════
+  // TERMINAL (Leader t...)
+  // ═══════════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════════
+  // DEBUG (Leader d...)
+  // ═══════════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════════
+  // PACKAGE / WORKSPACE (Leader p... / Leader w...)
+  // ═══════════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════════
+  // SPLIT / WINDOW NAVIGATION (matches your <M-H/J/K/L> custom binds)
+  // Using Alt+Shift+H/J/K/L since vscode-neovim handles these natively
+  // ═══════════════════════════════════════════════════════════════
+  {
+    "key": "alt+shift+h",
+    "command": "workbench.action.focusLeftGroup",
+    "when": "neovim.mode == 'normal' && editorTextFocus"
+  },
+  {
+    "key": "alt+shift+j",
+    "command": "workbench.action.focusBelowGroup",
+    "when": "neovim.mode == 'normal' && editorTextFocus"
+  },
+  {
+    "key": "alt+shift+k",
+    "command": "workbench.action.focusAboveGroup",
+    "when": "neovim.mode == 'normal' && editorTextFocus"
+  },
+  {
+    "key": "alt+shift+l",
+    "command": "workbench.action.focusRightGroup",
+    "when": "neovim.mode == 'normal' && editorTextFocus"
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // YOUR CUSTOM MAPPINGS FROM astrocore.lua
+  // ═══════════════════════════════════════════════════════════════
+  // <Leader>RR - Reload (no VS Code equivalent - use Reload Window)
+  // <Leader>sr - Search and replace (already opens Find/Replace via VS Code)
+  // ═══════════════════════════════════════════════════════════════
+  // ESCAPE - jj already handled by vscode-neovim.compositeKeys in settings
+  // ═══════════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════════
+  // QUICK SAVE / CLOSE (vim-native, but ensure they pass through)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    "key": "ctrl+s",
+    "command": "workbench.action.files.save",
+    "when": "editorTextFocus"
+  },
+  // ═══════════════════════════════════════════════════════════════
+  // ZEN MODE (Leader z)
+  // ═══════════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════════
+  // PROBLEMS / DIAGNOSTICS (]d and [d for next/prev diagnostic)
+  // ═══════════════════════════════════════════════════════════════
+  {
+    "key": "] d",
+    "command": "editor.action.marker.next",
+    "when": "neovim.mode == 'normal' && editorTextFocus"
+  },
+  {
+    "key": "[ d",
+    "command": "editor.action.marker.prev",
+    "when": "neovim.mode == 'normal' && editorTextFocus"
+  },
+    {
+  "key": "ctrl+r",
+  "command": "-workbench.action.openRecent",
+  "when": "neovim.mode == 'normal' && editorTextFocus"
+},
+{
+  "key": "ctrl+r",
+  "command": "vscode-neovim.send",
+  "args": "<C-r>",
+  "when": "neovim.mode == 'normal' && editorTextFocus"
+}
+  {
+    "key": "space e",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        "workbench.action.closeSidebar",
+        "workbench.action.focusActiveEditorGroup"
+      ]
+    },
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+shift+;",
+    "command": "-editor.action.accessibleView"
+  },
+  {
+    "key": "ctrl+shift+;",
+    "command": "-workbench.action.terminal.accessibleBuffer"
+  },
+]

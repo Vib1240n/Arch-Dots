@@ -1,3 +1,5 @@
--- This will run last in the setup process.
--- This is just pure lua so anything that doesn't
--- fit in the normal config locations above can go here
+-- Suppress undo/redo notifications
+vim.opt.report = 99999
+
+-- VSCode-specific keymaps
+require("vscode-keymaps")

@@ -1,0 +1,30 @@
+{
+  "environment": {
+    "executable": "/usr/bin/python",
+    "prefix": "/usr",
+    "version": "3.14.3.final.0",
+    "is64Bit": true,
+    "symlinks": [
+      "/home/vib1240n/.pyenv/shims/python",
+      "/usr/bin/python"
+    ]
+  },
+  "symlinks": [
+    [
+      "/home/vib1240n/.pyenv/shims/python",
+      {
+        "secs_since_epoch": 1769941898,
+        "nanos_since_epoch": 228708500
+      },
+      null
+    ],
+    [
+      "/usr/bin/python",
+      {
+        "secs_since_epoch": 1770996704,
+        "nanos_since_epoch": 0
+      },
+      null
+    ]
+  ]
+}

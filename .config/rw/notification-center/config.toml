@@ -9,7 +9,7 @@ margin_bottom = 0
 margin_left = 0
 
 [appearance]
-panel_width = 280
+panel_width = 448
 popup_width = 360
 max_height = 1000
 max_history = 50
@@ -26,12 +26,12 @@ anchor = "top-right"
 margin = 10
 gap = 8
 timeout_low = 3000
-timeout_normal = 2000
+timeout_normal = 7000
 timeout_critical = 1  # 0 = no auto-dismiss
 max_visible = 10
 
 [animation]
-enabled = true
+enabled = false
 type = "slide"
 direction = "right"
 duration = 200

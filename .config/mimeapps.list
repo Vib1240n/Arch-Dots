@@ -18,11 +18,19 @@ x-scheme-handler/nxm=com.nexusmods.app.desktop
 x-scheme-handler/about=opera.desktop
 x-scheme-handler/unknown=opera.desktop
 x-scheme-handler/betterdiscord=discord.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop
 
 [Added Associations]
-x-scheme-handler/http=zen.desktop;
-x-scheme-handler/https=zen.desktop;
-text/html=zen.desktop;
+x-scheme-handler/http=zen.desktop;userapp-Floorp-H74QN3.desktop;
+x-scheme-handler/https=zen.desktop;userapp-Floorp-H74QN3.desktop;
+text/html=zen.desktop;userapp-Floorp-H74QN3.desktop;
 image/jpeg=imv.desktop;
 image/png=imv-dir.desktop;
-x-scheme-handler/chrome=zen.desktop;
+x-scheme-handler/chrome=zen.desktop;userapp-Floorp-H74QN3.desktop;
+application/x-extension-htm=userapp-Floorp-H74QN3.desktop;zen.desktop;
+application/x-extension-html=userapp-Floorp-H74QN3.desktop;zen.desktop;
+application/x-extension-shtml=userapp-Floorp-H74QN3.desktop;zen.desktop;
+application/xhtml+xml=userapp-Floorp-H74QN3.desktop;zen.desktop;
+application/x-extension-xhtml=userapp-Floorp-H74QN3.desktop;zen.desktop;
+application/x-extension-xht=userapp-Floorp-H74QN3.desktop;zen.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;

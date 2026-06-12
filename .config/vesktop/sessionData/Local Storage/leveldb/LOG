@@ -1,24 +1,18 @@
-2026/03/31-20:29:18.550 ca07 Reusing MANIFEST /home/vib1240n/.config/vesktop/sessionData/Local Storage/leveldb/MANIFEST-000001
-2026/03/31-20:29:18.555 ca07 Recovering log #19820
-2026/03/31-20:29:18.555 ca07 Reusing old log /home/vib1240n/.config/vesktop/sessionData/Local Storage/leveldb/019820.log 
-2026/03/31-20:34:42.051 ca2d Level-0 table #19824: started
-2026/03/31-20:34:42.055 ca2d Level-0 table #19824: 94941 bytes OK
-2026/03/31-20:34:42.057 ca2d Delete type=0 #19820
-2026/03/31-20:47:10.168 ca2d Level-0 table #19826: started
-2026/03/31-20:47:10.172 ca2d Level-0 table #19826: 52456 bytes OK
-2026/03/31-20:47:10.173 ca2d Delete type=0 #19823
-2026/03/31-20:47:10.174 ca2d Compacting 4@0 + 1@1 files
-2026/03/31-20:47:10.177 ca2d Generated table #19827@0: 104 keys, 76322 bytes
-2026/03/31-20:47:10.177 ca2d Compacted 4@0 + 1@1 files => 76322 bytes
-2026/03/31-20:47:10.177 ca2d compacted to: files[ 0 1 0 0 0 0 0 ]
-2026/03/31-20:47:10.177 ca2d Delete type=2 #19821
-2026/03/31-20:47:10.177 ca2d Delete type=2 #19824
-2026/03/31-20:47:10.178 ca2d Delete type=2 #19818
-2026/03/31-20:47:10.178 ca2d Delete type=2 #19826
-2026/03/31-20:47:10.178 ca2d Delete type=2 #19816
-2026/03/31-23:18:26.060 ca2d Level-0 table #19829: started
-2026/03/31-23:18:26.064 ca2d Level-0 table #19829: 26864 bytes OK
-2026/03/31-23:18:26.066 ca2d Delete type=0 #19825
-2026/04/01-05:51:33.906 ca07 Level-0 table #19831: started
-2026/04/01-05:51:33.912 ca07 Level-0 table #19831: 48876 bytes OK
-2026/04/01-05:51:33.913 ca07 Delete type=0 #19828
+2026/06/09-21:46:53.129 313c4 Reusing MANIFEST /home/vib1240n/.config/vesktop/sessionData/Local Storage/leveldb/MANIFEST-000001
+2026/06/09-21:46:53.151 313c4 Recovering log #21642
+2026/06/09-21:46:53.161 313c4 Reusing old log /home/vib1240n/.config/vesktop/sessionData/Local Storage/leveldb/021642.log 
+2026/06/09-21:47:53.181 313ec Level-0 table #21646: started
+2026/06/09-21:47:53.184 313ec Level-0 table #21646: 17967 bytes OK
+2026/06/09-21:47:53.185 313ec Delete type=0 #21642
+2026/06/09-21:48:53.663 313ec Level-0 table #21648: started
+2026/06/09-21:48:53.666 313ec Level-0 table #21648: 47771 bytes OK
+2026/06/09-21:48:53.667 313ec Delete type=0 #21645
+2026/06/09-21:48:53.668 313ec Compacting 4@0 + 1@1 files
+2026/06/09-21:48:53.671 313ec Generated table #21649@0: 136 keys, 105191 bytes
+2026/06/09-21:48:53.671 313ec Compacted 4@0 + 1@1 files => 105191 bytes
+2026/06/09-21:48:53.672 313ec compacted to: files[ 0 1 0 0 0 0 0 ]
+2026/06/09-21:48:53.672 313ec Delete type=2 #21643
+2026/06/09-21:48:53.672 313ec Delete type=2 #21648
+2026/06/09-21:48:53.672 313ec Delete type=2 #21646
+2026/06/09-21:48:53.672 313ec Delete type=2 #21638
+2026/06/09-21:48:53.672 313ec Delete type=2 #21641
